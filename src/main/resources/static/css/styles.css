@@ -50,7 +50,7 @@
 
         /* --- SECCIÓN HERO (Visión y Valores) --- */
         .hero-section {
-            padding: 60px 0;
+            padding: 5px 0;
             /* Truco: Gradiente blanco semitransparente sobre una imagen de una tienda de ropa, PORFA SI TIENEN EL LINK DE LA IMAGEN DE FIGMA, COLOQUENLA AQUÍ*/
             background: linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)), url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') no-repeat center center;
             background-size: cover;
