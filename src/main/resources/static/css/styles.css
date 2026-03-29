@@ -165,3 +165,33 @@
             margin-right: 15px;
             cursor: pointer;
         }
+
+        .zoom {
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+
+        .zoom:hover {
+            transform: scale(1.2);
+        }
+
+        .navbar-animation a {
+            position: relative;
+            text-decoration: none;
+            color: black;
+        }
+
+        .navbar-animation a::after {
+            content: "";
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            bottom: -3px;
+            left: 0;
+            background-color: var(--text-light);
+            transition: width 0.3s;
+        }
+
+        .navbar-animation a:hover::after {
+            width: 100%;
+        }
