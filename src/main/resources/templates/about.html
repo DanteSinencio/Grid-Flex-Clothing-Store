@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grid & Flex</title>
     <!-- Bootstrap 5 CSS -->
@@ -9,16 +10,18 @@
     <!-- Font Awesome para los íconos (carrito, redes sociales, avatares) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!--IMPORTANTE: ASÍ ES COMO LLAMAREMOS AL CSS EN LAS DEMAS PÁGINAS HTML QUE CREEMOS-->
-  <link href="../static/css/styles.css" rel="stylesheet">
+    <link href="../static/css/styles.css" rel="stylesheet">
 </head>
+
 <body>
-  <!-- Navbar -->
-   <nav class="navbar navbar-expand-lg navbar-custom bg-custom-dark py-3">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom bg-custom-dark py-3 navbar-animation">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <i class="fa-solid fa-bag-shopping"></i> GRID & FLEX
             </a>
-            <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
@@ -40,43 +43,85 @@
 
     <main>
         <!-- SECCIÓN DE VISIÓN Y VALORES -->
-        <section class="hero-section">
+        <section class="py-5 bg-light">
             <div class="container">
-                <!-- Aqui modificamos la sección de mision y valores equipo -->
-                 <h2>Misión</h2>
-                <p class="text-muted">Ofrecer ropa moderna y accesible a jóvenes adultos
-                     a través de una plataforma de comercio electrónico fácil 
-                     de usar, brindando productos de calidad que les permitan 
-                     expresar su estilo personal con confianza</p>
-                 
-                 <h2>Visión</h2>
-                <p class="text-muted">Convertirnos en una tienda en línea reconocida por jóvenes 
-                    adultos por ofrecer moda actual, experiencias de compra digitales
-                     simples y una comunidad que inspira estilo, creatividad y autenticidad</p>
-                
-                <h2 class="mt-4">Valores</h2>
-                <p class="text-muted">Creatividad: Promovemos la originalidad y el estilo único en cada prenda.</p>
-                <p class="text-muted">Innovación: Buscamos mejorar continuamente la experiencia digital de compra.</p>
-                <p class="text-muted">Accesibilidad: Ofrecemos productos con precios justos y accesibles para jóvenes.</p>
-                <p class="text-muted">Autenticidad: Creemos en la expresión personal a través de la moda.</p>
-                <p class="text-muted">Confianza: Garantizamos una plataforma segura y transparente para nuestros clientes.</p>
-                <p class="text-muted">Inclusión: Moda para todos los cuerpos y estilos.</p>
-                <p class="text-muted">Sostenibilidad: Priorizamos el impacto ambiental positivo.
-.</p>
+                <div class="row g-4 mb-5">
+                    <div class="col-md-6">
+                        <div class="card h-100 border-0 shadow-sm p-4 card-mono">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-3">
+                                    <i class="fa-solid fa-compass fa-2x me-3 icon-mono"></i>
+                                    <h2 class="h4 mb-0 fw-bold">Misión</h2>
+                                </div>
+                                <p class="text-muted">Ofrecer ropa moderna y accesible a jóvenes adultos a través de una
+                                    plataforma de comercio electrónico fácil de usar, brindando productos de calidad que
+                                    les permitan expresar su estilo personal con confianza.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100 border-0 shadow-sm p-4 card-mono">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-3">
+                                    <i class="fa-solid fa-mountain-sun fa-2x me-3 icon-mono"></i>
+                                    <h2 class="h4 mb-0 fw-bold">Visión</h2>
+                                </div>
+                                <p class="text-muted">Convertirnos en una tienda en línea reconocida por jóvenes adultos
+                                    por ofrecer moda actual, experiencias de compra digitales simples y una comunidad
+                                    que inspira estilo, creatividad y autenticidad.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 shadow-sm text-center p-3 card-mono">
+                            <div class="card-body">
+                                <i class="fa-solid fa-seedling icon-mono mb-3 fa-lg"></i>
+                                <h5 class="card-title h6 fw-bold">Sostenibilidad</h5>
+                                <p class="small text-muted mb-0">Priorizamos el impacto ambiental positivo en cada
+                                    proceso.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 shadow-sm text-center p-3 card-mono">
+                            <div class="card-body">
+                                <i class="fa-solid fa-fingerprint icon-mono mb-3 fa-lg"></i>
+                                <h5 class="card-title h6 fw-bold">Autenticidad</h5>
+                                <p class="small text-muted mb-0">Creemos en la expresión personal única a través de la
+                                    moda.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 shadow-sm text-center p-3 card-mono">
+                            <div class="card-body">
+                                <i class="fa-solid fa-universal-access icon-mono mb-3 fa-lg"></i>
+                                <h5 class="card-title h6 fw-bold">Inclusión</h5>
+                                <p class="small text-muted mb-0">Diseñamos moda para todos los cuerpos y estilos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- SECCIÓN EQUIPO DE COLABORADORES -->
         <section class="team-section container-fluid px-4 px-md-5">
             <h3 class="team-title">EQUIPO DE COLABORADORES</h3>
-            
+
             <!-- FILA 1: 6 Elementos -->
             <div class="row row-cols-2 row-cols-md-6 justify-content-center mb-4">
                 <!--Ana -->
                 <div class="col team-card">
-                    <img src="../static/img/mujer-joven-hermosa-31169974.jpg" alt="Ana Cristina" class="avatar-img"> <!--AQUI DEJO UNA IMAGEN DE MUESTRA PERO REVISEN LA RUTA DE COMO SE DEBEN SUBIR-->
+                    <img src="../static/img/mujer-joven-hermosa-31169974.jpg" alt="Ana Cristina"
+                        class="avatar-img zoom">
+                    <!--AQUI DEJO UNA IMAGEN DE MUESTRA PERO REVISEN LA RUTA DE COMO SE DEBEN SUBIR-->
                     <div class="rol">Rol</div>
-                    <p class="desc">Breve descripción profesional del integrante del equipo. Aquí se detallarán sus años de experiencia, sus pasiones y el valor principal que aporta al proyecto en su día a día</p>
+                    <p class="desc">Breve descripción profesional del integrante del equipo. Aquí se detallarán sus años
+                        de experiencia, sus pasiones y el valor principal que aporta al proyecto en su día a día</p>
                     <div class="name">Bonilla Martínez<br>Ana Cristina</div>
                 </div>
 
@@ -88,90 +133,114 @@
                     <div class="name">González Bautista<br>Francisco Emiliano</div>
                 </div>
 
-             <!--Martin-->
-            <div class="col team-card">
-                    <img src="../static/img/mujer-joven-hermosa-31169974.jpg" alt="Rico Martin" class="avatar-img"> <!--AQUI DEJO UNA IMAGEN DE MUESTRA PERO REVISEN LA RUTA DE COMO SE DEBEN SUBIR-->
-                    <div class="rol">Rol</div>
-                    <p class="desc">Breve descripción profesional del integrante del equipo. Aquí se detallarán sus años de experiencia, sus pasiones y el valor principal que aporta al proyecto en su día a día</p>
+                <!--Martin-->
+                <div class="col team-card">
+                    <img src="../static/img/Martin-Foto.jpg" alt="Rico Martin" class="avatar-img zoom">
+                    <div class="rol">Desarrollador</div>
+                    <p class="desc">Ingeniero en computación y Desarrollador Java full stack Jr con experiencia en el
+                        desarrollo de aplicaciones web tanto en frontend como en backend. Apasionado por la creación de
+                        soluciones eficientes y seguras, especialmente en áreas como desarrollo web y de desarrollo de
+                        software. </p>
                     <div class="name">Gonzalez Rico<br>Martin</div>
                 </div>
-            
-             <!--Gustavo-->
-            <div class="col team-card">
-                    <img src="../static/img/mujer-joven-hermosa-31169974.jpg" alt="Hernández" class="avatar-img"> <!--AQUI DEJO UNA IMAGEN DE MUESTRA PERO REVISEN LA RUTA DE COMO SE DEBEN SUBIR-->
-                    <div class="rol">Rol</div>
-                    <p class="desc">Breve descripción profesional del integrante del equipo. Aquí se detallarán sus años de experiencia, sus pasiones y el valor principal que aporta al proyecto en su día a día</p>
+
+                <!--Gustavo-->
+                <div class="col team-card">
+                    <img src="../static/img/Gustavo.png" alt="Hernández" class="avatar-img zoom">
+                    <!--AQUI DEJO UNA IMAGEN DE MUESTRA PERO REVISEN LA RUTA DE COMO SE DEBEN SUBIR-->
+                    <div class="rol">Scrum Master</div>
+                    <p class="desc">Como Desarrollador de Software, me apasiona crear soluciones móviles que no sólo
+                        resuelvan problemas técnicos, sino que mejoren la vida diaria de los usuarios. He tenido la
+                        oportunidad de liderar proyectos en sectores de alta exigencia como Retail y Fintech, donde mi
+                        prioridad siempre es entregar aplicaciones estables, rápidas y fáciles de mantener.</p>
                     <div class="name">Hernández Hernández <br>Gustavo</div>
                 </div>
-            
-                 <!--Edwin-->
-            <div class="col team-card">
-                    <img src="../static/img/mujer-joven-hermosa-31169974.jpg" alt="Edwin Jesus" class="avatar-img"> <!--AQUI DEJO UNA IMAGEN DE MUESTRA PERO REVISEN LA RUTA DE COMO SE DEBEN SUBIR-->
-                    <div class="rol">Rol</div>
-                    <p class="desc">Breve descripción profesional del integrante del equipo. Aquí se detallarán sus años de experiencia, sus pasiones y el valor principal que aporta al proyecto en su día a día</p>
+
+                <!--Edwin-->
+                <div class="col team-card">
+                    <img src="../static/img/Edwin.jpg" alt="Edwin Jesus" class="avatar-img zoom">
+                    <!--AQUI DEJO UNA IMAGEN DE MUESTRA PERO REVISEN LA RUTA DE COMO SE DEBEN SUBIR-->
+                    <div class="rol">Desarrollador</div>
+                    <p class="desc">Economista y desarrollador Java Full Stack, con una sólida formación analítica y experiencia en modelos econométricos y análisis de datos. Cuento con experiencia en desarrollo de en la estructuración y gestión de proyectos, lo que te permite combinar pensamiento económico y capacidades técnicas de desarrollador.</p>
                     <div class="name">Higinio Salazar<br>Edwin Jesus</div>
                 </div>
 
-             <!--César-->
-            <div class="col team-card">
-                    <img src="../static/img/Cesar.jpeg" alt="César Enrique" class="avatar-img"> <!--AQUI DEJO UNA IMAGEN DE MUESTRA PERO REVISEN LA RUTA DE COMO SE DEBEN SUBIR-->
-                    <div class="rol">Rol</div>
-                    <p class="desc">Desarrollador Jr. con 2 años de experiencia y conocimientos sólidos en Java. Apasionado por el desarrollo backend y el diseño de bases de datos para crear soluciones funcionales y eficientes.</p>
+                <!--César-->
+                <div class="col team-card">
+                    <img src="../static/img/Cesar.jpeg" alt="César Enrique" class="avatar-img zoom">
+                    <!--AQUI DEJO UNA IMAGEN DE MUESTRA PERO REVISEN LA RUTA DE COMO SE DEBEN SUBIR-->
+                    <div class="rol">Desarrollador</div>
+                    <p class="desc">Desarrollador Jr. Backend con sólida formación en Java y especialización en la gestión de bases de datos relacionales como SQL Oracle. Me distingo por un enfoque analítico orientado a la resolución de desafíos lógicos y una alta capacidad de persistencia para garantizar la entrega de soluciones óptimas. 
+                        Comprometido con la calidad del código y la eficiencia técnica en cada proyecto.</p>
                     <div class="name">Manriquez Torres<br>Cesar Enrique</div>
                 </div>
-            
-             <!--Diana-->
-            <div class="col team-card">
-                    <img src="../static/img/Diana.jpg" alt="Diana Ramírez" class="avatar-img"> <!--AQUI DEJO UNA IMAGEN DE MUESTRA PERO REVISEN LA RUTA DE COMO SE DEBEN SUBIR-->
-                    <div class="rol">Rol</div>
-                    <p class="desc">Ingeniera en Desarrollo de Software apasionada por resolver desafíos complejos mediante soluciones tecnológicas innovadoras. Experiencia sólida en el desarrollo de aplicaciones web de extremo a extremo, con especial enfoque en el ecosistema Java y tecnologías de soluciones financieras.</p>
+
+                <!--Diana-->
+                <div class="col team-card">
+                    <img src="../static/img/Diana.jpg" alt="Diana Ramírez" class="avatar-img zoom">
+                    <!--AQUI DEJO UNA IMAGEN DE MUESTRA PERO REVISEN LA RUTA DE COMO SE DEBEN SUBIR-->
+                    <div class="rol">Desarrolladora</div>
+                    <p class="desc">Ingeniera en Desarrollo de Software apasionada por resolver desafíos complejos
+                        mediante soluciones tecnológicas innovadoras. Experiencia sólida en el desarrollo de
+                        aplicaciones web de extremo a extremo, con especial enfoque en el ecosistema Java y tecnologías
+                        de soluciones financieras.</p>
                     <div class="name">Ramírez Ministro<br>Diana</div>
                 </div>
 
-             <!--Edgar-->
-            <div class="col team-card">
-                    <img src="../static/img/mujer-joven-hermosa-31169974.jpg" alt="Edgar Tonatiuh" class="avatar-img"> <!--AQUI DEJO UNA IMAGEN DE MUESTRA PERO REVISEN LA RUTA DE COMO SE DEBEN SUBIR-->
-                    <div class="rol">Rol</div>
-                    <p class="desc">Breve descripción profesional del integrante del equipo. Aquí se detallarán sus años de experiencia, sus pasiones y el valor principal que aporta al proyecto en su día a día</p>
+                <!--Edgar-->
+                <div class="col team-card">
+                    <img src="../static/img/tona.jpeg" alt="Edgar Tonatiuh" class="avatar-img zoom">
+                    <!--AQUI DEJO UNA IMAGEN DE MUESTRA PERO REVISEN LA RUTA DE COMO SE DEBEN SUBIR-->
+                    <div class="rol">Product Owner</div>
+                    <p class="desc">Ingeniero desarrollador Java Full Stack Jr. con experiencia en desarrollo de
+                        software y análisis de datos. He trabajado en automatización de procesos, manejo de bases de
+                        datos y generación de reportes estratégicos para la toma de decisiones.</p>
                     <div class="name">Sanchez Navarrete <br>Edgar Tonatiuh</div>
                 </div>
 
-             <!--Caro-->
-            <div class="col team-card">
-                    <img src="../static/img/mujer-joven-hermosa-31169974.jpg" alt="Carolina Nastienka" class="avatar-img"> <!--AQUI DEJO UNA IMAGEN DE MUESTRA PERO REVISEN LA RUTA DE COMO SE DEBEN SUBIR-->
-                    <div class="rol">Rol</div>
-                    <p class="desc">Breve descripción profesional del integrante del equipo. Aquí se detallarán sus años de experiencia, sus pasiones y el valor principal que aporta al proyecto en su día a día</p>
+                <!--Caro-->
+                <div class="col team-card">
+                    <img src="../static/img/mujer-joven-hermosa-31169974.jpg" alt="Carolina Nastienka"
+                        class="avatar-img zoom">
+                    <!--AQUI DEJO UNA IMAGEN DE MUESTRA PERO REVISEN LA RUTA DE COMO SE DEBEN SUBIR-->
+                    <div class="rol">Desarrolladora</div>
+                    <p class="desc">Desarrolladora Full Stack Java con sólida base en Programación Orientada a Objetos (POO) y arquitectura de software. Apasionada pro el diseño UX UI. </p>
                     <div class="name">Santibañez Ramírez<br>Carolina Nastienka</div>
                 </div>
 
-             <!--Dante-->
-            <div class="col team-card">
-                    <img src="../static/img/mujer-joven-hermosa-31169974.jpg" alt="Dante Augusto" class="avatar-img"> <!--AQUI DEJO UNA IMAGEN DE MUESTRA PERO REVISEN LA RUTA DE COMO SE DEBEN SUBIR-->
-                    <div class="rol">Rol</div>
-                    <p class="desc">Breve descripción profesional del integrante del equipo. Aquí se detallarán sus años de experiencia, sus pasiones y el valor principal que aporta al proyecto en su día a día</p>
+                <!--Dante-->
+                <div class="col team-card">
+                    <img src="../static/img/Dante.jpeg" alt="Dante Augusto"
+                        class="avatar-img zoom">
+                    <!--AQUI DEJO UNA IMAGEN DE MUESTRA PERO REVISEN LA RUTA DE COMO SE DEBEN SUBIR-->
+                    <div class="rol">Desarrollador</div>
+                    <p class="desc">Soy un desarrollador fullstack apasionado por el aprendizaje continuo, siempre en busca de mejorar mis habilidades y mantenerme al día con nuevas tecnologías. Me enfoco en crear soluciones que no solo funcionen bien, sino que también sean creativas, eficientes y bien estructuradas, aportando valor real a cada proyecto en el que participo.</p>
                     <div class="name">Sinencio Alvarez <br>Dante Augusto</div>
                 </div>
 
-            <!--Gigi-->
-            <div class="col team-card">
-                    <img src="../static/img/mujer-joven-hermosa-31169974.jpg" alt="Majul Gigdem" class="avatar-img"> <!--AQUI DEJO UNA IMAGEN DE MUESTRA PERO REVISEN LA RUTA DE COMO SE DEBEN SUBIR-->
+                <!--Gigi-->
+                <div class="col team-card">
+                    <img src="../static/img/mujer-joven-hermosa-31169974.jpg" alt="Majul Gigdem"
+                        class="avatar-img zoom">
+                    <!--AQUI DEJO UNA IMAGEN DE MUESTRA PERO REVISEN LA RUTA DE COMO SE DEBEN SUBIR-->
                     <div class="rol">Rol</div>
-                    <p class="desc">Breve descripción profesional del integrante del equipo. Aquí se detallarán sus años de experiencia, sus pasiones y el valor principal que aporta al proyecto en su día a día</p>
+                    <p class="desc">Breve descripción profesional del integrante del equipo. Aquí se detallarán sus años
+                        de experiencia, sus pasiones y el valor principal que aporta al proyecto en su día a día</p>
                     <div class="name">Zúñiga<br>Majul Gigdem</div>
                 </div>
 
-            <!-- Aqui es donde creamos las tarjetas, dejé una tarjeta de ejemplo, la podemos copiar y armar una para cada uno de los miembros -->
+                <!-- Aqui es donde creamos las tarjetas, dejé una tarjeta de ejemplo, la podemos copiar y armar una para cada uno de los miembros -->
                 <!-- Aquí agregamos las demás, recuerden agregar las fotos en la carpeta "img"-->
-                
+
             </div>
-             <!-- FILA 2: 5 Elementos -->
+            <!-- FILA 2: 5 Elementos -->
             <div class="row row-cols-2 row-cols-md-5 justify-content-center">
                 <!--PARA QUE QUEDEN BIEN EQUILIBRADAS LAS CARDS LAS DIVIDI EN DOS FILAS UNA DE 6 Y OTRA DE 5. EN ESTE DIV AGREGAN LOS DEMAS-->
             </div>
         </section>
     </main>
 
-  <!-- Footer -->
+    <!-- Footer -->
     <footer class="bg-custom-dark footer text-light">
         <div class="container">
             <div class="row">
@@ -180,7 +249,8 @@
                     <h5 class="d-flex align-items-center gap-2">
                         <i class="fa-solid fa-bag-shopping"></i> GRID & FLEX
                     </h5>
-                    <p class="small text-white-50">Diseño consciente para el individuo moderno. Creemos en piezas que duran toda la vida.</p>
+                    <p class="small text-white-50">Diseño consciente para el individuo moderno. Creemos en piezas que
+                        duran toda la vida.</p>
                     <div class="social-icons mt-3">
                         <i class="fa-brands fa-instagram"></i>
                         <i class="fa-brands fa-facebook"></i>
@@ -213,8 +283,10 @@
                     <h5>SUSCRIBIRSE</h5>
                     <p class="small text-white-50">Recibe ofertas exclusivas y novedades de nuestra colección.</p>
                     <div class="input-group mt-3">
-                        <input type="email" class="form-control bg-light" placeholder="Correo electrónico" aria-label="Correo electrónico">
-                        <button class="btn btn-secondary text-white border-0" style="background-color: #8fa1b3;" type="button">
+                        <input type="email" class="form-control bg-light" placeholder="Correo electrónico"
+                            aria-label="Correo electrónico">
+                        <button class="btn btn-secondary text-white border-0" style="background-color: #8fa1b3;"
+                            type="button">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
                     </div>
@@ -223,8 +295,9 @@
         </div>
     </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <!--IMPORTANTE: ASÍ LLAMAREMOS A NUESTRO ARCHIVO JS PARA LOS DEMAS HTML-->
-  <script src="../static/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!--IMPORTANTE: ASÍ LLAMAREMOS A NUESTRO ARCHIVO JS PARA LOS DEMAS HTML-->
+    <script src="../static/js/main.js"></script>
 </body>
+
 </html>
