@@ -50,13 +50,24 @@ p, h1, h2, h3, h4, h5, h6, span, a {
 .cart-badge {
     position: absolute;
     top: -8px;
-    right: -10px;
-    background-color: #e7e8e4;
-    color: var(--bg-dark);
+    right: -8px;
+    width: 16px;
+    height: 16px;
     border-radius: 50%;
-    padding: 2px 5px;
-    font-size: 0.7rem;
-    font-weight: bold;
+    background-color: #DDE6ED;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px; /* Ajustamos el tamaño por si luego hay números */
+    color: #222;    /* Color del número cuando aparezca */
+    
+    /* LA MAGIA: Si el span está vacío, no se muestra nada */
+    display: none; 
+}
+
+/* Solo se muestra si tiene contenido (un número o texto) */
+.cart-badge:not(:empty) {
+    display: flex;
 }
 
 /* --- SECCIÓN HERO (Visión y Valores) --- */
@@ -213,6 +224,30 @@ p, h1, h2, h3, h4, h5, h6, span, a {
     font-size: 1.5rem;
     margin-right: 15px;
     cursor: pointer;
+}
+
+/* --- NOTIFICACIONES (TOASTS) --- */
+#toastSuscripcion {
+    background-color: var(--bg-dark) !important; 
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+#toastSuscripcion .toast-body {
+    color: var(--text-light); 
+    font-family: var(--main-font);
+    font-size: 0.9rem;
+    padding: 1rem;
+}
+
+#toastSuscripcion .btn-close-white {
+    filter: invert(1) grayscale(100%) brightness(200%); 
+}
+
+/* Ajuste para el icono dentro del toast */
+#toastSuscripcion .fa-circle-check {
+    color: #a8b960; /* Un verde oliva que combina con tu estilo mono */
 }
 
 .zoom {
