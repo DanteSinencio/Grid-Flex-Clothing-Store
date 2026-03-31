@@ -60,12 +60,9 @@ p, h1, h2, h3, h4, h5, h6, span, a {
     justify-content: center;
     font-size: 10px; /* Ajustamos el tamaño por si luego hay números */
     color: #222;    /* Color del número cuando aparezca */
-    
-    /* LA MAGIA: Si el span está vacío, no se muestra nada */
     display: none; 
 }
 
-/* Solo se muestra si tiene contenido (un número o texto) */
 .cart-badge:not(:empty) {
     display: flex;
 }
@@ -245,9 +242,8 @@ p, h1, h2, h3, h4, h5, h6, span, a {
     filter: invert(1) grayscale(100%) brightness(200%); 
 }
 
-/* Ajuste para el icono dentro del toast */
 #toastSuscripcion .fa-circle-check {
-    color: #a8b960; /* Un verde oliva que combina con tu estilo mono */
+    color: #a8b960; 
 }
 
 .zoom {
