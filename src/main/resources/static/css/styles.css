@@ -109,7 +109,7 @@ p, h1, h2, h3, h4, h5, h6, span, a {
 .card-mono {
     border-radius: 12px;
     transition: all 0.3s ease;
-    background-color: #ffffff;
+    background-color: #d3d3d3;
 }
 
 .card-mono:hover {
@@ -243,4 +243,10 @@ p, h1, h2, h3, h4, h5, h6, span, a {
 
 .navbar-animation a:hover::after {
     width: 100%;
+}
+
+/* Estilo para el avión en el footer */
+.input-group .btn:hover {
+    background-color: #7a8d9f !important; /* Un tono un poquito más oscuro */
+    transition: 0.3s;
 }
