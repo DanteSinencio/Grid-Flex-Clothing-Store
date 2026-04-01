@@ -1,8 +1,7 @@
 :root {
-    --bg-dark: #18202b;
-    /* Color oscuro del header y footer */
-    --text-light: #e7e8e4;
-    --bg-main: #E7E8E4;
+    --bg-dark: #18202b;  /* Color oscuro del header y footer */
+    --text-light: #e7e8e4; /* Color claro para texto */
+    --bg-main: #E7E8E4; /* Color de fondo principal */
     --main-font: 'Montserrat', sans-serif;
 }
 
@@ -201,6 +200,7 @@ p, h1, h2, h3, h4, h5, h6, span, a {
     font-weight: bold;
     margin-bottom: 20px;
     font-size: 1rem;
+    color: var(--text-light) !important; /* <--- Forzar*/
 }
 
 .footer ul {
