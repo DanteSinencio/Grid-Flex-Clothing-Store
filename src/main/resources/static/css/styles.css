@@ -281,3 +281,7 @@ p, h1, h2, h3, h4, h5, h6, span, a {
     background-color: #7a8d9f !important; /* Un tono un poquito más oscuro */
     transition: 0.3s;
 }
+.char-counter {
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
