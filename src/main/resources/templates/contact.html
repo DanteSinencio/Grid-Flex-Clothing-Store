@@ -89,23 +89,56 @@
 
                             <form>
                                 <div class="mb-3">
-                                    <label class="form-label">Nombre completo</label>
-                                    <input type="text" class="form-control">
+                                    <label for="validationServer01" class="form-label">Nombre completo</label>
+                                    
+                                    <input type="text" 
+                                        class="form-control" 
+                                        id="nombre" 
+                                        placeholder="Nombre"
+                                        pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"
+                                        oninvalid="this.setCustomValidity('Solo se acepta texto')"
+                                        oninput="this.setCustomValidity('')" 
+                                        required>
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label">Email</label>
-                                    <input type="email" class="form-control">
+                                    <input type="email" 
+                                        class="form-control" 
+                                        id="email" 
+                                        placeholder="usuario@dominio.com"
+                                        oninvalid="this.setCustomValidity('Ingresa un correo electronico valido')"
+                                        oninput="this.setCustomValidity('')"
+                                    required>
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label">Teléfono</label>
-                                    <input type="tel" class="form-control">
+                                    <input type="text" 
+                                        class="form-control" 
+                                        id="telefono" 
+                                        placeholder="5512345678"
+                                        inputmode="numeric"
+                                        pattern="\d*"
+                                        oninvalid="this.setCustomValidity('Ingresa un numero telefonico valido en formato de 10 numeros')"
+                                        oninput="this.setCustomValidity('')"
+                                    required>
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label">Mensaje</label>
-                                    <textarea class="form-control" rows="4"></textarea>
+                                    <textarea class="form-control" 
+                                        id="mensaje" 
+                                        rows="4" 
+                                        maxlength="300" 
+                                        placeholder="Escribe tu mensaje aquí..."
+                                    required></textarea>
+                                    <div class="d-flex justify-content-between mt-1">
+                                        <div class="invalid-feedback">El mensaje es obligatorio.</div>
+                                        <div class="char-counter ml-auto">
+                                            <span id="charCount">0</span>/300 caracteres
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <button class="btn btn-secondary w-100">Enviar mensaje</button>
