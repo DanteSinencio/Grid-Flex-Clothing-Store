@@ -108,11 +108,11 @@
 
                                 <div class="mb-3">
                                     <label class="form-label">Mensaje</label>
-                                    <textarea name="mensaje" class="form-control" id="mensaje" rows="4" maxlength="300" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                                    <textarea name="mensaje" class="form-control" id="mensaje" rows="4" maxlength="300" minlength="10" placeholder="Escribe tu mensaje aquí..." required></textarea>
                                     <div class="invalid-feedback">El mensaje es obligatorio.</div>
                                 </div>
 
-                                <button type="submit" class="btn btn-secondary w-100">Enviar mensaje</button>
+                                <button id="btnEnviar" type="submit" class="btn btn-secondary w-100" disabled> Enviar mensaje </button>
                             </form>
                         </div>
                     </div>

@@ -2,8 +2,9 @@
 const formContacto = document.getElementById('contactForm');
 const toastContactoEl = document.getElementById('toastContacto');
 const msjContacto = document.getElementById('toastContactoMensaje');
+const btnEnviar = document.getElementById("btnEnviar");
 
-if (formContacto && toastContactoEl) {
+if (formContacto && toastContactoEl && btnEnviar) {
     const toastContacto = new bootstrap.Toast(toastContactoEl);
     
     formContacto.addEventListener('submit', async (e) => {
@@ -17,12 +18,11 @@ if (formContacto && toastContactoEl) {
         }
 
         const data = new FormData(formContacto);
-        const btn = formContacto.querySelector('button[type="submit"]');
-        const originalText = btn.innerHTML;
+        const originalText = btnEnviar.innerHTML;
         
         // Estado de carga
-        btn.disabled = true;
-        btn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status"></span> Enviando...';
+        btnEnviar.disabled = true;
+        btnEnviar.innerHTML = '<span class="spinner-border spinner-border-sm" role="status"></span> Enviando...';
 
         try {
             const response = await fetch(formContacto.action, {
@@ -41,12 +41,10 @@ if (formContacto && toastContactoEl) {
         } catch (error) {
             msjContacto.innerHTML = `<i class="fa-solid fa-circle-exclamation me-2 text-danger"></i> Error de conexión a internet.`;
         } finally {
-            btn.disabled = false;
-            btn.innerHTML = originalText;
+            btnEnviar.innerHTML = originalText;
             toastContacto.show(); // Mostramos el Toast de contacto
         }
     });
-}
 
 // 2. MÓDULO DE SUSCRIPCIÓN FOOTER 
 const formSuscripcion = document.getElementById('suscripcion');
@@ -70,4 +68,18 @@ if (formSuscripcion && toastSuscripcionEl) {
         formSuscripcion.reset();
         formSuscripcion.classList.remove('was-validated');
     });
+}
+    // ACTIVAR / DESACTIVAR BOTÓN
+    formContacto.addEventListener("input", function() {
+
+        if (formContacto.checkValidity()) {
+            btnEnviar.disabled = false;
+        } else {
+            btnEnviar.disabled = true;
+        }
+
+    });
+
+    // Estado inicial
+    btnEnviar.disabled = true;
 }
