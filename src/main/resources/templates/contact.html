@@ -85,34 +85,34 @@
                     <!-- FORM -->
                     <div class="col-md-7 card-mono tarjeta">
                         <div class="card p-4 shadow-sm">
-                            <h4 class="mb-3">Envíanos un mensaje</h4>
+                            <h4 class="mb-3 text-center fw-bold">Envíanos un mensaje</h4>
 
                             <form id="contactForm" action="https://formspree.io/f/xgopdeqe" method="POST" class="needs-validation" novalidate>
                                 <div class="mb-3">
-                                    <label class="form-label">Nombre completo</label>
+                                    <label class="form-label">Nombre completo:</label>
                                     <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Nombre" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" required>
                                     <div class="invalid-feedback">Ingresa tu nombre con tus apellidos.</div>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label">Email</label>
+                                    <label class="form-label">Email:</label>
                                     <input type="email" name="email" class="form-control" id="email" placeholder="usuario@dominio.com" required>
                                     <div class="invalid-feedback">Ingresa un correo electrónico válido.</div>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label">Teléfono</label>
+                                    <label class="form-label">Teléfono:</label>
                                     <input type="text" name="telefono" class="form-control" id="telefono" placeholder="5512345678" inputmode="numeric" pattern="\d{10}" required>
                                     <div class="invalid-feedback">Ingresa un número telefónico válido de 10 dígitos.</div>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label">Mensaje</label>
+                                    <label class="form-label">Mensaje:</label>
                                     <textarea name="mensaje" class="form-control" id="mensaje" rows="4" maxlength="300" minlength="10" placeholder="Escribe tu mensaje aquí..." required></textarea>
                                     <div class="invalid-feedback">El mensaje es obligatorio.</div>
                                 </div>
 
-                                <button id="btnEnviar" type="submit" class="btn btn-secondary w-100" disabled> Enviar mensaje </button>
+                                <button id="btnEnviar" type="submit" class="btn btn-envio w-100" disabled> Enviar mensaje </button>
                             </form>
                         </div>
                     </div>
