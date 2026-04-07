@@ -116,7 +116,7 @@ p, h1, h2, h3, h4, h5, h6, span, a {
 .card-mono {
     border-radius: 12px;
     transition: all 0.3s ease;
-    background-color: #d3d3d3;
+    background-color: #d3d3d3; 
 }
 
 .card-mono:hover {
@@ -132,6 +132,12 @@ p, h1, h2, h3, h4, h5, h6, span, a {
     text-transform: uppercase;
     /* Opcional: para un look más editorial */
 }
+
+/* Tarjetas de contactanos */
+.tarjeta {
+  background-color: transparent; 
+}
+
 
 /* --- SECCIÓN EQUIPO --- */
 .team-section {
@@ -226,7 +232,7 @@ p, h1, h2, h3, h4, h5, h6, span, a {
 /* --- NOTIFICACIONES (TOASTS) --- */
 #toastSuscripcion {
     background-color: var(--bg-dark) !important; 
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(231, 232, 228, 0.1);
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
@@ -243,7 +249,7 @@ p, h1, h2, h3, h4, h5, h6, span, a {
 }
 
 #toastSuscripcion .fa-circle-check {
-    color: #a8b960; 
+    color: #e7e8e4; 
 }
 
 .zoom {
