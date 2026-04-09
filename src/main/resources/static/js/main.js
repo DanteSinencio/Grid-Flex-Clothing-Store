@@ -71,6 +71,10 @@ if (formSuscripcion && toastSuscripcionEl) {
 }
     // ACTIVAR / DESACTIVAR BOTÓN
     formContacto.addEventListener("input", function() {
+<<<<<<< HEAD
+=======
+        formContacto.classList.add('was-validated'); // Agrega clase para mostrar validación
+>>>>>>> 65a5e4903b54ea80002f0b844fd42a6b240753e9
 
         if (formContacto.checkValidity()) {
             btnEnviar.disabled = false;
