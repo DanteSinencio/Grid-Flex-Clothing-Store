@@ -44,8 +44,8 @@
             <div class="collapse navbar-collapse justify-content-center order-lg-2" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="#">Catálogo</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/contact">Contacto</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Acerca de nosotros</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contacto</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">Acerca de nosotros</a></li>
                     <li class="nav-item d-lg-none">
                         <a href="#" class="nav-link text-white fw-bold">INGRESAR</a>
                     </li>
@@ -61,59 +61,70 @@
         <section class="contact-section py-5">
             <div class="container">
 
-                <h1 class="text-center mb-3">Contáctanos</h1>
+                <h1 class="text-center mb-3 fw-bolder">Contáctanos</h1>
                 <p class="text-center text-muted mb-5">Estamos aquí para ayudarte</p>
 
-                <div class="row g-4">
+                <div class="row g-4 ">
 
                     <!-- INFO -->
-                    <div class="col-md-5">
-                        <div class="card p-4 shadow-sm h-100">
-                            <h4 class="mb-3">Contacto</h4>
+                    <div class="col-md-5 card-mono tarjeta">
+                        <div class="card p-4 shadow-sm h-100 text-center d-flex justify-content-center">
+                            <h4 class="mb-3 fw-bold">Contacto</h4>
 
-                            <p><strong>Email:</strong><br> contacto@gridflex.com</p>
+                            <p><strong><i class="fa-regular fa-envelope"></i> Email:</strong><br> contacto@gridflex.com</p>
 
-                            <p><strong>Horarios:</strong><br>
+                            <p><strong><i class="fa-regular fa-clock"></i> Horarios:</strong><br>
                                 Lunes a Viernes: 9:00 - 18:00<br>
                                 Sábado: 10:00 - 14:00
                             </p>
 
-                            <p><strong>Teléfono:</strong><br> +52 23 456 7890</p>
+                            <p><strong><i class="fa-solid fa-phone"></i> Teléfono:</strong><br> +52 23 456 7890</p>
                         </div>
                     </div>
 
                     <!-- FORM -->
-                    <div class="col-md-7">
+                    <div class="col-md-7 card-mono tarjeta">
                         <div class="card p-4 shadow-sm">
-                            <h4 class="mb-3">Envíanos un mensaje</h4>
+                            <h4 class="mb-3 text-center fw-bold">Envíanos un mensaje</h4>
 
                             <form id="contactForm" action="https://formspree.io/f/xgopdeqe" method="POST" class="needs-validation" novalidate>
                                 <div class="mb-3">
-                                    <label class="form-label">Nombre completo</label>
+                                    <label class="form-label">Nombre completo:</label>
                                     <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Nombre" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" required>
                                     <div class="invalid-feedback">Ingresa tu nombre con tus apellidos.</div>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label">Email</label>
+                                    <label class="form-label">Email:</label>
                                     <input type="email" name="email" class="form-control" id="email" placeholder="usuario@dominio.com" required>
                                     <div class="invalid-feedback">Ingresa un correo electrónico válido.</div>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label">Teléfono</label>
+                                    <label class="form-label">Teléfono:</label>
                                     <input type="text" name="telefono" class="form-control" id="telefono" placeholder="5512345678" inputmode="numeric" pattern="\d{10}" required>
                                     <div class="invalid-feedback">Ingresa un número telefónico válido de 10 dígitos.</div>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label">Mensaje</label>
+                                    <label class="form-label">Mensaje:</label>
                                     <textarea name="mensaje" class="form-control" id="mensaje" rows="4" maxlength="300" minlength="10" placeholder="Escribe tu mensaje aquí..." required></textarea>
                                     <div class="invalid-feedback">El mensaje es obligatorio.</div>
                                 </div>
 
-                                <button id="btnEnviar" type="submit" class="btn btn-secondary w-100" disabled> Enviar mensaje </button>
+                                <button id="btnEnviar" type="submit" class="btn btn-envio w-100" disabled> Enviar mensaje </button>
                             </form>
+                                <div class="toast-container mt-3 w-100">
+                                    <div id="toastContacto" class="toast align-items-center text-white bg-dark border-0 w-100" role="alert" aria-live="assertive" aria-atomic="true">
+                                        <div class="d-flex">
+                                            <div class="toast-body" id="toastContactoMensaje">
+                                                <i class="fa-solid fa-circle-check me-2"></i>
+                                                ¡Mensaje enviado con éxito! Nos contactaremos pronto.
+                                            </div>
+                                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                                        </div>
+                                    </div>
+                                </div>
                         </div>
                     </div>
 
@@ -157,7 +168,7 @@
                     <ul>
                         <li><a href="#">FAQ</a></li>
                         <li><a href="#">Envío</a></li>
-                        <li><a href="#">Contacto</a></li>
+                        <li><a href="contact.html">Contacto</a></li>
                     </ul>
                 </div>
 
@@ -181,7 +192,7 @@
                 aria-live="assertive" aria-atomic="true">
                 <div class="d-flex">
                     <div class="toast-body">
-                        <i class="fa-solid fa-circle-check me-2 text-success"></i>
+                        <i class="fa-solid fa-circle-check me-2"></i>
                         ¡Gracias por suscribirte a GRID & FLEX!
                     </div>
                     <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
@@ -189,18 +200,7 @@
                 </div>
             </div>
         </div>
-        <div id="toastContacto" class="toast align-items-center text-white bg-dark border-0" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="d-flex">
-                <div class="toast-body" id="toastContactoMensaje">
-                    <i class="fa-solid fa-circle-check me-2 text-success"></i>
-                    ¡Mensaje enviado con éxito! Nos contactaremos pronto.
-                </div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-        </div>
-    </div>
     </footer>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../static/js/main.js"></script>
 </body>
