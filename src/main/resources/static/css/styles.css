@@ -138,6 +138,10 @@ p, h1, h2, h3, h4, h5, h6, span, a {
   background-color: transparent; 
 }
 
+.tarjeta .card  {
+    background-color: #d3dff2;
+}
+
 
 /* --- SECCIÓN EQUIPO --- */
 .team-section {
@@ -291,3 +295,8 @@ p, h1, h2, h3, h4, h5, h6, span, a {
             font-size: 0.85rem;
             color: #6c757d;
         }
+
+/* Color del boton */
+.tarjeta .btn{
+    background-color:#93A4C1 ;
+}
