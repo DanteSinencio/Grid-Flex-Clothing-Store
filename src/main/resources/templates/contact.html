@@ -108,9 +108,17 @@
                                     <input type="text" name="nombre" class="form-control" id="nombre"
                                         placeholder="Nombre" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" required>
                                     <div class="invalid-feedback">Ingresa tu nombre con tus apellidos.</div>
+                                    <label class="form-label">Nombre completo:</label>
+                                    <input type="text" name="nombre" class="form-control" id="nombre"
+                                        placeholder="Nombre" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" required>
+                                    <div class="invalid-feedback">Ingresa tu nombre con tus apellidos.</div>
                                 </div>
 
                                 <div class="mb-3">
+                                    <label class="form-label">Email:</label>
+                                    <input type="email" name="email" class="form-control" id="email"
+                                        placeholder="usuario@dominio.com" required>
+                                    <div class="invalid-feedback">Ingresa un correo electrónico válido.</div>
                                     <label class="form-label">Email:</label>
                                     <input type="email" name="email" class="form-control" id="email"
                                         placeholder="usuario@dominio.com" required>
@@ -126,6 +134,10 @@
                                 </div>
 
                                 <div class="mb-3">
+                                    <label class="form-label">Mensaje:</label>
+                                    <textarea name="mensaje" class="form-control" id="mensaje" rows="4" maxlength="300"
+                                        minlength="10" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                                    <div class="invalid-feedback">El mensaje es obligatorio.</div>
                                     <label class="form-label">Mensaje:</label>
                                     <textarea name="mensaje" class="form-control" id="mensaje" rows="4" maxlength="300"
                                         minlength="10" placeholder="Escribe tu mensaje aquí..." required></textarea>
