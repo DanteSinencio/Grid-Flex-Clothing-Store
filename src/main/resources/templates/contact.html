@@ -41,11 +41,19 @@
                 </button>
             </div>
 
+            <!-- Botones específicos de la NAVBAR, aquí se encuentran las migajas de pan -->
+
             <div class="collapse navbar-collapse justify-content-center order-lg-2" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="#">Catálogo</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contacto</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">Acerca de nosotros</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Catálogo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" aria-current="page">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">Acerca de nosotros</a>
+                    </li>
                     <li class="nav-item d-lg-none">
                         <a href="#" class="nav-link text-white fw-bold">INGRESAR</a>
                     </li>
@@ -53,6 +61,11 @@
                 <a href="#" class="nav-link text-white fw-bold d-none d-lg-block ms-lg-3">INGRESAR</a>
             </div>
         </div>
+    </nav>
+
+    <!-- Aquí terminan los botones específicos de la NAVBAR, aquí se encuentran las migajas de pan -->
+
+    </div>
     </nav>
 
     <!-- CONTÁCTANOS -->
@@ -71,7 +84,8 @@
                         <div class="card p-4 shadow-sm h-100 text-center d-flex justify-content-center">
                             <h4 class="mb-3 fw-bold">Contacto</h4>
 
-                            <p><strong><i class="fa-regular fa-envelope"></i> Email:</strong><br> contacto@gridflex.com</p>
+                            <p><strong><i class="fa-regular fa-envelope"></i> Email:</strong><br> contacto@gridflex.com
+                            </p>
 
                             <p><strong><i class="fa-regular fa-clock"></i> Horarios:</strong><br>
                                 Lunes a Viernes: 9:00 - 18:00<br>
@@ -87,44 +101,54 @@
                         <div class="card p-4 shadow-sm">
                             <h4 class="mb-3 text-center fw-bold">Envíanos un mensaje</h4>
 
-                            <form id="contactForm" action="https://formspree.io/f/xgopdeqe" method="POST" class="needs-validation" novalidate>
+                            <form id="contactForm" action="https://formspree.io/f/xgopdeqe" method="POST"
+                                class="needs-validation" novalidate>
                                 <div class="mb-3">
                                     <label class="form-label">Nombre completo:</label>
-                                    <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Nombre" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" required>
+                                    <input type="text" name="nombre" class="form-control" id="nombre"
+                                        placeholder="Nombre" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" required>
                                     <div class="invalid-feedback">Ingresa tu nombre con tus apellidos.</div>
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label">Email:</label>
-                                    <input type="email" name="email" class="form-control" id="email" placeholder="usuario@dominio.com" required>
+                                    <input type="email" name="email" class="form-control" id="email"
+                                        placeholder="usuario@dominio.com" required>
                                     <div class="invalid-feedback">Ingresa un correo electrónico válido.</div>
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label">Teléfono:</label>
-                                    <input type="text" name="telefono" class="form-control" id="telefono" placeholder="5512345678" inputmode="numeric" pattern="\d{10}" required>
-                                    <div class="invalid-feedback">Ingresa un número telefónico válido de 10 dígitos.</div>
+                                    <input type="text" name="telefono" class="form-control" id="telefono"
+                                        placeholder="5512345678" inputmode="numeric" pattern="\d{10}" required>
+                                    <div class="invalid-feedback">Ingresa un número telefónico válido de 10 dígitos.
+                                    </div>
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label">Mensaje:</label>
-                                    <textarea name="mensaje" class="form-control" id="mensaje" rows="4" maxlength="300" minlength="10" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                                    <textarea name="mensaje" class="form-control" id="mensaje" rows="4" maxlength="300"
+                                        minlength="10" placeholder="Escribe tu mensaje aquí..." required></textarea>
                                     <div class="invalid-feedback">El mensaje es obligatorio.</div>
                                 </div>
 
-                                <button id="btnEnviar" type="submit" class="btn btn-envio w-100" disabled> Enviar mensaje </button>
+                                <button id="btnEnviar" type="submit" class="btn btn-envio w-100" disabled> Enviar
+                                    mensaje </button>
                             </form>
-                                <div class="toast-container mt-3 w-100">
-                                    <div id="toastContacto" class="toast align-items-center text-white bg-dark border-0 w-100" role="alert" aria-live="assertive" aria-atomic="true">
-                                        <div class="d-flex">
-                                            <div class="toast-body" id="toastContactoMensaje">
-                                                <i class="fa-solid fa-circle-check me-2"></i>
-                                                ¡Mensaje enviado con éxito! Nos contactaremos pronto.
-                                            </div>
-                                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                            <div class="toast-container mt-3 w-100">
+                                <div id="toastContacto"
+                                    class="toast align-items-center text-white bg-dark border-0 w-100" role="alert"
+                                    aria-live="assertive" aria-atomic="true">
+                                    <div class="d-flex">
+                                        <div class="toast-body" id="toastContactoMensaje">
+                                            <i class="fa-solid fa-circle-check me-2"></i>
+                                            ¡Mensaje enviado con éxito! Nos contactaremos pronto.
                                         </div>
+                                        <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                                            data-bs-dismiss="toast" aria-label="Close"></button>
                                     </div>
                                 </div>
+                            </div>
                         </div>
                     </div>
 

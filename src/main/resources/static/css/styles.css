@@ -300,3 +300,11 @@ p, h1, h2, h3, h4, h5, h6, span, a {
 .tarjeta .btn{
     background-color:#93A4C1 ;
 }
+
+
+/* Resaltado para la opción activa en el navbar */
+.navbar-custom .navbar-nav .nav-link.active {
+    color: #ffffff !important; 
+    font-weight: 600;         
+    border-bottom: 2px solid #ffffff; 
+}
