@@ -116,7 +116,7 @@ p, h1, h2, h3, h4, h5, h6, span, a {
 .card-mono {
     border-radius: 12px;
     transition: all 0.3s ease;
-    background-color: #d3d3d3;
+    background-color: #d3d3d3; 
 }
 
 .card-mono:hover {
@@ -132,6 +132,16 @@ p, h1, h2, h3, h4, h5, h6, span, a {
     text-transform: uppercase;
     /* Opcional: para un look más editorial */
 }
+
+/* Tarjetas de contactanos */
+.tarjeta {
+  background-color: transparent; 
+}
+
+.tarjeta .card  {
+    background-color: #d3dff2;
+}
+
 
 /* --- SECCIÓN EQUIPO --- */
 .team-section {
@@ -224,26 +234,26 @@ p, h1, h2, h3, h4, h5, h6, span, a {
 }
 
 /* --- NOTIFICACIONES (TOASTS) --- */
-#toastSuscripcion {
+#toastSuscripcion, #toastContacto {
     background-color: var(--bg-dark) !important; 
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(231, 232, 228, 0.1);
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-#toastSuscripcion .toast-body {
+#toastSuscripcion .toast-body, #toastContacto .toast-body {
     color: var(--text-light); 
     font-family: var(--main-font);
     font-size: 0.9rem;
     padding: 1rem;
 }
 
-#toastSuscripcion .btn-close-white {
+#toastSuscripcion .btn-close-white, #toastContacto .btn-close-white {
     filter: invert(1) grayscale(100%) brightness(200%); 
 }
 
-#toastSuscripcion .fa-circle-check {
-    color: #a8b960; 
+#toastSuscripcion .fa-circle-check, #toastContacto .fa-circle-check {
+    color: #e7e8e4; 
 }
 
 .zoom {
@@ -285,3 +295,15 @@ p, h1, h2, h3, h4, h5, h6, span, a {
             font-size: 0.85rem;
             color: #6c757d;
         }
+
+/* Color del boton */
+.tarjeta .btn{
+    background-color:#93A4C1 ;
+}
+
+/* Resaltado para la opción activa en el navbar */
+.navbar-custom .navbar-nav .nav-link.active {
+    color: #ffffff !important; /* Blanco puro */
+    font-weight: 600;          /* Texto más negrito */
+    border-bottom: 2px solid #ffffff; /* Opcional: una línea debajo para resaltar más */
+}
