@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid & Flex - Catálogo</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Styles -->
+    <link href="../static/css/styles.css" rel="stylesheet">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-custom bg-custom-dark py-3 navbar-animation">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="../static/img/logo.svg" alt="Logo" style="height: 35px;" class="me-2">
+                GRID & FLEX
+            </a>
+
+            <div class="d-flex align-items-center order-lg-3">
+                <a href="/carrito.html" class="cart-icon text-white text-decoration-none me-3">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="cart-badge"></span>
+                </a>
+
+                <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse justify-content-center order-lg-2" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="#">Catálogo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact">Contacto</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Acerca de nosotros</a></li>
+                    <li class="nav-item d-lg-none">
+                        <a href="#" class="nav-link text-white fw-bold">INGRESAR</a>
+                    </li>
+                </ul>
+                <a href="#" class="nav-link text-white fw-bold d-none d-lg-block ms-lg-3">INGRESAR</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- OVERLAY -->
+    <div class="overlay" id="overlay"></div>
+
+    
+
+    <!-- CATÁLOGO -->
+    <section class="catalogo container mt-4">
+
+        <p class="text-muted small">INICIO / CATÁLOGO</p>
+
+        <div class="row">
+
+            <!-- SIDEBAR -->
+            <div class="col-md-3 sidebar">
+                <h6>CATEGORÍAS</h6>
+
+                <label>
+                    <input type="checkbox" value="todo" class="filtro-cat" id="verTodo" checked>
+                    Ver todo
+                </label><br>
+
+                <label>
+                    <input type="checkbox" value="camisas" class="filtro-cat">
+                    Camisas
+                </label><br>
+
+                <label>
+                    <input type="checkbox" value="chamarras" class="filtro-cat">
+                    Chamarras
+                </label><br>
+
+                <label>
+                    <input type="checkbox" value="accesorios" class="filtro-cat">
+                    Accesorios
+                </label>
+            </div>
+
+            <!-- PRODUCTOS -->
+            <div class="col-md-9">
+
+                <div class="d-flex justify-content-end mb-3">
+                    <button id="btnFiltro" class="btn btn-outline-dark">FILTRO</button>
+                </div>
+
+                <div class="row g-4">
+
+                    <!-- PRODUCTOS -->
+                    <div class="col-md-4 producto">
+                        <div class="card p-3"
+                            data-categoria="camisas" data-talla="M" data-estado="seminuevo" data-precio="200">
+                            <img src="../static/img/producto2.png" class="img-fluid">
+                            <h6>Playera Loose Fit</h6>
+                            <small>Seminueva</small>
+                            <p>$200</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 producto">
+                        <div class="card p-3"
+                            data-categoria="chamarras" data-talla="G" data-estado="nuevo" data-precio="350">
+                            <img src="../static/img/producto2.png" class="img-fluid">
+                            <h6>Chamarra deportiva</h6>
+                            <small>Nueva</small>
+                            <p>$350</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 producto">
+                        <div class="card p-3"
+                            data-categoria="chamarras" data-talla="M" data-estado="nuevo" data-precio="330">
+                            <img src="../static/img/producto3.png" class="img-fluid">
+                            <h6>Chamarra popover</h6>
+                            <small>Nueva</small>
+                            <p>$330</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 producto">
+                        <div class="card p-3"
+                            data-categoria="chamarras" data-talla="G" data-estado="nuevo" data-precio="450">
+                            <img src="../static/img/producto4.png" class="img-fluid">
+                            <h6>Chamarra mezclilla</h6>
+                            <small>Nueva</small>
+                            <p>$450</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 producto">
+                        <div class="card p-3"
+                            data-categoria="camisas" data-talla="M" data-estado="seminuevo" data-precio="220">
+                            <img src="../static/img/producto5.png" class="img-fluid">
+                            <h6>Camisa rayas</h6>
+                            <small>Seminueva</small>
+                            <p>$220</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 producto">
+                        <div class="card p-3"
+                            data-categoria="accesorios" data-talla="CH" data-estado="nuevo" data-precio="180">
+                            <img src="../static/img/producto6.png" class="img-fluid">
+                            <h6>Gorra</h6>
+                            <small>Nueva</small>
+                            <p>$180</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PANEL FILTRO -->
+    <div class="panel-filtro" id="panelFiltro">
+        <div class="contenido-filtro p-4">
+
+            <div class="d-flex justify-content-between">
+                <h5>FILTRO</h5>
+                <span id="cerrarFiltro" style="cursor:pointer;">✕</span>
+            </div>
+
+            <p>Precio máximo</p>
+            <input type="range" id="precioRange" min="0" max="600" value="600">
+            <span id="precioValor">$600</span>
+
+            <p class="mt-3">Talla</p>
+            <button class="filtro-talla" data-talla="CH">CH</button>
+            <button class="filtro-talla" data-talla="M">M</button>
+            <button class="filtro-talla" data-talla="G">G</button>
+
+            <p class="mt-3">Estado</p>
+            <label><input type="checkbox" value="nuevo" class="filtro-estado"> Nuevo</label><br>
+            <label><input type="checkbox" value="seminuevo" class="filtro-estado"> Seminuevo</label>
+
+        </div>
+    </div>
+
+      <!-- Footer -->
+    <footer class="bg-custom-dark footer text-light">
+        <div class="container">
+            <div class="row">
+                <!-- Columna 1: Marca y Redes -->
+                <div class="col-md-3 mb-4">
+                    <h5 class="d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-bag-shopping"></i> GRID & FLEX
+                    </h5>
+                    <p class="small text-white-50">Diseño consciente para el individuo moderno. Creemos en piezas que
+                        duran toda la vida.</p>
+                    <div class="social-icons mt-3">
+                        <i class="fa-brands fa-instagram"></i>
+                        <i class="fa-brands fa-facebook"></i>
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </div>
+                </div>
+
+                <!-- Columna 2: Tienda -->
+                <div class="col-md-2 mb-4">
+                    <h5>TIENDA</h5>
+                    <ul>
+                        <li><a href="#">Hombres</a></li>
+                        <li><a href="#">Mujeres</a></li>
+                        <li><a href="#">Accesorios</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 3: Soporte -->
+                <div class="col-md-2 mb-4">
+                    <h5>SOPORTE</h5>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Envío</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 4: Suscripción -->
+                <div class="col-md-5 mb-4">
+                    <h5>SUSCRIBIRSE</h5>
+                    <p class="small text-white-50">Recibe ofertas exclusivas y novedades de nuestra colección.</p>
+                    <form id="suscripcion" class="input-group mt-3">
+                        <input type="email" class="form-control bg-light" placeholder="Correo electrónico"
+                            aria-label="Correo electrónico" required>
+                        <button class="btn btn-secondary text-white border-0" style="background-color: #8fa1b3;"
+                            type="submit">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="toastSuscripcion" class="toast align-items-center text-white bg-dark border-0" role="alert"
+                aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        <i class="fa-solid fa-circle-check me-2 text-success"></i>
+                        ¡Gracias por suscribirte a GRID & FLEX!
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                        aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+        <div id="toastContacto" class="toast align-items-center text-white bg-dark border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body" id="toastContactoMensaje">
+                    <i class="fa-solid fa-circle-check me-2 text-success"></i>
+                    ¡Mensaje enviado con éxito! Nos contactaremos pronto.
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/js/main.js"></script>
+</body>
+
+</html>
+
+    <!-- JS -->
+    <script src="../static/js/script.js"></script>
+    <script src="../static/js/main.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
