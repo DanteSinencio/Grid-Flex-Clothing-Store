@@ -547,15 +547,412 @@ input[type="checkbox"] {
 
 /* RESPONSIVE CATÁLOGO */
 @media (max-width: 768px) {
-    .catalogo {
-        padding: 20px;
-    }
+  .catalogo {
+    padding: 20px;
+  }
 
-    .sidebar {
-        display: none;
-    }
+  .sidebar {
+    display: none;
+  }
 
-    .panel-filtro {
-        width: 100%;
+  .panel-filtro {
+    width: 100%;
+  }
+}
+.sidebar h6 {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  position: relative;
+  padding-bottom: 8px;
+}
+
+/* línea */
+.sidebar h6 {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd; 
+}
+/* Color del boton */
+.tarjeta .btn{
+    background-color:#93A4C1 ;
+}
+
+/* Resaltado para la opción activa en el navbar */
+.navbar-custom .navbar-nav .nav-link.active {
+    color: #ffffff !important; /* Blanco puro */
+    font-weight: 600;          /* Texto más negrito */
+    border-bottom: 2px solid #ffffff; 
+}
+
+/* Inicio: línea entre D y F del nombre + animación (solo index con .brand-home) */
+.navbar-custom .navbar-brand.brand-home::after {
+    display: none;
+}
+
+.navbar-custom .brand-df-bridge {
+    position: relative;
+    display: inline-block;
+}
+
+.navbar-custom .brand-df-bridge::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -5px;
+    transform: translateX(-50%);
+    width: 0;
+    height: 1px;
+    background-color: #ffffff;
+    transition: height 0.3s ease;
+}
+
+.navbar-custom .navbar-brand.active .brand-df-bridge::after {
+    animation: brand-df-line-in 0.45s ease-out forwards;
+}
+
+.navbar-custom .navbar-brand.active:hover .brand-df-bridge::after {
+    height: 2px;
+}
+
+@keyframes brand-df-line-in {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+/* ========== Pagina de Inicio (index) ========== */
+.page-index {
+    background-color: var(--bg-main);
+    padding-bottom: 0;
+}
+
+/* --- Index: Carrusel Promo (Bienvenida / descuentos) ---
+   Usado en: src/main/resources/templates/index.html
+
+   Estructura:
+   - Panel izquierdo: kicker, titulo, caja destacada, nota, boton CTA
+   - Panel derecho: imagen
+   - Abajo: puntos indicadores (Bootstrap carousel-indicators)
+
+   Nombres:
+   - Todos los selectores empiezan con "index-promo-" para evitar conflictos.
+*/
+
+/* El carrusel es el contexto de posicionamiento para los puntos indicadores. */
+.index-promo-carousel {
+    position: relative;
+}
+
+/* Tarjeta del slide: bordes redondeados + sombra + recorte de hijos (imagen). */
+.index-promo-card {
+    border-radius: 18px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.08);
+}
+
+/* Panel izquierdo: fondo azul claro, espaciado y centrado vertical. */
+.index-promo-copy {
+    background: #c5d8e8;
+    /* Padding extra abajo para que los puntos no se encimen con el contenido. */
+    padding: 1.25rem 1.25rem 3.25rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media (min-width: 992px) {
+    .index-promo-copy {
+        padding: 1.6rem 1.75rem 3.35rem;
     }
 }
+
+/* Kicker: etiqueta pequena en mayusculas arriba del titulo. */
+.index-promo-kicker {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: rgba(26, 42, 58, 0.8);
+}
+
+/* Titulo: encabezado principal. El <span> puede resaltar valores (ej. 50%). */
+.index-promo-title {
+    font-size: clamp(1.35rem, 2.6vw, 2.25rem);
+    font-weight: 800;
+    line-height: 1.12;
+    color: #1a2a3a;
+    margin: 0 0 0.85rem 0;
+}
+
+.index-promo-title span {
+    font-weight: 900;
+}
+
+/* Caja destacada: rectangulo con borde para los detalles de la oferta. */
+.index-promo-highlight {
+    border: 1px solid rgba(26, 42, 58, 0.28);
+    background: rgba(255, 255, 255, 0.45);
+    padding: 0.7rem 0.85rem;
+    font-size: 0.9rem;
+    color: rgba(26, 42, 58, 0.9);
+    margin-bottom: 0.6rem;
+}
+
+/* Nota: texto pequeno bajo la caja destacada (restricciones, etc). */
+.index-promo-note {
+    font-size: 0.78rem;
+    color: rgba(26, 42, 58, 0.7);
+}
+
+/* Boton CTA del modulo promo (separado de .index-btn-blue). */
+.index-promo-button {
+    background-color: #8fa1b3;
+    border-color: #8fa1b3;
+    color: #fff;
+    font-weight: 700;
+    padding: 0.55rem 1.3rem;
+    border-radius: 10px;
+    /* Evita que el boton se estire a todo el ancho. */
+    align-self: flex-start;
+}
+
+.index-promo-button:hover,
+.index-promo-button:focus {
+    background-color: #7f92a6;
+    border-color: #7f92a6;
+    color: #fff;
+}
+
+/* Contenedor de imagen: alto estable + fondo neutro de respaldo. */
+.index-promo-media {
+    height: 100%;
+    /* En movil, mantiene area visible aunque la imagen no cargue. */
+    min-height: 220px;
+    background: #e9ecef;
+}
+
+@media (min-width: 992px) {
+    .index-promo-media {
+        min-height: 320px;
+    }
+}
+
+.index-promo-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Contenedor de puntos: colocado abajo a la izquierda dentro del carrusel. */
+.index-promo-indicators {
+    position: absolute;
+    left: 1.35rem;
+    bottom: 0.85rem;
+    margin: 0;
+    justify-content: flex-start;
+    gap: 0.4rem;
+}
+
+/* Puntos: redondos y con buen contraste, sin borde por defecto. */
+.index-promo-indicators [data-bs-target] {
+    width: 9px;
+    height: 9px;
+    border-radius: 999px;
+    background-color: rgba(255, 255, 255, 0.65);
+    border: 0;
+    opacity: 1;
+}
+
+.index-promo-indicators .active {
+    background-color: #1a2a3a;
+}
+
+/* Botones usados en la seccion de productos ("Agregar al carrito"). */
+.index-btn-blue {
+    background-color: #4a7fc7;
+    border-color: #4a7fc7;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.5rem 1.25rem;
+}
+
+.index-btn-blue:hover,
+.index-btn-blue:focus {
+    background-color: #3d6aaa;
+    border-color: #3d6aaa;
+    color: #fff;
+}
+
+/* Seccion de coleccion: "Viste tu Autenticidad" y el carrusel de categorias. */
+.index-collection .index-lead {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #4a5568;
+    font-weight: 600;
+}
+
+.index-collection h2 {
+    font-size: clamp(1.75rem, 4vw, 2.35rem);
+    font-weight: 700;
+    color: #111;
+}
+
+.index-collection .link-catalogo {
+    color: #1a2a3a;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.index-collection .link-catalogo:hover {
+    color: #4a7fc7;
+}
+
+/* Tarjetas de categoria dentro del carrusel de categorias. */
+.index-cat-card {
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.index-cat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+}
+
+.index-cat-card img {
+    height: 220px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.index-cat-card .card-body {
+    padding: 0.85rem 1rem;
+    font-weight: 600;
+    color: #111;
+}
+
+/* Flechas del carrusel de categorias (controles Bootstrap). */
+.index-collection .carousel-control-prev,
+.index-collection .carousel-control-next {
+    width: 2.5rem;
+    height: 2.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 50%;
+    opacity: 1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.index-collection .carousel-control-prev {
+    left: -0.5rem;
+}
+
+.index-collection .carousel-control-next {
+    right: -0.5rem;
+}
+
+.index-collection .carousel-control-prev-icon,
+.index-collection .carousel-control-next-icon {
+    filter: invert(0.5);
+    width: 1.1rem;
+    height: 1.1rem;
+}
+
+/* Seccion de productos semanales. */
+.index-novedades h2 {
+    font-weight: 700;
+    color: #111;
+}
+
+/* Tarjetas de producto (imagen + panel de detalles). */
+.index-product-card {
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.index-product-card .index-product-img {
+    min-height: 220px;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.index-product-detail {
+    background: #ead5e0;
+    padding: 1rem 1.1rem;
+    font-size: 0.82rem;
+    color: #222;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-height: 100%;
+}
+
+.index-product-detail .price {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #111;
+}
+
+.index-product-detail .sizes button {
+    border: 1px solid #333;
+    background: transparent;
+    padding: 0.1rem 0.45rem;
+    margin: 0 0.2rem 0.2rem 0;
+    font-size: 0.7rem;
+    border-radius: 4px;
+    color: #111;
+}
+
+.index-product-detail .sizes button:hover {
+    background: rgba(0, 0, 0, 0.06);
+}
+
+/* Seccion FAQ: estilos del accordion de Bootstrap para el inicio. */
+.index-faq h2 {
+    font-weight: 700;
+    color: #111;
+}
+
+.index-faq .accordion-item {
+    border: 1px solid #c5c5c5;
+    border-radius: 6px !important;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+    background: #fff;
+}
+
+.index-faq .accordion-button {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #111;
+    box-shadow: none;
+}
+
+.index-faq .accordion-button:not(.collapsed) {
+    background: #fff;
+    color: #111;
+}
+
+.index-faq .accordion-button:focus {
+    box-shadow: none;
+    border-color: transparent;
+}
+
+/* Fondo del body en inicio: mantener consistente con --bg-main. */
+body.page-home {
+    background-color: var(--bg-main);
+}
+

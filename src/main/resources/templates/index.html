@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid & Flex - Inicio</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Styles -->
+    <link href="../static/css/styles.css" rel="stylesheet">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body class="page-home">
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-custom bg-custom-dark py-3 navbar-animation">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="../static/img/logo.svg" alt="Logo" style="height: 35px;" class="me-2">
+                GRID & FLEX
+            </a>
+
+            <div class="d-flex align-items-center order-lg-3">
+                <a href="/carrito.html" class="cart-icon text-white text-decoration-none me-3">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="cart-badge"></span>
+                </a>
+
+                <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
+            <!-- Inicia el breadcrumbs  -->         
+            <div class="collapse navbar-collapse justify-content-center order-lg-2" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="catalogo.html">Catálogo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a  class="nav-link"  href="contact.html">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html" >Acerca de nosotros</a>
+                    </li>
+                    <li class="nav-item d-lg-none">
+                        <a href="#" class="nav-link text-white fw-bold">INGRESAR</a>
+                    </li>
+                </ul>
+                <a href="#" class="nav-link text-white fw-bold d-none d-lg-block ms-lg-3">INGRESAR</a>
+            </div>
+
+            <!-- Termina el breadcrumbs  -->
+
+        </div>
+    </nav>
+
+    <main class="page-index">
+
+        <!-- 1. Bienvenida / descuentos -->
+        <!--
+            CARRUSEL PROMO (banner como la referencia)
+
+            Lo que se muestra:
+            - Panel izquierdo: kicker, titulo, caja destacada, nota, boton CTA
+            - Panel derecho: imagen que llena el alto de la tarjeta
+            - Abajo: puntos indicadores (Bootstrap carousel-indicators)
+
+            Como funciona:
+            - Bootstrap cambia slides dentro de .carousel-inner
+            - El primer .carousel-item debe tener la clase "active"
+            - Los indicadores apuntan a slides con data-bs-slide-to (0, 1, ...)
+
+            Estilos:
+            - Las clases personalizadas de este modulo empiezan con "index-promo-"
+            - Ubicacion del CSS:
+              src/main/resources/static/css/styles.css
+              Buscar: Index: Promo Carousel (o index-promo-)
+
+            Nota:
+            - Comentarios y texto en este bloque son ASCII (sin acentos) para evitar problemas de codificacion.
+        -->
+        <section class="index-promo py-4 py-lg-5" aria-labelledby="heading-promociones">
+            <div class="container">
+                <!-- Elemento raiz del carrusel (Bootstrap). -->
+                <div id="carouselPromociones" class="carousel slide index-promo-carousel" data-bs-ride="carousel">
+                    <!-- Contenedor de slides. Cada hijo directo .carousel-item es un slide. -->
+                    <div class="carousel-inner">
+
+                        <!-- Slide 1 (activo al cargar) -->
+                        <div class="carousel-item active">
+                            <!-- Contenedor tipo tarjeta (bordes redondeados + sombra en CSS). -->
+                            <article class="index-promo-card">
+                                <!-- Dos columnas: texto a la izquierda, imagen a la derecha. -->
+                                <div class="row g-0 align-items-stretch">
+                                    <!-- Columna izquierda -->
+                                    <div class="col-lg-5">
+                                        <!-- Panel izquierdo: fondo + espaciado -->
+                                        <div class="index-promo-copy">
+                                            <!-- Etiqueta pequena (kicker) -->
+                                            <p class="index-promo-kicker mb-3">Promocion de temporada</p>
+
+                                            <!-- Encabezado principal de esta seccion (usado por aria-labelledby) -->
+                                            <h1 id="heading-promociones" class="index-promo-title">
+                                                Descuentos de hasta el <span>50%</span> en toda la linea Dockers
+                                            </h1>
+
+                                            <!-- Caja destacada con detalles de la oferta -->
+                                            <div class="index-promo-highlight">
+                                                Aprovecha los mejores precios de la temporada en prendas, zapatos y
+                                                fragancias para dama y caballero hasta el 31 de mayo.
+                                            </div>
+
+                                            <!-- Nota corta / restricciones -->
+                                            <p class="index-promo-note mb-4">*Aplican restricciones.</p>
+
+                                            <!-- Llamada a la accion principal -->
+                                            <a class="btn index-promo-button" href="catalogo.html">Ver descuentos</a>
+                                        </div>
+                                    </div>
+
+                                    <!-- Columna derecha -->
+                                    <div class="col-lg-7">
+                                        <!-- Contenedor de imagen (controla alto + fondo de respaldo) -->
+                                        <div class="index-promo-media">
+                                            <!-- Imagen temporal (puede estar rota a proposito) -->
+                                            <img class="index-promo-image" src="../static/img/pendiente-contenido.jpg"
+                                                alt="Promocion: descuentos en prendas y accesorios">
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+
+                        <!-- Slide 2 -->
+                        <div class="carousel-item">
+                            <article class="index-promo-card">
+                                <div class="row g-0 align-items-stretch">
+                                    <div class="col-lg-5">
+                                        <div class="index-promo-copy">
+                        <!-- Kicker: etiqueta corta del slide -->
+                                            <p class="index-promo-kicker mb-3">Nuevos esenciales</p>
+
+                        <!-- Titulo del slide (h2 porque la seccion ya tiene un h1) -->
+                                            <h2 class="index-promo-title">
+                                                Renueva tu outfit con basicos urbanos desde <span>$299</span>
+                                            </h2>
+
+                        <!-- Detalles de la oferta -->
+                                            <div class="index-promo-highlight">
+                                                Camisas, pantalones y chamarras con cortes modernos para combinar sin
+                                                esfuerzo durante toda la semana.
+                                            </div>
+
+                        <!-- Nota corta para dar urgencia -->
+                                            <p class="index-promo-note mb-4">Coleccion por tiempo limitado.</p>
+
+                                            <!-- CTA -->
+                                            <a class="btn index-promo-button" href="catalogo.html">Explorar coleccion</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-7">
+                                        <div class="index-promo-media">
+                        <!-- Imagen temporal (ok si esta rota) -->
+                                            <img class="index-promo-image" src="../static/img/pendiente-contenido.jpg"
+                                                alt="Promocion: basicos urbanos">
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+
+                    </div>
+
+                    <!-- Indicadores (puntos) -->
+                    <div class="carousel-indicators index-promo-indicators">
+                        <!-- data-bs-slide-to conecta cada punto con el indice del slide (inicia en 0). -->
+                        <button type="button" data-bs-target="#carouselPromociones" data-bs-slide-to="0"
+                            class="active" aria-current="true" aria-label="Promocion 1"></button>
+                        <button type="button" data-bs-target="#carouselPromociones" data-bs-slide-to="1"
+                            aria-label="Promocion 2"></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+
+        
+
+
+
+
+        <!-- 2. Viste tu autenticidad — carrusel categorías -->
+        <section class="index-collection py-5" aria-labelledby="heading-autenticidad">
+            <div class="container position-relative">
+                <div class="row align-items-center g-4 mb-2">
+                    <div class="col-lg-4">
+                        <p class="index-lead mb-2">Colección primavera-verano</p>
+                        <h2 id="heading-autenticidad" class="mb-3">Viste tu Autenticidad</h2>
+                        <a href="catalogo.html" class="link-catalogo">Ver catálogo</a>
+                    </div>
+                    <div class="col-lg-8 position-relative ps-lg-4">
+                        <div id="carouselCategorias" class="carousel slide" data-bs-ride="false">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="row g-3">
+                                        <div class="col-md-4">
+                                            <div class="card index-cat-card h-100">
+                                                <img src="../static/img/pendiente-contenido.jpg" class="card-img-top"
+                                                    alt="">
+                                                <div class="card-body text-center">Camisas</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="card index-cat-card h-100">
+                                                <img src="../static/img/pendiente-contenido.jpg" class="card-img-top"
+                                                    alt="">
+                                                <div class="card-body text-center">Pantalones</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="card index-cat-card h-100">
+                                                <img src="../static/img/pendiente-contenido.jpg" class="card-img-top"
+                                                    alt="">
+                                                <div class="card-body text-center">Chamarras</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="row g-3">
+                                        <div class="col-md-4">
+                                            <div class="card index-cat-card h-100">
+                                                <img src="../static/img/pendiente-contenido.jpg" class="card-img-top"
+                                                    alt="">
+                                                <div class="card-body text-center">Vestidos</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="card index-cat-card h-100">
+                                                <img src="../static/img/pendiente-contenido.jpg" class="card-img-top"
+                                                    alt="">
+                                                <div class="card-body text-center">Calzado</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="card index-cat-card h-100">
+                                                <img src="../static/img/pendiente-contenido.jpg" class="card-img-top"
+                                                    alt="">
+                                                <div class="card-body text-center">Accesorios</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselCategorias"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Anterior</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselCategorias"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Siguiente</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Novedades semanales -->
+        <section class="index-novedades py-4" aria-labelledby="heading-novedades">
+            <div class="container">
+                <h2 id="heading-novedades" class="mb-4">Novedades Semanales</h2>
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <article class="card border-0 shadow-sm index-product-card h-100">
+                            <div class="row g-0 h-100">
+                                <div class="col-5">
+                                    <img class="index-product-img" src="../static/img/pendiente-contenido.jpg" alt="">
+                                </div>
+                                <div class="col-7">
+                                    <div class="index-product-detail">
+                                        <h3 class="h6 mb-0 fw-bold">Vestido casual rojo</h3>
+                                        <p class="price mb-0">$459.00</p>
+                                        <p class="small mb-1"><strong>Acerca de este artículo:</strong> Corte relajado,
+                                            tela ligera ideal para día.</p>
+                                        <div class="sizes">
+                                            <button type="button">CH</button><button type="button">M</button><button
+                                                type="button">G</button>
+                                        </div>
+                                        <button type="button" class="btn index-btn-blue btn-sm mt-auto align-self-start">Agregar al carrito</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-lg-6">
+                        <article class="card border-0 shadow-sm index-product-card h-100">
+                            <div class="row g-0 h-100">
+                                <div class="col-5">
+                                    <img class="index-product-img" src="../static/img/pendiente-contenido.jpg" alt="">
+                                </div>
+                                <div class="col-7">
+                                    <div class="index-product-detail">
+                                        <h3 class="h6 mb-0 fw-bold">Vestido blanco verano</h3>
+                                        <p class="price mb-0">$429.00</p>
+                                        <p class="small mb-1"><strong>Acerca de este artículo:</strong> Espalda descubierta, algodón.</p>
+                                        <div class="sizes">
+                                            <button type="button">CH</button><button type="button">M</button><button
+                                                type="button">G</button>
+                                        </div>
+                                        <button type="button" class="btn index-btn-blue btn-sm mt-auto align-self-start">Agregar al carrito</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-lg-6">
+                        <article class="card border-0 shadow-sm index-product-card h-100">
+                            <div class="row g-0 h-100">
+                                <div class="col-5">
+                                    <img class="index-product-img" src="../static/img/pendiente-contenido.jpg" alt="">
+                                </div>
+                                <div class="col-7">
+                                    <div class="index-product-detail">
+                                        <h3 class="h6 mb-0 fw-bold">Traje lino negro</h3>
+                                        <p class="price mb-0">$1,299.00</p>
+                                        <p class="small mb-1"><strong>Acerca de este artículo:</strong> Blazer y pantalón, corte slim.</p>
+                                        <div class="sizes">
+                                            <button type="button">CH</button><button type="button">M</button><button
+                                                type="button">G</button>
+                                        </div>
+                                        <button type="button" class="btn index-btn-blue btn-sm mt-auto align-self-start">Agregar al carrito</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-lg-6">
+                        <article class="card border-0 shadow-sm index-product-card h-100">
+                            <div class="row g-0 h-100">
+                                <div class="col-5">
+                                    <img class="index-product-img" src="../static/img/pendiente-contenido.jpg" alt="">
+                                </div>
+                                <div class="col-7">
+                                    <div class="index-product-detail">
+                                        <h3 class="h6 mb-0 fw-bold">Traje lino negro — slim</h3>
+                                        <p class="price mb-0">$1,349.00</p>
+                                        <p class="small mb-1"><strong>Acerca de este artículo:</strong> Incluye pañuelo de bolsillo.</p>
+                                        <div class="sizes">
+                                            <button type="button">CH</button><button type="button">M</button><button
+                                                type="button">G</button>
+                                        </div>
+                                        <button type="button" class="btn index-btn-blue btn-sm mt-auto align-self-start">Agregar al carrito</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-lg-6">
+                        <article class="card border-0 shadow-sm index-product-card h-100">
+                            <div class="row g-0 h-100">
+                                <div class="col-5">
+                                    <img class="index-product-img" src="../static/img/pendiente-contenido.jpg" alt="">
+                                </div>
+                                <div class="col-7">
+                                    <div class="index-product-detail">
+                                        <h3 class="h6 mb-0 fw-bold">Conjunto deportivo urbano</h3>
+                                        <p class="price mb-0">$899.00</p>
+                                        <p class="small mb-1"><strong>Acerca de este artículo:</strong> Sudadera y pants, tejido técnico.</p>
+                                        <div class="sizes">
+                                            <button type="button">CH</button><button type="button">M</button><button
+                                                type="button">G</button>
+                                        </div>
+                                        <button type="button" class="btn index-btn-blue btn-sm mt-auto align-self-start">Agregar al carrito</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-lg-6">
+                        <article class="card border-0 shadow-sm index-product-card h-100">
+                            <div class="row g-0 h-100">
+                                <div class="col-5">
+                                    <img class="index-product-img" src="../static/img/pendiente-contenido.jpg" alt="">
+                                </div>
+                                <div class="col-7">
+                                    <div class="index-product-detail">
+                                        <h3 class="h6 mb-0 fw-bold">Pack sport callejero</h3>
+                                        <p class="price mb-0">$1,050.00</p>
+                                        <p class="small mb-1"><strong>Acerca de este artículo:</strong> Look completo; colores surtidos.</p>
+                                        <div class="sizes">
+                                            <button type="button">CH</button><button type="button">M</button><button
+                                                type="button">G</button>
+                                        </div>
+                                        <button type="button" class="btn index-btn-blue btn-sm mt-auto align-self-start">Agregar al carrito</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Preguntas frecuentes -->
+        <section class="index-faq py-4 pb-4" aria-labelledby="heading-faq">
+            <div class="container col-lg-8 col-xl-7">
+                <h2 id="heading-faq" class="text-center mb-4">Preguntas Frecuentes</h2>
+                <div class="accordion" id="accordionFaq">
+                    <div class="accordion-item">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#faq1" aria-expanded="false" aria-controls="faq1">¿Qué métodos de pago
+                                aceptan?</button>
+                        </h3>
+                        <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#accordionFaq">
+                            <div class="accordion-body small text-muted">Lorem Ipsum is simply dummy text of the printing
+                                and typesetting industry.</div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">¿Puedo cancelar mi
+                                pedido?</button>
+                        </h3>
+                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#accordionFaq">
+                            <div class="accordion-body small text-muted">Lorem Ipsum is simply dummy text of the printing
+                                and typesetting industry.</div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">¿Cómo funcionan las
+                                devoluciones?</button>
+                        </h3>
+                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#accordionFaq">
+                            <div class="accordion-body small text-muted">Lorem Ipsum is simply dummy text of the printing
+                                and typesetting industry.</div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">¿Hacen envíos a todo el
+                                país?</button>
+                        </h3>
+                        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#accordionFaq">
+                            <div class="accordion-body small text-muted">Lorem Ipsum is simply dummy text of the printing
+                                and typesetting industry.</div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#faq5" aria-expanded="false" aria-controls="faq5">¿Las promociones se
+                                combinan con otros descuentos?</button>
+                        </h3>
+                        <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#accordionFaq">
+                            <div class="accordion-body small text-muted">Lorem Ipsum is simply dummy text of the printing
+                                and typesetting industry.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-custom-dark footer text-light">
+        <div class="container">
+            <div class="row">
+                <!-- Columna 1: Marca y Redes -->
+                <div class="col-md-3 mb-4">
+                    <h5 class="d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-bag-shopping"></i> GRID & FLEX
+                    </h5>
+                    <p class="small text-white-50">Diseño consciente para el individuo moderno. Creemos en piezas que
+                        duran toda la vida.</p>
+                    <div class="social-icons mt-3">
+                        <i class="fa-brands fa-instagram"></i>
+                        <i class="fa-brands fa-facebook"></i>
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </div>
+                </div>
+
+                <!-- Columna 2: Tienda -->
+                <div class="col-md-2 mb-4">
+                    <h5>TIENDA</h5>
+                    <ul>
+                        <li><a href="#">Hombres</a></li>
+                        <li><a href="#">Mujeres</a></li>
+                        <li><a href="#">Accesorios</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 3: Soporte -->
+                <div class="col-md-2 mb-4">
+                    <h5>SOPORTE</h5>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Envío</a></li>
+                        <li><a href="contact.html">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 4: Suscripción -->
+                <div class="col-md-5 mb-4">
+                    <h5>SUSCRIBIRSE</h5>
+                    <p class="small text-white-50">Recibe ofertas exclusivas y novedades de nuestra colección.</p>
+                    <form id="suscripcion" class="input-group mt-3">
+                        <input type="email" class="form-control bg-light" placeholder="Correo electrónico"
+                            aria-label="Correo electrónico" required>
+                        <button class="btn btn-secondary text-white border-0" style="background-color: #8fa1b3;"
+                            type="submit">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="toastSuscripcion" class="toast align-items-center text-white bg-dark border-0" role="alert"
+                aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        <i class="fa-solid fa-circle-check me-2"></i>
+                        ¡Gracias por suscribirte a GRID & FLEX!
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                        aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/js/main.js"></script>
+</body>
+
+</html>
