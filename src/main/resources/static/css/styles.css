@@ -676,87 +676,157 @@ input[type="checkbox"] {
     to { width: 100%; }
 }
 
-/* ========== Página inicio (index) ========== */
+/* ========== Pagina de Inicio (index) ========== */
 .page-index {
     background-color: var(--bg-main);
     padding-bottom: 0;
 }
 
-/* Mismo ancho que .index-collection (.container); más bajo y horizontal (coincide el “vuelo” con la fila de abajo) */
-.index-hero-slide {
-    min-height: 0;
-    align-items: stretch;
+/* --- Index: Carrusel Promo (Bienvenida / descuentos) ---
+   Usado en: src/main/resources/templates/index.html
+
+   Estructura:
+   - Panel izquierdo: kicker, titulo, caja destacada, nota, boton CTA
+   - Panel derecho: imagen
+   - Abajo: puntos indicadores (Bootstrap carousel-indicators)
+
+   Nombres:
+   - Todos los selectores empiezan con "index-promo-" para evitar conflictos.
+*/
+
+/* El carrusel es el contexto de posicionamiento para los puntos indicadores. */
+.index-promo-carousel {
+    position: relative;
+}
+
+/* Tarjeta del slide: bordes redondeados + sombra + recorte de hijos (imagen). */
+.index-promo-card {
+    border-radius: 18px;
+    overflow: hidden;
     background: #fff;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.08);
 }
 
-@media (min-width: 992px) {
-    .index-hero-slide {
-        min-height: 200px;
-    }
-}
-
-.index-hero-copy {
+/* Panel izquierdo: fondo azul claro, espaciado y centrado vertical. */
+.index-promo-copy {
     background: #c5d8e8;
-    padding: 1.1rem 1.25rem;
+    /* Padding extra abajo para que los puntos no se encimen con el contenido. */
+    padding: 1.25rem 1.25rem 3.25rem;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
 @media (min-width: 992px) {
-    .index-hero-copy {
-        padding: 1.25rem 1.5rem;
+    .index-promo-copy {
+        padding: 1.6rem 1.75rem 3.35rem;
     }
 }
 
-.index-hero-copy h1,
-.index-hero-copy h2 {
-    font-size: clamp(1.05rem, 2vw, 1.45rem);
+/* Kicker: etiqueta pequena en mayusculas arriba del titulo. */
+.index-promo-kicker {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
     font-weight: 700;
+    color: rgba(26, 42, 58, 0.8);
+}
+
+/* Titulo: encabezado principal. El <span> puede resaltar valores (ej. 50%). */
+.index-promo-title {
+    font-size: clamp(1.35rem, 2.6vw, 2.25rem);
+    font-weight: 800;
+    line-height: 1.12;
     color: #1a2a3a;
-    line-height: 1.2;
-    margin-bottom: 0;
+    margin: 0 0 0.85rem 0;
 }
 
-.index-hero-offer-box {
-    border: 1px solid rgba(26, 42, 58, 0.2);
+.index-promo-title span {
+    font-weight: 900;
+}
+
+/* Caja destacada: rectangulo con borde para los detalles de la oferta. */
+.index-promo-highlight {
+    border: 1px solid rgba(26, 42, 58, 0.28);
     background: rgba(255, 255, 255, 0.45);
-    padding: 0.55rem 0.75rem;
-    font-size: 0.8rem;
-    color: #2c3e50;
-    margin-top: 0.65rem !important;
-    margin-bottom: 0.65rem !important;
+    padding: 0.7rem 0.85rem;
+    font-size: 0.9rem;
+    color: rgba(26, 42, 58, 0.9);
+    margin-bottom: 0.6rem;
 }
 
-.index-hero-img {
-    min-height: 160px;
-    background-color: #e9ecef;
-    max-height: 220px;
+/* Nota: texto pequeno bajo la caja destacada (restricciones, etc). */
+.index-promo-note {
+    font-size: 0.78rem;
+    color: rgba(26, 42, 58, 0.7);
+}
+
+/* Boton CTA del modulo promo (separado de .index-btn-blue). */
+.index-promo-button {
+    background-color: #8fa1b3;
+    border-color: #8fa1b3;
+    color: #fff;
+    font-weight: 700;
+    padding: 0.55rem 1.3rem;
+    border-radius: 10px;
+    /* Evita que el boton se estire a todo el ancho. */
+    align-self: flex-start;
+}
+
+.index-promo-button:hover,
+.index-promo-button:focus {
+    background-color: #7f92a6;
+    border-color: #7f92a6;
+    color: #fff;
+}
+
+/* Contenedor de imagen: alto estable + fondo neutro de respaldo. */
+.index-promo-media {
+    height: 100%;
+    /* En movil, mantiene area visible aunque la imagen no cargue. */
+    min-height: 220px;
+    background: #e9ecef;
 }
 
 @media (min-width: 992px) {
-    .index-hero-img {
-        min-height: 200px;
-        max-height: 200px;
+    .index-promo-media {
+        min-height: 320px;
     }
 }
 
-.index-hero-img img.index-hero-photo {
+.index-promo-image {
     width: 100%;
     height: 100%;
-    min-height: 160px;
-    max-height: 220px;
     object-fit: cover;
     display: block;
 }
 
-@media (min-width: 992px) {
-    .index-hero-img img.index-hero-photo {
-        min-height: 200px;
-        max-height: 200px;
-    }
+/* Contenedor de puntos: colocado abajo a la izquierda dentro del carrusel. */
+.index-promo-indicators {
+    position: absolute;
+    left: 1.35rem;
+    bottom: 0.85rem;
+    margin: 0;
+    justify-content: flex-start;
+    gap: 0.4rem;
 }
 
+/* Puntos: redondos y con buen contraste, sin borde por defecto. */
+.index-promo-indicators [data-bs-target] {
+    width: 9px;
+    height: 9px;
+    border-radius: 999px;
+    background-color: rgba(255, 255, 255, 0.65);
+    border: 0;
+    opacity: 1;
+}
+
+.index-promo-indicators .active {
+    background-color: #1a2a3a;
+}
+
+/* Botones usados en la seccion de productos ("Agregar al carrito"). */
 .index-btn-blue {
     background-color: #4a7fc7;
     border-color: #4a7fc7;
@@ -772,39 +842,7 @@ input[type="checkbox"] {
     color: #fff;
 }
 
-.index-hero-carousel {
-    position: relative;
-}
-
-.index-hero-dots {
-    position: absolute;
-    z-index: 2;
-    left: 0.85rem;
-    bottom: 0.65rem;
-    margin: 0;
-    justify-content: flex-start;
-}
-
-@media (min-width: 992px) {
-    .index-hero-dots {
-        left: 1.35rem;
-        bottom: 0.75rem;
-    }
-}
-
-.index-hero-dots [data-bs-target] {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.65);
-    border: 0;
-    opacity: 1;
-}
-
-.index-hero-dots .active {
-    background-color: #1a2a3a;
-}
-
+/* Seccion de coleccion: "Viste tu Autenticidad" y el carrusel de categorias. */
 .index-collection .index-lead {
     font-size: 0.72rem;
     letter-spacing: 0.12em;
@@ -830,6 +868,7 @@ input[type="checkbox"] {
     color: #4a7fc7;
 }
 
+/* Tarjetas de categoria dentro del carrusel de categorias. */
 .index-cat-card {
     border: none;
     border-radius: 10px;
@@ -855,6 +894,7 @@ input[type="checkbox"] {
     color: #111;
 }
 
+/* Flechas del carrusel de categorias (controles Bootstrap). */
 .index-collection .carousel-control-prev,
 .index-collection .carousel-control-next {
     width: 2.5rem;
@@ -882,11 +922,13 @@ input[type="checkbox"] {
     height: 1.1rem;
 }
 
+/* Seccion de productos semanales. */
 .index-novedades h2 {
     font-weight: 700;
     color: #111;
 }
 
+/* Tarjetas de producto (imagen + panel de detalles). */
 .index-product-card {
     border-radius: 10px;
     overflow: hidden;
@@ -931,6 +973,7 @@ input[type="checkbox"] {
     background: rgba(0, 0, 0, 0.06);
 }
 
+/* Seccion FAQ: estilos del accordion de Bootstrap para el inicio. */
 .index-faq h2 {
     font-weight: 700;
     color: #111;
@@ -961,7 +1004,7 @@ input[type="checkbox"] {
     border-color: transparent;
 }
 
-/* Inicio: mismo tono que --bg-main bajo el <main> (evita franja #f5f5f5 del body del bloque catálogo) */
+/* Fondo del body en inicio: mantener consistente con --bg-main. */
 body.page-home {
     background-color: var(--bg-main);
 }

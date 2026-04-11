@@ -68,6 +68,132 @@
     <main class="page-index">
 
         <!-- 1. Bienvenida / descuentos -->
+        <!--
+            CARRUSEL PROMO (banner como la referencia)
+
+            Lo que se muestra:
+            - Panel izquierdo: kicker, titulo, caja destacada, nota, boton CTA
+            - Panel derecho: imagen que llena el alto de la tarjeta
+            - Abajo: puntos indicadores (Bootstrap carousel-indicators)
+
+            Como funciona:
+            - Bootstrap cambia slides dentro de .carousel-inner
+            - El primer .carousel-item debe tener la clase "active"
+            - Los indicadores apuntan a slides con data-bs-slide-to (0, 1, ...)
+
+            Estilos:
+            - Las clases personalizadas de este modulo empiezan con "index-promo-"
+            - Ubicacion del CSS:
+              src/main/resources/static/css/styles.css
+              Buscar: Index: Promo Carousel (o index-promo-)
+
+            Nota:
+            - Comentarios y texto en este bloque son ASCII (sin acentos) para evitar problemas de codificacion.
+        -->
+        <section class="index-promo py-4 py-lg-5" aria-labelledby="heading-promociones">
+            <div class="container">
+                <!-- Elemento raiz del carrusel (Bootstrap). -->
+                <div id="carouselPromociones" class="carousel slide index-promo-carousel" data-bs-ride="carousel">
+                    <!-- Contenedor de slides. Cada hijo directo .carousel-item es un slide. -->
+                    <div class="carousel-inner">
+
+                        <!-- Slide 1 (activo al cargar) -->
+                        <div class="carousel-item active">
+                            <!-- Contenedor tipo tarjeta (bordes redondeados + sombra en CSS). -->
+                            <article class="index-promo-card">
+                                <!-- Dos columnas: texto a la izquierda, imagen a la derecha. -->
+                                <div class="row g-0 align-items-stretch">
+                                    <!-- Columna izquierda -->
+                                    <div class="col-lg-5">
+                                        <!-- Panel izquierdo: fondo + espaciado -->
+                                        <div class="index-promo-copy">
+                                            <!-- Etiqueta pequena (kicker) -->
+                                            <p class="index-promo-kicker mb-3">Promocion de temporada</p>
+
+                                            <!-- Encabezado principal de esta seccion (usado por aria-labelledby) -->
+                                            <h1 id="heading-promociones" class="index-promo-title">
+                                                Descuentos de hasta el <span>50%</span> en toda la linea Dockers
+                                            </h1>
+
+                                            <!-- Caja destacada con detalles de la oferta -->
+                                            <div class="index-promo-highlight">
+                                                Aprovecha los mejores precios de la temporada en prendas, zapatos y
+                                                fragancias para dama y caballero hasta el 31 de mayo.
+                                            </div>
+
+                                            <!-- Nota corta / restricciones -->
+                                            <p class="index-promo-note mb-4">*Aplican restricciones.</p>
+
+                                            <!-- Llamada a la accion principal -->
+                                            <a class="btn index-promo-button" href="catalogo.html">Ver descuentos</a>
+                                        </div>
+                                    </div>
+
+                                    <!-- Columna derecha -->
+                                    <div class="col-lg-7">
+                                        <!-- Contenedor de imagen (controla alto + fondo de respaldo) -->
+                                        <div class="index-promo-media">
+                                            <!-- Imagen temporal (puede estar rota a proposito) -->
+                                            <img class="index-promo-image" src="../static/img/pendiente-contenido.jpg"
+                                                alt="Promocion: descuentos en prendas y accesorios">
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+
+                        <!-- Slide 2 -->
+                        <div class="carousel-item">
+                            <article class="index-promo-card">
+                                <div class="row g-0 align-items-stretch">
+                                    <div class="col-lg-5">
+                                        <div class="index-promo-copy">
+                        <!-- Kicker: etiqueta corta del slide -->
+                                            <p class="index-promo-kicker mb-3">Nuevos esenciales</p>
+
+                        <!-- Titulo del slide (h2 porque la seccion ya tiene un h1) -->
+                                            <h2 class="index-promo-title">
+                                                Renueva tu outfit con basicos urbanos desde <span>$299</span>
+                                            </h2>
+
+                        <!-- Detalles de la oferta -->
+                                            <div class="index-promo-highlight">
+                                                Camisas, pantalones y chamarras con cortes modernos para combinar sin
+                                                esfuerzo durante toda la semana.
+                                            </div>
+
+                        <!-- Nota corta para dar urgencia -->
+                                            <p class="index-promo-note mb-4">Coleccion por tiempo limitado.</p>
+
+                                            <!-- CTA -->
+                                            <a class="btn index-promo-button" href="catalogo.html">Explorar coleccion</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-7">
+                                        <div class="index-promo-media">
+                        <!-- Imagen temporal (ok si esta rota) -->
+                                            <img class="index-promo-image" src="../static/img/pendiente-contenido.jpg"
+                                                alt="Promocion: basicos urbanos">
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+
+                    </div>
+
+                    <!-- Indicadores (puntos) -->
+                    <div class="carousel-indicators index-promo-indicators">
+                        <!-- data-bs-slide-to conecta cada punto con el indice del slide (inicia en 0). -->
+                        <button type="button" data-bs-target="#carouselPromociones" data-bs-slide-to="0"
+                            class="active" aria-current="true" aria-label="Promocion 1"></button>
+                        <button type="button" data-bs-target="#carouselPromociones" data-bs-slide-to="1"
+                            aria-label="Promocion 2"></button>
+                    </div>
+                </div>
+            </div>
+        </section>
         
 
         
