@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grid & Flex</title>
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome para los íconos (carrito, redes sociales, avatares) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link href="../static/css/styles.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <nav
+      class="navbar navbar-expand-lg navbar-custom bg-custom-dark py-3 navbar-animation"
+    >
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <img
+            src="../static/img/logo.svg"
+            alt="Logo"
+            style="height: 35px; width: auto"
+            class="me-2"
+          />
+          GRID & FLEX
+        </a>
+
+        <div class="d-flex align-items-center order-lg-3">
+          <!-- El Carrito se queda AFUERA del collapse -->
+          <a
+            href="/carrito.html"
+            class="cart-icon text-white text-decoration-none me-3"
+          >
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="cart-badge"></span>
+          </a>
+
+          <!-- El botón de hamburguesa -->
+          <button
+            class="navbar-toggler navbar-dark"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+
+        <!-- Inicia el breadcrumbs  -->
+
+        <div
+          class="collapse navbar-collapse justify-content-center order-lg-2"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="catalogo.html">Catálogo</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contacto</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="add-product.html">Agregar producto</a
+              >
+            </li>
+            <li class="nav-item d-lg-none">
+              <a href="#" class="nav-link text-white fw-bold">INGRESAR</a>
+            </li>
+          </ul>
+          <a
+            href="#"
+            class="nav-link text-white fw-bold d-none d-lg-block ms-lg-3"
+            >INGRESAR</a
+          >
+        </div>
+
+        <!-- Termina el breadcrumbs  -->
+      </div>
+    </nav>
+
+    <!--Contenido principal-->
+     <main>
+    <section class="py-5">
+        <div class="container-fluid px-4">
+            <div class="row g-4">
+
+                <!-- FORMULARIO PRODUCTO -->
+                <div class="col-lg-5">
+                    <form action="/productos/agregar" method="POST" enctype="multipart/form-data" class="card p-4 shadow-sm">
+                        <h4 class="fw-bold mb-4">Añadir nuevo producto</h4>
+
+                        <div class="mb-3">
+                            <label class="form-label">Nombre del producto</label>
+                            <input type="text" name="nombre" class="form-control" placeholder="Nombre del producto">
+                        </div>
+
+                        <div class="mb-3 row align-items-center">
+                            <label class="col-sm-3 col-form-label">Precio</label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <span class="input-group-text">MXN</span>
+                                    <input type="number" name="precio" class="form-control" placeholder="0.00">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row align-items-center">
+                            <label class="col-sm-3 col-form-label">Categoría</label>
+                            <div class="col-sm-9">
+                                <select name="categoria" class="form-select">
+                                    <option value="">Seleccionar categoría</option>
+                                    <option value="camisas">Camisas</option>
+                                    <option value="chamarras">Chamarras</option>
+                                    <option value="accesorios">Accesorios</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row align-items-center">
+                            <label class="col-sm-3 col-form-label">Talla</label>
+                            <div class="col-sm-9">
+                                <select name="talla" class="form-select">
+                                    <option value="">Seleccionar talla</option>
+                                    <option value="CH">CH</option>
+                                    <option value="M">M</option>
+                                    <option value="G">G</option>
+                                    <option value="XG">XG</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row align-items-center">
+                            <label class="col-sm-3 col-form-label">Stock</label>
+                            <div class="col-sm-9">
+                                <input type="number" name="stock" class="form-control" placeholder="0">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Descripción</label>
+                            <textarea name="descripcion" class="form-control" rows="3"
+                                placeholder="Descripción del producto..."></textarea>
+                        </div>
+
+                        <!-- Zona de imagen -->
+                        <div class="border rounded p-4 text-center mb-4"
+                            style="border-style: dashed !important; cursor: pointer;">
+                            <i class="fa-solid fa-cloud-arrow-up fa-2x mb-2 text-muted"></i>
+                            <p class="mb-1 text-muted">Carga una imagen aquí</p>
+                            <hr class="w-25 mx-auto">
+                            <label class="btn btn-sm btn-outline-secondary">
+                                Selecciona archivo
+                                <input type="file" name="imagen" accept="image/*" hidden>
+                            </label>
+                        </div>
+
+                        <!-- Botones formulario -->
+                        <div class="d-flex justify-content-end gap-2">
+                            <button type="button" class="btn btn-secondary">Cancelar</button>
+                            <button type="submit" class="btn btn-dark">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- TABLA PRODUCTOS -->
+                <div class="col-lg-7">
+                    <div class="card p-4 shadow-sm">
+                        <h4 class="fw-bold mb-4">Productos</h4>
+
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th style="width: 40px;"></th>
+                                        <th>Nombre</th>
+                                        <th>Categoría</th>
+                                        <th>Precio</th>
+                                        <th>Talla</th>
+                                        <th>Stock</th>
+                                        <th>Estado</th>
+                                        <th>Imagen</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <!-- Fila 1 -->
+                                    <tr data-id="1">
+                                        <td><input type="checkbox" class="form-check-input producto-check" value="1"></td>
+                                        <td>Playera Loose Fit</td>
+                                        <td>Camisas</td>
+                                        <td>$200</td>
+                                        <td>M</td>
+                                        <td>15</td>
+                                        <td><span class="badge bg-warning text-dark">Seminuevo</span></td>
+                                        <td><img src="../static/img/producto2.png" alt="Playera"
+                                            style="width: 50px; height: 50px; object-fit: cover; border-radius: 6px;"></td>
+                                    </tr>
+
+                                    <!-- Fila 2 -->
+                                    <tr data-id="2">
+                                        <td><input type="checkbox" class="form-check-input producto-check" value="2"></td>
+                                        <td>Chamarra deportiva</td>
+                                        <td>Chamarras</td>
+                                        <td>$350</td>
+                                        <td>G</td>
+                                        <td>8</td>
+                                        <td><span class="badge bg-success">Nuevo</span></td>
+                                        <td><img src="../static/img/producto2.png" alt="Chamarra deportiva"
+                                            style="width: 50px; height: 50px; object-fit: cover; border-radius: 6px;"></td>
+                                    </tr>
+
+                                    <!-- Fila 3 -->
+                                    <tr data-id="3">
+                                        <td><input type="checkbox" class="form-check-input producto-check" value="3"></td>
+                                        <td>Chamarra popover</td>
+                                        <td>Chamarras</td>
+                                        <td>$330</td>
+                                        <td>M</td>
+                                        <td>5</td>
+                                        <td><span class="badge bg-success">Nuevo</span></td>
+                                        <td><img src="../static/img/producto3.png" alt="Chamarra popover"
+                                            style="width: 50px; height: 50px; object-fit: cover; border-radius: 6px;"></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Botones al final -->
+                         <!-- Agrego nombre para botones id btnEditar y btnEliminar --->
+                        <div class="d-flex justify-content-end gap-2 mt-2">
+                            <button type="button" class="btn btn-outline-primary" id="btnEditar" disabled>
+                                <i class="fa-solid fa-pen-to-square me-1"></i> Editar
+                            </button>
+                            <button type="button" class="btn btn-outline-danger" id="btnEliminar" disabled>
+                                <i class="fa-solid fa-trash me-1"></i> Eliminar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</main>
+
+    <!-- Footer -->
+    <footer class="bg-custom-dark footer text-light">
+      <div class="container">
+        <div class="row">
+          <!-- Columna 1: Marca y Redes -->
+          <div class="col-md-3 mb-4">
+            <h5 class="d-flex align-items-center gap-2">
+              <i class="fa-solid fa-bag-shopping"></i> GRID & FLEX
+            </h5>
+            <p class="small text-white-50">
+              Diseño consciente para el individuo moderno. Creemos en piezas que
+              duran toda la vida.
+            </p>
+            <div class="social-icons mt-3">
+              <i class="fa-brands fa-instagram"></i>
+              <i class="fa-brands fa-facebook"></i>
+              <i class="fa-brands fa-x-twitter"></i>
+            </div>
+          </div>
+
+          <!-- Columna 2: Tienda -->
+          <div class="col-md-2 mb-4">
+            <h5>TIENDA</h5>
+            <ul>
+              <li><a href="#">Hombres</a></li>
+              <li><a href="#">Mujeres</a></li>
+              <li><a href="#">Accesorios</a></li>
+            </ul>
+          </div>
+
+          <!-- Columna 3: Soporte -->
+          <div class="col-md-2 mb-4">
+            <h5>SOPORTE</h5>
+            <ul>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Envío</a></li>
+              <li><a href="contact.html">Contacto</a></li>
+            </ul>
+          </div>
+
+          <!-- Columna 4: Suscripción -->
+          <div class="col-md-5 mb-4">
+            <h5>SUSCRIBIRSE</h5>
+            <p class="small text-white-50">
+              Recibe ofertas exclusivas y novedades de nuestra colección.
+            </p>
+            <form id="suscripcion" class="input-group mt-3">
+              <input
+                type="email"
+                class="form-control bg-light"
+                placeholder="Correo electrónico"
+                aria-label="Correo electrónico"
+                required
+              />
+              <button
+                class="btn btn-secondary text-white border-0"
+                style="background-color: #8fa1b3"
+                type="submit"
+              >
+                <i class="fa-solid fa-paper-plane"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div
+          id="toastSuscripcion"
+          class="toast align-items-center text-white bg-dark border-0"
+          role="alert"
+          aria-live="assertive"
+          aria-atomic="true"
+        >
+          <div class="d-flex">
+            <div class="toast-body">
+              <i class="fa-solid fa-circle-check me-2"></i>
+              ¡Gracias por suscribirte a GRID & FLEX!
+            </div>
+            <button
+              type="button"
+              class="btn-close btn-close-white me-2 m-auto"
+              data-bs-dismiss="toast"
+              aria-label="Close"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/js/main.js"></script>
+  </body>
+</html>
