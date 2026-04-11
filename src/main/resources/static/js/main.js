@@ -71,6 +71,7 @@ if (formSuscripcion && toastSuscripcionEl) {
 }
     // ACTIVAR / DESACTIVAR BOTÓN
     formContacto.addEventListener("input", function() {
+        formContacto.classList.add('was-validated'); // Agrega clase para mostrar validación
 
         if (formContacto.checkValidity()) {
             btnEnviar.disabled = false;
@@ -109,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let tallaSeleccionada = null;
 
-  // 🔥 IMPORTANTE: evita errores en otras páginas
+  
   if (!btnFiltro || !panelFiltro) return;
 
   // =============================
