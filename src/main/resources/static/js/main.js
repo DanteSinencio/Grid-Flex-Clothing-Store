@@ -46,6 +46,23 @@ if (formContacto && toastContactoEl && btnEnviar) {
         }
     });
 
+    // ACTIVAR / DESACTIVAR BOTÓN
+    formContacto.addEventListener("input", function() {
+        formContacto.classList.add('was-validated'); // Agrega clase para mostrar validación
+
+        if (formContacto.checkValidity()) {
+            btnEnviar.disabled = false;
+        } else {
+            btnEnviar.disabled = true;
+        }
+
+    });
+
+    // Estado inicial
+    btnEnviar.disabled = true;
+}
+
+
 // 2. MÓDULO DE SUSCRIPCIÓN FOOTER 
 const formSuscripcion = document.getElementById('suscripcion');
 const toastSuscripcionEl = document.getElementById('toastSuscripcion');
@@ -69,22 +86,7 @@ if (formSuscripcion && toastSuscripcionEl) {
         formSuscripcion.classList.remove('was-validated');
     });
 }
-    // ACTIVAR / DESACTIVAR BOTÓN
-    formContacto.addEventListener("input", function() {
-        formContacto.classList.add('was-validated'); // Agrega clase para mostrar validación
-
-        if (formContacto.checkValidity()) {
-            btnEnviar.disabled = false;
-        } else {
-            btnEnviar.disabled = true;
-        }
-
-    });
-
-    // Estado inicial
-    btnEnviar.disabled = true;
-}
-
+    
 // =============================
 // CATÁLOGO
 // =============================
@@ -258,6 +260,71 @@ document.addEventListener("DOMContentLoaded", () => {
       producto.style.display = visible ? "block" : "none";
     });
 
+    //Contador de resultados de productos
+      const visibles = [...productos].filter(p => p.style.display !== 'none').length;
+    // 2. Buscamos el ID del HTML y le pasamos el número que contamos
+    const contadorBadge = document.getElementById('contador-productos');
+    if (contadorBadge) {
+    contadorBadge.textContent = visibles;
+    }
   }
 
+});
+
+// ==========================================
+// 6. ADMINISTRADOR
+// ==========================================
+
+//Intercatividad de la tabla
+document.addEventListener("DOMContentLoaded", () => {
+    
+    const tablaBody = document.querySelector('tbody'); 
+    const btnEditar = document.getElementById('btnEditar');
+    const btnEliminar = document.getElementById('btnEliminar');
+    
+    // Elementos del Modal
+    const modalEliminarHTML = document.getElementById('modalConfirmarEliminar');
+    const btnBorrarDefinitivo = document.getElementById('btnBorrarDefinitivo');
+
+    // Elemento del Toast
+    const toastEliminarEl = document.getElementById('toastEliminar');
+
+    if (tablaBody && btnEditar && btnEliminar && modalEliminarHTML && toastEliminarEl) {
+        
+        // Inicializamos las herramientas de Bootstrap
+        const modalBootstrap = new bootstrap.Modal(modalEliminarHTML);
+        const toastBootstrap = new bootstrap.Toast(toastEliminarEl);
+
+        // 1. Encender/Apagar botones
+        tablaBody.addEventListener('change', (e) => {
+            if (e.target.classList.contains('producto-check')) {
+                const marcados = document.querySelectorAll('.producto-check:checked');
+                btnEliminar.disabled = marcados.length === 0;
+                btnEditar.disabled = marcados.length !== 1;
+            }
+        });
+
+        // 2. Mostrar Modal de confirmación
+        btnEliminar.addEventListener('click', () => {
+            modalBootstrap.show();
+        });
+
+        // 3. Acción REAL de borrar
+        btnBorrarDefinitivo.addEventListener('click', () => {
+            const marcados = document.querySelectorAll('.producto-check:checked');
+            
+            marcados.forEach(checkbox => {
+                checkbox.closest('tr').remove();
+            });
+
+            btnEliminar.disabled = true;
+            btnEditar.disabled = true;
+
+            // Ocultamos el Modal
+            modalBootstrap.hide();
+
+            // Lanzamos el Toast
+            toastBootstrap.show();
+        });
+    }
 });

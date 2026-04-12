@@ -254,6 +254,26 @@
             </div>
         </div>
     </section>
+
+    <div class="modal fade" id="modalConfirmarEliminar" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content shadow">
+            <div class="modal-header border-0 pb-0">
+                <h5 class="modal-title fw-bold">
+                    <i class="fa-solid fa-triangle-exclamation text-warning me-2"></i> Confirmar acción
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-muted">
+                ¿Estás segura de que deseas eliminar las filas seleccionadas? Esta acción no se puede deshacer.
+            </div>
+            <div class="modal-footer border-0 pt-0">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" id="btnBorrarDefinitivo">Sí, eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
 </main>
 
     <!-- Footer -->
@@ -342,6 +362,15 @@
             ></button>
           </div>
         </div>
+        <div id="toastEliminar" class="toast align-items-center text-white bg-dark border-0" role="alert" aria-live="assertive" aria-atomic="true">
+           <div class="d-flex">
+             <div class="toast-body">
+                <i class="fa-solid fa-trash-can me-2 text-danger"></i>
+                Productos eliminados correctamente.
+             </div>
+             <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+           </div>
+         </div>
       </div>
     </footer>
 
