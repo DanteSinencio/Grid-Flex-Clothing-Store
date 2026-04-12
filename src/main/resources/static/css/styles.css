@@ -717,7 +717,6 @@ input[type="checkbox"] {
     font-weight: 700;
     padding: 0.55rem 1.3rem;
     border-radius: 10px;
-    /* Evita que el boton se estire a todo el ancho. */
     align-self: flex-start;
 }
 
@@ -728,65 +727,71 @@ input[type="checkbox"] {
     color: #fff;
 }
 
-/* Contenedor de imagen: alto estable + fondo neutro de respaldo. */
+/* Contenedor de imagen: alto estable + fondo neutro de respaldo.*/
 .index-promo-media {
-    height: 100%;
-    /* En movil, mantiene area visible aunque la imagen no cargue. */
+    height: 450px;
     min-height: 220px;
     background: #e9ecef;
 }
 
+
 @media (min-width: 992px) {
     .index-promo-media {
-        min-height: 320px;
+        min-height: 400px;
     }
 }
 
 .index-promo-image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; 
     display: block;
 }
+
 
 /* Contenedor de puntos: colocado abajo a la izquierda dentro del carrusel. */
 .index-promo-indicators {
     position: absolute;
-    left: 1.35rem;
-    bottom: 0.85rem;
-    margin: 0;
-    justify-content: flex-start;
-    gap: 0.4rem;
+    bottom: 1rem;
+    left: 0;
+    width: 41.666%;
+    display: flex;
+    justify-content: left;
+    gap: 0.5rem;
 }
 
 /* Puntos: redondos y con buen contraste, sin borde por defecto. */
 .index-promo-indicators [data-bs-target] {
-    width: 9px;
-    height: 9px;
-    border-radius: 999px;
+    width: 30px;
+    height: 4px;
+    border-radius: 2px;
     background-color: rgba(255, 255, 255, 0.65);
     border: 0;
     opacity: 1;
+    transition: all 0.3s ease;
 }
 
 .index-promo-indicators .active {
     background-color: #1a2a3a;
+    width: 40px;
 }
 
 /* Botones usados en la seccion de productos ("Agregar al carrito"). */
 .index-btn-blue {
-    background-color: #4a7fc7;
-    border-color: #4a7fc7;
+    background-color: #18202b;
+    border-color: #18202b;
     color: #fff;
     font-weight: 600;
-    padding: 0.5rem 1.25rem;
+    padding: 0.6rem 1.4rem;
+    border-radius: 10px;
 }
 
 .index-btn-blue:hover,
 .index-btn-blue:focus {
-    background-color: #3d6aaa;
+    background-color: #5a6e88;
     border-color: #3d6aaa;
     color: #fff;
+    
 }
 
 /* Seccion de coleccion: "Viste tu Autenticidad" y el carrusel de categorias. */
@@ -876,21 +881,25 @@ input[type="checkbox"] {
 }
 
 /* Tarjetas de producto (imagen + panel de detalles). */
+
 .index-product-card {
-    border-radius: 10px;
+    border-radius: 16px;
     overflow: hidden;
     background: #fff;
+    border: 1px solid #dcdcdc; 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
 .index-product-card .index-product-img {
-    min-height: 220px;
-    object-fit: cover;
     width: 100%;
     height: 100%;
+    object-fit: cover; 
+    display: block;
 }
 
+
 .index-product-detail {
-    background: #ead5e0;
+    background: #f8f6f2;
     padding: 1rem 1.1rem;
     font-size: 0.82rem;
     color: #222;
@@ -907,17 +916,20 @@ input[type="checkbox"] {
 }
 
 .index-product-detail .sizes button {
-    border: 1px solid #333;
-    background: transparent;
-    padding: 0.1rem 0.45rem;
-    margin: 0 0.2rem 0.2rem 0;
-    font-size: 0.7rem;
-    border-radius: 4px;
-    color: #111;
+    border: 1px solid #bbb;
+    background: #fff;
+    padding: 0.2rem 0.6rem;
+    margin: 0 0.3rem 0.3rem 0;
+    font-size: 0.75rem;
+    border-radius: 6px;
+    color: #333;
+    transition: all 0.2s ease;
 }
 
 .index-product-detail .sizes button:hover {
-    background: rgba(0, 0, 0, 0.06);
+    background: #18202b;
+    color: #fff;
+    border-color: #18202b;
 }
 
 /* Seccion FAQ: estilos del accordion de Bootstrap para el inicio. */
@@ -951,8 +963,30 @@ input[type="checkbox"] {
     border-color: transparent;
 }
 
+.index-product-img {
+    padding: 0.5rem;
+    background: #f3f3f3; /* fondo gris claro como en ecommerce */
+}
+.index-product-detail p.small::before {
+    content: "• ";
+}
+.index-product-detail {
+    gap: 0.7rem;
+}
+.index-product-detail h3 {
+    font-size: 0.95rem;
+}
+.index-product-card .col-5 {
+    height: 220px;
+}
+
+
 /* Fondo del body en inicio: mantener consistente con --bg-main. */
 body.page-home {
     background-color: var(--bg-main);
 }
 
+.mi-imagen {
+  max-width: 100%;
+  height: auto;
+}
