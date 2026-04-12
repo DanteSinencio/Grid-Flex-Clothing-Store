@@ -9,6 +9,9 @@
     --gris-claro: #e5e5e5;
     --azul: #3b82f6;
     --blanco: #ffffff;
+    
+    /* Variables de botones */
+    --Marlborough-Blue: #93A4C1;
 }
 
 /* Separamos el body para el fondo */
@@ -312,7 +315,7 @@ p, h1, h2, h3, h4, h5, h6, span, a {
 
 /* Color del botón */
 .tarjeta .btn {
-    background-color: #93A4C1;
+    background-color: var(--Marlborough-Blue);
 }
 
 /* Resaltado para la opción activa en el navbar */
@@ -578,7 +581,7 @@ input[type="checkbox"] {
 }
 /* Color del boton */
 .tarjeta .btn{
-    background-color:#93A4C1 ;
+    background-color: var(--Marlborough-Blue) ;
 }
 
 /* Resaltado para la opción activa en el navbar */
@@ -989,4 +992,22 @@ body.page-home {
 .mi-imagen {
   max-width: 100%;
   height: auto;
+}
+
+
+/* === ESTILOS ADMIN=== */
+.btn-admin {
+  background-color: var(--Marlborough-Blue);
+  color: var(--text-light);
+}
+/* card-mono sin animación*/
+.card-stat{
+  border-radius: 12px;
+  background-color: #d3d3d3; 
+}
+
+.stat-number{
+  font-family: var(--main-font);
+  color: var(--blanco);
+  font-weight: 600;
 }
