@@ -15,26 +15,26 @@
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-custom bg-custom-dark py-3 navbar-animation">
+    <nav class="navbar navbar-expand-lg navbar-custom bg-custom-dark py-3 navbar-animation sticky-top">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="index.html">
                 <img src="../static/img/logo.svg" alt="Logo" style="height: 35px; width: auto;" class="me-2">
                 GRID & FLEX
             </a>
 
-            <div class="d-flex align-items-center order-lg-3">
-                <!-- El Carrito se queda AFUERA del collapse -->
-                <a href="/carrito.html" class="cart-icon text-white text-decoration-none me-3">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    <span class="cart-badge"></span>
-                </a>
+                <div class="d-flex align-items-center order-lg-3">
+                    <a href="carrito.html" class="cart-icon text-white text-decoration-none me-3 position-relative">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="cart-badge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="display: none; font-size: 0.6rem;">
+                            0
+                        </span>
+                    </a>
 
-                <!-- El botón de hamburguesa -->
-                <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
+                    <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
 
             <!-- Inicia el breadcrumbs  -->
              
