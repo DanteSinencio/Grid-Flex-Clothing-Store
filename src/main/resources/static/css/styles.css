@@ -1040,3 +1040,21 @@ body {
     right: 0;
   }
 }
+/* ===== FIX TABLET (iPad) ===== */
+@media (max-width: 1024px) {
+
+  /* ocultar sidebar */
+  .sidebar {
+    display: none;
+  }
+
+  /* productos full width */
+  .col-md-9 {
+    width: 100%;
+  }
+
+  /* centrar contenido */
+  .catalogo .row {
+    justify-content: center;
+  }
+}
