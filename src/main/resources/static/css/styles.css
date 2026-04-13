@@ -1134,3 +1134,21 @@ body {
   border: 1px solid var(--gris);
   border-radius: 1rem;
 }
+
+.admin-orden h6{
+    color: #86895D;
+
+}
+
+.btn-admin-cancelar{
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    border: 1px solid var(--gris);
+    box-shadow: 1rem 1rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.btn-admin-cancelar:hover{
+    background-color: #E7E8E4;
+    color: #93A4C1;
+    border: 1px solid #93A4C1;
+}

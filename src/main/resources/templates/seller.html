@@ -68,36 +68,38 @@
     </div>
     
     <!-- Tarjetas ESTADÍSTICAS -->
-     <div class="row g-3 mb-4 me-4 ms-4 mt-5">
+    <div class="row g-3 mb-4 me-4 ms-4 mt-5">
         
         <!-- Tarjeta PEDIDOS ENVIADOS -->
         <div class="col-12 col-md-4">
-            <div class="card-stat card text-center p-3 card h-100 border-0 shadow-sm p-4">
+            <div class="card-stat card text-center h-100 shadow-sm p-4">
                 <p class="mb-1">Pedidos Enviados</p>
                 <h1 class="stat-number">123</h1>
                 <hr>
             </div>
         </div>
-        <!-- Tarjeta PENDIENTE DE ENVIO-->
-         <div class="col-12 col-md-4">
-            <div class="card-stat card text-center p-3 card h-100 border-0 shadow-sm p-4">
+
+        <!-- Tarjeta PENDIENTE DE ENVIO -->
+        <div class="col-12 col-md-4">
+            <div class="card-stat card text-center h-100 shadow-sm p-4">
                 <p class="mb-1">Pendiente de Envío</p>
                 <h1 class="stat-number">3</h1>
                 <hr>
             </div>
-         </div>
-         <!-- Tarjeta ARTICULOS EN STOCK-->
-          <div class="col-12 col-md-4">
-            <div class="card-stat card text-center p-3 card h-100 border-0 shadow-sm p-4">
+        </div>
+
+        <!-- Tarjeta ARTICULOS EN STOCK -->
+        <div class="col-12 col-md-4">
+            <div class="card-stat card text-center h-100 shadow-sm p-4">
                 <p class="mb-1">Artículos en Stock</p>
                 <h1 class="stat-number">12</h1>
                 <hr>
             </div>
-          </div>
-     </div>
+        </div>
+    </div>
 
     <!-- Tabla INVENTARIO ACTUAL-->
-     <div class="container-admin ms-4">
+     <div class="container-admin ms-4 me-4">
         <div class="d-flex justify-content-between align-items-center ms-2 me-5">
             <h6 class="mt-2 ms-2">Inventario Actual </h6>
             
@@ -151,27 +153,42 @@
             <h6 class="ms-3 mt-2">Acciones de Envío</h6>
         </div>
         <div class="admin-orden ms-3 me-3 mb-4">
+            <div>
+            </div>
             <div class="d-flex justify-content-between ms-2 me-2 mt-3 mb-0">
-                <div>
+                <div class="ms-3">
                     Orden #
                     <select>
                         <option value="1">31330</option>
                         <option value="2">31328</option>
                     </select>
                 </div>
-                <div>
+                <div class="Pendiente me-5">
                     <h6>Pendiente</h6>
                 </div>
             </div>
             <hr class="mb-0 mt-0 me-5 ms-5">
-            <div class="ms-2 me-2 mt-3">
+            <div class="me-2 mt-3 mb-0">
+                <div class="ms-4 me-2">
+                    Prenda: Blazer Lino Crudo
+                </div>
+                <div class="ms-4 me-2 mt-1">
+                    Piezas: 1
+                </div>
+            </div>
+            <hr class="mb-0 mt-0 me-5 ms-5">
+            
+            <!--Envío a: DIRECCIÓN DE ENVÍO-->
+            <div class="ms-4 me-2 mt-3">
                 Envío a: Nuevo León 
             </div>
-            <div class="d-flex justify-content-center">
+
+            <!--Botones ACCIONES DE ENVIO-->
+            <div class="d-flex justify-content-center mb-4">
                 <button class="btn-admin btn btnbtn-lg rounded-3 px-4" >
                     Aceptar
                 </button>
-                <button class="btn-admin btn btnbtn-lg rounded-3 px-4" >
+                <button class="btn-admin-cancelar btn btnbtn-lg rounded-3 px-4" >
                     Cancelar
                 </button>
             </div>
