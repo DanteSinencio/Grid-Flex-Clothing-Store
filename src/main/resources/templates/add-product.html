@@ -23,9 +23,7 @@
 
   <body>
     <!-- Navbar -->
-    <nav
-      class="navbar navbar-expand-lg navbar-custom bg-custom-dark py-3 navbar-animation"
-    >
+    <nav class="navbar navbar-expand-lg navbar-custom bg-custom-dark py-3 navbar-animation sticky-top">
       <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="#">
           <img
@@ -37,26 +35,19 @@
           GRID & FLEX
         </a>
 
-        <div class="d-flex align-items-center order-lg-3">
-          <!-- El Carrito se queda AFUERA del collapse -->
-          <a
-            href="/carrito.html"
-            class="cart-icon text-white text-decoration-none me-3"
-          >
-            <i class="fa-solid fa-cart-shopping"></i>
-            <span class="cart-badge"></span>
-          </a>
+                <div class="d-flex align-items-center order-lg-3">
+                    <a href="carrito.html" class="cart-icon text-white text-decoration-none me-3 position-relative">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="cart-badge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="display: none; font-size: 0.6rem;">
+                            0
+                        </span>
+                    </a>
 
-          <!-- El botón de hamburguesa -->
-          <button
-            class="navbar-toggler navbar-dark"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
+                    <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
 
         <!-- Inicia el breadcrumbs  -->
 
@@ -98,28 +89,28 @@
 
                 <!-- FORMULARIO PRODUCTO -->
                 <div class="col-lg-5">
-                    <form action="/productos/agregar" method="POST" enctype="multipart/form-data" class="card p-4 shadow-sm">
+                    <form id="formAgregarProducto" action="/productos/agregar" method="POST" enctype="multipart/form-data" class="card p-4 shadow-sm">
                         <h4 class="fw-bold mb-4">Añadir nuevo producto</h4>
 
                         <div class="mb-3">
-                            <label class="form-label">Nombre del producto</label>
-                            <input type="text" name="nombre" class="form-control" placeholder="Nombre del producto">
+                            <label for="nombreProducto" class="form-label">Nombre del producto</label>
+                            <input type="text" id="nombreProducto" name="nombre" class="form-control" placeholder="Nombre del producto" required>
                         </div>
 
                         <div class="mb-3 row align-items-center">
-                            <label class="col-sm-3 col-form-label">Precio</label>
+                            <label for="precioProducto" class="col-sm-3 col-form-label">Precio</label>
                             <div class="col-sm-9">
                                 <div class="input-group">
                                     <span class="input-group-text">MXN</span>
-                                    <input type="number" name="precio" class="form-control" placeholder="0.00">
+                                    <input type="number" id="precioProducto" name="precio" class="form-control" placeholder="0.00" required>
                                 </div>
                             </div>
                         </div>
 
                         <div class="mb-3 row align-items-center">
-                            <label class="col-sm-3 col-form-label">Categoría</label>
+                            <label for="categoriaProducto" class="col-sm-3 col-form-label">Categoría</label>
                             <div class="col-sm-9">
-                                <select name="categoria" class="form-select">
+                                <select id="categoriaProducto" name="categoria" class="form-select" required>
                                     <option value="">Seleccionar categoría</option>
                                     <option value="camisas">Camisas</option>
                                     <option value="chamarras">Chamarras</option>
@@ -129,9 +120,9 @@
                         </div>
 
                         <div class="mb-3 row align-items-center">
-                            <label class="col-sm-3 col-form-label">Talla</label>
+                            <label for="tallaProducto" class="col-sm-3 col-form-label">Talla</label>
                             <div class="col-sm-9">
-                                <select name="talla" class="form-select">
+                                <select id="tallaProducto" name="talla" class="form-select" required>
                                     <option value="">Seleccionar talla</option>
                                     <option value="CH">CH</option>
                                     <option value="M">M</option>
@@ -142,19 +133,18 @@
                         </div>
 
                         <div class="mb-3 row align-items-center">
-                            <label class="col-sm-3 col-form-label">Stock</label>
+                            <label for="stockProducto" class="col-sm-3 col-form-label">Stock</label>
                             <div class="col-sm-9">
-                                <input type="number" name="stock" class="form-control" placeholder="0">
+                                <input type="number" id="stockProducto" name="stock" class="form-control" placeholder="0" required>
                             </div>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Descripción</label>
-                            <textarea name="descripcion" class="form-control" rows="3"
+                            <label for="descripcionProducto" class="form-label">Descripción</label>
+                            <textarea id="descripcionProducto" name="descripcion" class="form-control" rows="3"
                                 placeholder="Descripción del producto..."></textarea>
                         </div>
 
-                        <!-- Zona de imagen -->
                         <div class="border rounded p-4 text-center mb-4"
                             style="border-style: dashed !important; cursor: pointer;">
                             <i class="fa-solid fa-cloud-arrow-up fa-2x mb-2 text-muted"></i>
@@ -162,18 +152,16 @@
                             <hr class="w-25 mx-auto">
                             <label class="btn btn-sm btn-outline-secondary">
                                 Selecciona archivo
-                                <input type="file" name="imagen" accept="image/*" hidden>
+                                <input type="file" id="imagenProducto" name="imagen" accept="image/*" hidden>
                             </label>
                         </div>
 
-                        <!-- Botones formulario -->
                         <div class="d-flex justify-content-end gap-2">
-                            <button type="button" class="btn btn-secondary">Cancelar</button>
-                            <button type="submit" class="btn btn-dark">Guardar</button>
+                            <button type="reset" class="btn btn-secondary">Cancelar</button>
+                            <button type="submit" class="btn btn-dark" id="btnGuardar">Guardar</button>
                         </div>
                     </form>
                 </div>
-
                 <!-- TABLA PRODUCTOS -->
                 <div class="col-lg-7">
                     <div class="card p-4 shadow-sm">
@@ -193,48 +181,9 @@
                                         <th>Imagen</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-
-                                    <!-- Fila 1 -->
-                                    <tr data-id="1">
-                                        <td><input type="checkbox" class="form-check-input producto-check" value="1"></td>
-                                        <td>Playera Loose Fit</td>
-                                        <td>Camisas</td>
-                                        <td>$200</td>
-                                        <td>M</td>
-                                        <td>15</td>
-                                        <td><span class="badge bg-warning text-dark">Seminuevo</span></td>
-                                        <td><img src="../static/img/producto2.png" alt="Playera"
-                                            style="width: 50px; height: 50px; object-fit: cover; border-radius: 6px;"></td>
-                                    </tr>
-
-                                    <!-- Fila 2 -->
-                                    <tr data-id="2">
-                                        <td><input type="checkbox" class="form-check-input producto-check" value="2"></td>
-                                        <td>Chamarra deportiva</td>
-                                        <td>Chamarras</td>
-                                        <td>$350</td>
-                                        <td>G</td>
-                                        <td>8</td>
-                                        <td><span class="badge bg-success">Nuevo</span></td>
-                                        <td><img src="../static/img/producto2.png" alt="Chamarra deportiva"
-                                            style="width: 50px; height: 50px; object-fit: cover; border-radius: 6px;"></td>
-                                    </tr>
-
-                                    <!-- Fila 3 -->
-                                    <tr data-id="3">
-                                        <td><input type="checkbox" class="form-check-input producto-check" value="3"></td>
-                                        <td>Chamarra popover</td>
-                                        <td>Chamarras</td>
-                                        <td>$330</td>
-                                        <td>M</td>
-                                        <td>5</td>
-                                        <td><span class="badge bg-success">Nuevo</span></td>
-                                        <td><img src="../static/img/producto3.png" alt="Chamarra popover"
-                                            style="width: 50px; height: 50px; object-fit: cover; border-radius: 6px;"></td>
-                                    </tr>
-
-                                </tbody>
+                                
+                                <tbody id="tablaProductosBody">
+                                  </tbody>
                             </table>
                         </div>
 
@@ -265,7 +214,9 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body text-muted">
-                ¿Estás segura de que deseas eliminar las filas seleccionadas? Esta acción no se puede deshacer.
+                 ¿Deseas eliminar 
+                 <strong><span id="contadorEliminar">0</span> producto(s)</strong>
+                 seleccionado(s)? Esta acción no se puede deshacer.
             </div>
             <div class="modal-footer border-0 pt-0">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
