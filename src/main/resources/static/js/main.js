@@ -278,13 +278,14 @@ document.addEventListener("DOMContentLoaded", () => {
 //Intercatividad de la tabla
 document.addEventListener("DOMContentLoaded", () => {
     
-    const tablaBody = document.querySelector('tbody'); 
+const tablaBody = document.querySelector('tbody'); 
     const btnEditar = document.getElementById('btnEditar');
     const btnEliminar = document.getElementById('btnEliminar');
     
     // Elementos del Modal
     const modalEliminarHTML = document.getElementById('modalConfirmarEliminar');
     const btnBorrarDefinitivo = document.getElementById('btnBorrarDefinitivo');
+    const contadorEliminar = document.getElementById('contadorEliminar'); // <-- Capturamos tu nuevo ID
 
     // Elemento del Toast
     const toastEliminarEl = document.getElementById('toastEliminar');
@@ -304,14 +305,25 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        // 2. Mostrar Modal de confirmación
+        // 2. Mostrar Modal de confirmación y actualizar contador
         btnEliminar.addEventListener('click', () => {
+            // Contamos cuántos están marcados en este momento exacto
+            const marcados = document.querySelectorAll('.producto-check:checked');
+            
+            // Inyectamos ese número en tu HTML
+            if (contadorEliminar) {
+                contadorEliminar.textContent = marcados.length;
+            }
+            
             modalBootstrap.show();
         });
 
         // 3. Acción REAL de borrar
         btnBorrarDefinitivo.addEventListener('click', () => {
             const marcados = document.querySelectorAll('.producto-check:checked');
+            
+            // Guardamos la cantidad antes de que las filas desaparezcan
+            const cantidadBorrados = marcados.length; 
             
             marcados.forEach(checkbox => {
                 checkbox.closest('tr').remove();
@@ -323,8 +335,61 @@ document.addEventListener("DOMContentLoaded", () => {
             // Ocultamos el Modal
             modalBootstrap.hide();
 
+            // 4. Actualizamos el mensaje del Toast dinámicamente antes de mostrarlo
+            const toastBody = toastEliminarEl.querySelector('.toast-body');
+            if (toastBody) {
+                toastBody.innerHTML = `
+                    <i class="fa-solid fa-trash-can me-2 text-danger"></i> 
+                    Se eliminaron <strong>${cantidadBorrados}</strong> producto(s) correctamente.
+                `;
+            }
+
             // Lanzamos el Toast
             toastBootstrap.show();
         });
     }
+});
+
+//AGREGAR PRODUCTO (Cuando tengamos la API Java lista, aquí es donde haremos el POST con fetch)
+const formProducto = document.getElementById('formProducto');
+const btnGuardar = document.getElementById('btnGuardar');
+
+if (formProducto && btnGuardar) {
+    formProducto.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        if (!formProducto.checkValidity()) {
+            e.stopPropagation();
+            formProducto.classList.add('was-validated');
+            return;
+        }
+
+        const data = new FormData(formProducto);
+
+        try {
+            const response = await fetch(formProducto.action, {
+                method: 'POST',
+                body: data
+                // Sin Content-Type: el navegador lo pone solo con FormData (multipart)
+            });
+
+            if (response.ok) {
+                // Aquí se refresca la tabla con los datos que regrese el API Java
+                console.log('Producto guardado');
+                formProducto.reset();
+                formProducto.classList.remove('was-validated');
+            }
+        } catch (error) {
+            console.error('Error de conexión:', error);
+        }
+    });
+}
+
+//Botón editar (Cuando tengamos la API Java lista, aquí es donde haremos el GET para traer los datos del producto seleccionado y llenar el formulario)
+btnEditar.addEventListener('click', () => {
+    const marcado = document.querySelector('.producto-check:checked');
+    const id = marcado?.closest('tr')?.dataset.id;
+    // Aquí se llamará a la API: GET /productos/{id} para llenar el formulario con los datos del producto a editar
+    
+    console.log('Editar producto ID:', id);
 });
