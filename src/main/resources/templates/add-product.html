@@ -98,7 +98,7 @@
 
                 <!-- FORMULARIO PRODUCTO -->
                 <div class="col-lg-5">
-                    <form action="/productos/agregar" method="POST" enctype="multipart/form-data" class="card p-4 shadow-sm">
+                    <form id="formProducto" novalidate action="/productos/agregar" method="POST" enctype="multipart/form-data" class="card p-4 shadow-sm">
                         <h4 class="fw-bold mb-4">Añadir nuevo producto</h4>
 
                         <div class="mb-3">
@@ -169,7 +169,7 @@
                         <!-- Botones formulario -->
                         <div class="d-flex justify-content-end gap-2">
                             <button type="button" class="btn btn-secondary">Cancelar</button>
-                            <button type="submit" class="btn btn-dark">Guardar</button>
+                            <button type="submit" class="btn btn-dark" id="btnGuardar">Guardar</button>
                         </div>
                     </form>
                 </div>
@@ -265,7 +265,9 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body text-muted">
-                ¿Estás segura de que deseas eliminar las filas seleccionadas? Esta acción no se puede deshacer.
+                 ¿Deseas eliminar 
+                 <strong><span id="contadorEliminar">0</span> producto(s)</strong>
+                 seleccionado(s)? Esta acción no se puede deshacer.
             </div>
             <div class="modal-footer border-0 pt-0">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
