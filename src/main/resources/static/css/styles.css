@@ -990,3 +990,53 @@ body.page-home {
   max-width: 100%;
   height: auto;
 }
+
+/* ===== FIX MOBILE CATÁLOGO ===== */
+
+/* evitar scroll lateral */
+body {
+  overflow-x: hidden;
+}
+
+/* ocultar sidebar duplicado */
+.col-md-9 .sidebar {
+  display: none;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  /* ocultar sidebar en celular */
+  .sidebar {
+    display: none;
+  }
+
+  /* catálogo más compacto */
+  .catalogo {
+    padding: 20px;
+  }
+
+  /* productos ocupan todo */
+  .col-md-9 {
+    width: 100%;
+  }
+
+  /* cards se adapten */
+  .catalogo .card {
+    min-height: auto;
+  }
+
+  .catalogo .card img {
+    height: auto;
+  }
+
+  /* panel filtro pantalla completa */
+  .panel-filtro {
+    width: 100%;
+    right: -100%;
+  }
+
+  .panel-filtro.active {
+    right: 0;
+  }
+}
