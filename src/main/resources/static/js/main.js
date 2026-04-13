@@ -272,124 +272,343 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ==========================================
-// 6. ADMINISTRADOR
+// 6. GESTIÓN DE PRODUCTOS Y ADMINISTRADOR (LOCALSTORAGE)
 // ==========================================
 
-//Intercatividad de la tabla
 document.addEventListener("DOMContentLoaded", () => {
     
-const tablaBody = document.querySelector('tbody'); 
+    const formAgregarProducto = document.getElementById('formAgregarProducto'); 
+    const tablaBody = document.getElementById('tablaProductosBody');
     const btnEditar = document.getElementById('btnEditar');
     const btnEliminar = document.getElementById('btnEliminar');
+    const btnGuardar = document.getElementById('btnGuardar');
+    const inputImagen = document.getElementById('imagenProducto');
     
-    // Elementos del Modal
     const modalEliminarHTML = document.getElementById('modalConfirmarEliminar');
     const btnBorrarDefinitivo = document.getElementById('btnBorrarDefinitivo');
-    const contadorEliminar = document.getElementById('contadorEliminar'); // <-- Capturamos tu nuevo ID
-
-    // Elemento del Toast
+    const contadorEliminar = document.getElementById('contadorEliminar'); 
     const toastEliminarEl = document.getElementById('toastEliminar');
 
-    if (tablaBody && btnEditar && btnEliminar && modalEliminarHTML && toastEliminarEl) {
+    let inventarioProductos = JSON.parse(localStorage.getItem('gridFlex_productos')) || [];
+    let imagenBase64Temporal = ""; // Aquí guardaremos la imagen convertida a texto
+
+    //Convertimos la imagen para que se guarde en el LocalStorage (FILE READER)
+    if (inputImagen) {
+        inputImagen.addEventListener('change', function(e) {
+            const archivo = e.target.files[0];
+            if (archivo) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    imagenBase64Temporal = event.target.result; // Se guarda el texto Base64
+                };
+                reader.readAsDataURL(archivo);
+            }
+        });
+    }
+
+    //FUNCIÓN PARA PINTAR LA TABLA
+    function renderizarTabla() {
+        if (!tablaBody) return; 
         
-        // Inicializamos las herramientas de Bootstrap
+        tablaBody.innerHTML = ''; 
+        
+        inventarioProductos.forEach((producto) => {
+            const fila = document.createElement('tr');
+            fila.setAttribute('data-id', producto.id);
+            
+            // Si el producto tiene imagen, la mostramos, si no, mostramos el cuadro gris
+            const imagenHTML = producto.imagen 
+                ? `<img src="${producto.imagen}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 6px;">`
+                : `<div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; border-radius: 6px; font-size: 10px;">IMG</div>`;
+
+            fila.innerHTML = `
+                <td><input type="checkbox" class="form-check-input producto-check" value="${producto.id}"></td>
+                <td>${producto.nombre}</td>
+                <td>${producto.categoria}</td>
+                <td>$${producto.precio}</td>
+                <td>${producto.talla}</td>
+                <td>${producto.stock}</td>
+                <td><span class="badge bg-primary">Local</span></td>
+                <td>${imagenHTML}</td>
+            `;
+            tablaBody.appendChild(fila);
+        });
+        
+        if(btnEliminar) btnEliminar.disabled = true;
+        if(btnEditar) btnEditar.disabled = true;
+    }
+
+    //LÓGICA DE AGREGAR O ACTUALIZAR PRODUCTO
+    if (formAgregarProducto) {
+        formAgregarProducto.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            if (!formAgregarProducto.checkValidity()) {
+                e.stopPropagation();
+                formAgregarProducto.classList.add('was-validated');
+                return;
+            }
+
+            // Revisamos si estamos editando un producto existente
+            const idEdicion = formAgregarProducto.dataset.editandoId;
+
+            if (idEdicion) {
+                // MODO EDICIÓN
+                const index = inventarioProductos.findIndex(p => p.id === idEdicion);
+                if (index !== -1) {
+                    inventarioProductos[index].nombre = document.getElementById('nombreProducto').value;
+                    inventarioProductos[index].precio = document.getElementById('precioProducto').value;
+                    inventarioProductos[index].categoria = document.getElementById('categoriaProducto').value;
+                    inventarioProductos[index].talla = document.getElementById('tallaProducto').value;
+                    inventarioProductos[index].stock = document.getElementById('stockProducto').value;
+                    inventarioProductos[index].descripcion = document.getElementById('descripcionProducto').value;
+                    
+                    // Solo actualizamos la imagen si el usuario subió una nueva
+                    if (imagenBase64Temporal !== "") {
+                        inventarioProductos[index].imagen = imagenBase64Temporal;
+                    }
+                }
+                
+                // Limpiamos el modo edición
+                delete formAgregarProducto.dataset.editandoId;
+                if(btnGuardar) btnGuardar.textContent = 'Guardar';
+
+            } else {
+                // MODO CREACIÓN
+                const nuevoProducto = {
+                    id: Date.now().toString(),
+                    nombre: document.getElementById('nombreProducto').value,
+                    precio: document.getElementById('precioProducto').value,
+                    categoria: document.getElementById('categoriaProducto').value,
+                    talla: document.getElementById('tallaProducto').value,
+                    stock: document.getElementById('stockProducto').value,
+                    descripcion: document.getElementById('descripcionProducto').value,
+                    imagen: imagenBase64Temporal // Guardamos el texto Base64
+                };
+                inventarioProductos.push(nuevoProducto);
+            }
+
+            // Guardamos, repintamos y limpiamos
+            localStorage.setItem('gridFlex_productos', JSON.stringify(inventarioProductos));
+            renderizarTabla();
+            
+            formAgregarProducto.reset();
+            formAgregarProducto.classList.remove('was-validated');
+            imagenBase64Temporal = ""; // Limpiamos la memoria de la imagen
+        });
+
+        // Evento para el botón Cancelar (limpiar modo edición)
+        formAgregarProducto.addEventListener('reset', () => {
+            delete formAgregarProducto.dataset.editandoId;
+            if(btnGuardar) btnGuardar.textContent = 'Guardar';
+            imagenBase64Temporal = "";
+            formAgregarProducto.classList.remove('was-validated');
+        });
+    }
+
+    // LÓGICA DE INTERACTIVIDAD Y ELIMINAR
+    if (tablaBody && btnEliminar && modalEliminarHTML && toastEliminarEl) {
         const modalBootstrap = new bootstrap.Modal(modalEliminarHTML);
         const toastBootstrap = new bootstrap.Toast(toastEliminarEl);
 
-        // 1. Encender/Apagar botones
         tablaBody.addEventListener('change', (e) => {
             if (e.target.classList.contains('producto-check')) {
                 const marcados = document.querySelectorAll('.producto-check:checked');
                 btnEliminar.disabled = marcados.length === 0;
-                btnEditar.disabled = marcados.length !== 1;
+                if(btnEditar) btnEditar.disabled = marcados.length !== 1;
             }
         });
 
-        // 2. Mostrar Modal de confirmación y actualizar contador
         btnEliminar.addEventListener('click', () => {
-            // Contamos cuántos están marcados en este momento exacto
             const marcados = document.querySelectorAll('.producto-check:checked');
-            
-            // Inyectamos ese número en tu HTML
-            if (contadorEliminar) {
-                contadorEliminar.textContent = marcados.length;
-            }
-            
+            if (contadorEliminar) contadorEliminar.textContent = marcados.length;
             modalBootstrap.show();
         });
 
-        // 3. Acción REAL de borrar
         btnBorrarDefinitivo.addEventListener('click', () => {
             const marcados = document.querySelectorAll('.producto-check:checked');
-            
-            // Guardamos la cantidad antes de que las filas desaparezcan
             const cantidadBorrados = marcados.length; 
             
             marcados.forEach(checkbox => {
-                checkbox.closest('tr').remove();
+                inventarioProductos = inventarioProductos.filter(prod => prod.id !== checkbox.value);
             });
 
-            btnEliminar.disabled = true;
-            btnEditar.disabled = true;
-
-            // Ocultamos el Modal
+            localStorage.setItem('gridFlex_productos', JSON.stringify(inventarioProductos));
             modalBootstrap.hide();
+            renderizarTabla();
 
-            // 4. Actualizamos el mensaje del Toast dinámicamente antes de mostrarlo
             const toastBody = toastEliminarEl.querySelector('.toast-body');
             if (toastBody) {
-                toastBody.innerHTML = `
-                    <i class="fa-solid fa-trash-can me-2 text-danger"></i> 
-                    Se eliminaron <strong>${cantidadBorrados}</strong> producto(s) correctamente.
-                `;
+                toastBody.innerHTML = `<i class="fa-solid fa-trash-can me-2 text-danger"></i> Se eliminaron <strong>${cantidadBorrados}</strong> producto(s) correctamente.`;
             }
-
-            // Lanzamos el Toast
             toastBootstrap.show();
+        });
+    }
+
+    // MODO EDICIÓN: CARGAR DATOS AL FORMULARIO
+    if (btnEditar) {
+        btnEditar.addEventListener('click', () => {
+            const marcado = document.querySelector('.producto-check:checked');
+            const id = marcado?.value;
+            
+            // Buscamos el producto en nuestro inventario
+            const productoAEditar = inventarioProductos.find(p => p.id === id);
+            
+            if (productoAEditar) {
+                // Llenamos el formulario con los datos
+                document.getElementById('nombreProducto').value = productoAEditar.nombre;
+                document.getElementById('precioProducto').value = productoAEditar.precio;
+                document.getElementById('categoriaProducto').value = productoAEditar.categoria;
+                document.getElementById('tallaProducto').value = productoAEditar.talla;
+                document.getElementById('stockProducto').value = productoAEditar.stock;
+                document.getElementById('descripcionProducto').value = productoAEditar.descripcion || "";
+                
+                // Le indicamos al formulario que estamos en MODO EDICIÓN
+                formAgregarProducto.dataset.editandoId = productoAEditar.id;
+                
+                // Cambiamos el texto del botón visualmente
+                if(btnGuardar) btnGuardar.textContent = 'Actualizar';
+                
+                // Hacemos scroll suave hacia el formulario para que el usuario lo vea
+                formAgregarProducto.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    }
+
+    // Iniciar
+    renderizarTabla();
+});
+
+// ==========================================
+// 7. MÓDULO: CATÁLOGO DINÁMICO (LOCALSTORAGE)
+// ==========================================
+document.addEventListener("DOMContentLoaded", () => {
+    const contenedorProductos = document.getElementById('contenedor-productos');
+    const contadorProductosVisibles = document.getElementById('contador-productos');
+
+    if (contenedorProductos) {
+        // Leemos el inventario
+        const inventarioProductos = JSON.parse(localStorage.getItem('gridFlex_productos')) || [];
+
+        // Limpiamos la zona
+        contenedorProductos.innerHTML = '';
+
+        // Actualizamos el contador de arriba
+        if (contadorProductosVisibles) {
+            contadorProductosVisibles.textContent = inventarioProductos.length;
+        }
+
+        // Si no hay nada, avisamos
+        if (inventarioProductos.length === 0) {
+            contenedorProductos.innerHTML = `
+                <div class="col-12 text-center py-5">
+                    <i class="fa-solid fa-box-open fa-3x text-muted mb-3"></i>
+                    <h5 class="text-muted">Aún no hay productos.</h5>
+                    <p class="text-muted small">Ve a la sección "Agregar producto" para empezar.</p>
+                </div>`;
+            return;
+        }
+
+        // Dibujamos cada producto guardado
+        inventarioProductos.forEach(producto => {
+            const col = document.createElement('div');
+            col.className = 'col-md-4 producto'; // Clases exactas de tu diseño
+
+            // Controlamos si hay imagen o no
+            const imgHTML = producto.imagen 
+                ? `<img src="${producto.imagen}" class="img-fluid rounded" style="height: 250px; width: 100%; object-fit: cover;">`
+                : `<div class="bg-secondary text-white d-flex justify-content-center align-items-center rounded mb-2" style="height: 250px; width: 100%;">Sin imagen</div>`;
+
+            // Estructura de tu tarjeta
+            col.innerHTML = `
+                <div class="card p-3 h-100 shadow-sm border-0" data-categoria="${producto.categoria}" data-talla="${producto.talla}">
+                    ${imgHTML}
+                    <h6 class="mt-3 fw-bold">${producto.nombre}</h6>
+                    <small class="text-muted">${producto.categoria} | Talla: ${producto.talla}</small>
+                    <p class="fs-5 mt-2 mb-3">$${producto.precio}</p>
+                    <button class="btn btn-outline-dark btn-sm mt-auto w-100 btn-agregar-carrito" data-id="${producto.id}">
+                        <i class="fa-solid fa-cart-plus"></i> Agregar al carrito
+                    </button>
+                </div>
+            `;
+            contenedorProductos.appendChild(col);
         });
     }
 });
 
-//AGREGAR PRODUCTO (Cuando tengamos la API Java lista, aquí es donde haremos el POST con fetch)
-const formProducto = document.getElementById('formProducto');
-const btnGuardar = document.getElementById('btnGuardar');
-
-if (formProducto && btnGuardar) {
-    formProducto.addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        if (!formProducto.checkValidity()) {
-            e.stopPropagation();
-            formProducto.classList.add('was-validated');
-            return;
-        }
-
-        const data = new FormData(formProducto);
-
-        try {
-            const response = await fetch(formProducto.action, {
-                method: 'POST',
-                body: data
-                // Sin Content-Type: el navegador lo pone solo con FormData (multipart)
-            });
-
-            if (response.ok) {
-                // Aquí se refresca la tabla con los datos que regrese el API Java
-                console.log('Producto guardado');
-                formProducto.reset();
-                formProducto.classList.remove('was-validated');
-            }
-        } catch (error) {
-            console.error('Error de conexión:', error);
-        }
-    });
-}
-
-//Botón editar (Cuando tengamos la API Java lista, aquí es donde haremos el GET para traer los datos del producto seleccionado y llenar el formulario)
-btnEditar.addEventListener('click', () => {
-    const marcado = document.querySelector('.producto-check:checked');
-    const id = marcado?.closest('tr')?.dataset.id;
-    // Aquí se llamará a la API: GET /productos/{id} para llenar el formulario con los datos del producto a editar
+// ==========================================
+// 8. MÓDULO: CARRITO DE COMPRAS (GLOBAL Y CATÁLOGO)
+// ==========================================
+document.addEventListener("DOMContentLoaded", () => {
     
-    console.log('Editar producto ID:', id);
+    // INICIALIZAR EL CARRITO (Otra base de datos local)
+    let carrito = JSON.parse(localStorage.getItem('gridFlex_carrito')) || [];
+    
+    // Capturamos el numerito rojo del navbar en TODAS las páginas
+    const badgeCarrito = document.querySelector('.cart-badge'); 
+
+    // FUNCIÓN GLOBAL: Actualizar el numerito del navbar
+    function actualizarBadge() {
+        if (badgeCarrito) {
+            // Sumamos la cantidad de todos los productos en el carrito
+            const totalItems = carrito.reduce((total, item) => total + item.cantidad, 0);
+            
+            badgeCarrito.textContent = totalItems;
+            
+            // Si el carrito está vacío, ocultamos el círculo rojo para que se vea más limpio
+            badgeCarrito.style.display = totalItems > 0 ? 'inline-block' : 'none';
+        }
+    }
+
+    // Ejecutamos al cargar cualquier página para que el navbar siempre esté actualizado
+    actualizarBadge();
+
+    // ---------------------------------------------------------
+    // LÓGICA DE AGREGAR AL CARRITO (Solo ocurre en el Catálogo)
+    // ---------------------------------------------------------
+    const contenedorProductos = document.getElementById('contenedor-productos');
+
+    if (contenedorProductos) {
+        contenedorProductos.addEventListener('click', (e) => {
+            
+            const btnAgregar = e.target.closest('.btn-agregar-carrito');
+            
+            if (btnAgregar) {
+                // Sacamos el ID que le guardamos en el atributo "data-id"
+                const idProducto = btnAgregar.dataset.id;
+                
+                // Leemos el inventario original
+                const inventario = JSON.parse(localStorage.getItem('gridFlex_productos')) || [];
+                const productoAñadir = inventario.find(p => p.id === idProducto);
+                
+                if (productoAñadir) {
+                    // Verificamos si este producto YA ESTÁ en el carrito
+                    const indexEnCarrito = carrito.findIndex(item => item.id === idProducto);
+                    
+                    if (indexEnCarrito !== -1) {
+                        // Si ya está, solo le sumamos 1 a la cantidad (para no tener filas repetidas)
+                        carrito[indexEnCarrito].cantidad += 1;
+                    } else {
+                        // Si es nuevo, lo metemos al carrito con cantidad inicial de 1
+                        carrito.push({ ...productoAñadir, cantidad: 1 });
+                    }
+                    
+                    // Guardamos la nueva lista del carrito en la memoria del navegador
+                    localStorage.setItem('gridFlex_carrito', JSON.stringify(carrito));
+                    
+                    // Actualizamos el numerito visual de arriba
+                    actualizarBadge();
+                    
+                    const textoOriginal = btnAgregar.innerHTML;
+                    btnAgregar.innerHTML = '<i class="fa-solid fa-check"></i> ¡Agregado!';
+                    btnAgregar.classList.replace('btn-outline-dark', 'btn-success');
+                    
+                    setTimeout(() => {
+                        btnAgregar.innerHTML = textoOriginal;
+                        btnAgregar.classList.replace('btn-success', 'btn-outline-dark');
+                    }, 1000);
+                }
+            }
+        });
+    }
 });
