@@ -154,50 +154,102 @@ p, h1, h2, h3, h4, h5, h6, span, a {
 
 .team-title {
     text-align: center;
-    font-weight: bold;
+    font-weight: 800;
     margin-bottom: 50px;
-    letter-spacing: 1px;
-    font-size: 1.1rem;
+    letter-spacing: 2px;
+    font-size: 1.2rem;
     text-transform: uppercase;
 }
 
-.team-card {
-    text-align: center;
-    margin-bottom: 40px;
-    padding: 0 10px;
+.member-container {
+    position: relative;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    max-width: 260px; /* Prueba entre 240px y 280px */
+    margin: 0 auto 30px auto; /* El "auto" las mantiene centradas */
 }
 
-.avatar-img {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
+.member-image-wrapper {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+}
+
+.member-image-wrapper img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    margin-bottom: 15px;
-    border: 3px solid #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.team-card .rol {
-    font-weight: bold;
+.member-info-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 65%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transform: translateY(101%);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    border-top: 3px solid var(--bg-dark);
+}
+
+/* Efecto al hacer clic (controlado por JS) */
+.member-container.active .member-info-overlay {
+    transform: translateY(0);
+}
+
+.member-container.active img {
+    transform: scale(1.1);
+}
+
+.member-label {
+    padding: 1rem;
+    text-align: center;
+    background: #fff;
+}
+
+.member-label h4 {
     font-size: 0.95rem;
-    margin-bottom: 15px;
-    color: #000;
+    font-weight: 700;
+    margin: 0 0 4px 0;
+    text-transform: uppercase;
+    color: var(--negro);
 }
 
-.team-card p.desc {
-    font-family: var(--main-font);
-    font-size: 0.65rem;
-    color: #666;
-    margin: 0 auto 15px auto;
-    line-height: 1.3;
-    max-width: 95%;
+.member-label span {
+    font-size: 0.75rem;
+    color: var(--gris);
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
-.team-card .name {
-    font-weight: bold;
-    font-size: 0.85rem;
-    line-height: 1.2;
-    color: #000;
+.info-desc {
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.member-info-overlay .social-links a {
+    color: var(--bg-dark);
+    margin: 0 8px;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.member-info-overlay .social-links a:hover {
+    color: var(--azul);
 }
 
 /* --- FOOTER --- */

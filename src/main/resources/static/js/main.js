@@ -612,3 +612,21 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+/* =========================================
+   EFECTO SPOTLIGHT REVEAL (EQUIPO VISION)
+   ========================================= */
+document.addEventListener('DOMContentLoaded', function() {
+    const members = document.querySelectorAll('.member-container');
+    
+    members.forEach(member => {
+        member.addEventListener('click', function() {
+            // Esto cierra cualquier otra tarjeta que esté abierta
+            members.forEach(m => {
+                if (m !== this) m.classList.remove('active');
+            });
+            // Abre o cierra la tarjeta a la que le hiciste clic
+            this.classList.toggle('active');
+        });
+    });
+});
