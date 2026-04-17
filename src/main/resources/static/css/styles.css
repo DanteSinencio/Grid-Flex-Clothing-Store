@@ -9,6 +9,9 @@
     --gris-claro: #e5e5e5;
     --azul: #3b82f6;
     --blanco: #ffffff;
+    
+    /* Variables de botones */
+    --Marlborough-Blue: #93A4C1;
 }
 
 /* Separamos el body para el fondo */
@@ -364,7 +367,7 @@ p, h1, h2, h3, h4, h5, h6, span, a {
 
 /* Color del botón */
 .tarjeta .btn {
-    background-color: #93A4C1;
+    background-color: var(--Marlborough-Blue);
 }
 
 /* Resaltado para la opción activa en el navbar */
@@ -630,7 +633,7 @@ input[type="checkbox"] {
 }
 /* Color del boton */
 .tarjeta .btn{
-    background-color:#93A4C1 ;
+    background-color: var(--Marlborough-Blue) ;
 }
 
 /* Resaltado para la opción activa en el navbar */
@@ -1109,4 +1112,95 @@ body {
   .catalogo .row {
     justify-content: center;
   }
+}
+
+/* === ESTILOS ADMIN=== */
+.btn-admin {
+  background-color: var(--Marlborough-Blue);
+  color: var(--text-light);
+  border: 1px solid var(--gris);
+  box-shadow: 1rem 1rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.btn-admin:hover {
+    background-color: #E7E8E4;
+    color: #93A4C1;
+    border: 1px solid #93A4C1;
+}
+
+/* card-mono sin animación*/
+  .card-stat{
+  border-radius: 12px;
+  background-color: #d3d3d3; 
+  border: 1px solid var(--gris);
+  box-shadow: 1rem 1rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.stat-number{
+  font-family: var(--main-font);
+  color: var(--blanco);
+  font-weight: 600;
+}
+
+.container-admin{
+  background-color: #D3DFF2 ;
+  border-radius: 1rem;
+  border: 1px solid var(--gris);
+  box-shadow: 1rem 1rem 1rem rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  font-weight: 600;
+}
+
+.container-admin .table {
+    margin-bottom: 0;
+}
+
+.container-admin h6{
+  font-weight: 600;
+}
+
+.thead-color tr {
+    --bs-table-bg: #D9D9D9 !important;
+    --bs-table-color: #86895D !important;
+    font-weight: 600;
+}
+
+.tbody-color tr {
+    --bs-table-bg: #E7E8E4 !important;
+}
+
+.edit-trash button{
+  color: inherit;
+  text-decoration: none;
+}
+
+.number-counter {
+    border: 1px solid var(--gris);
+    padding: 2px 8px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.admin-orden{
+  background-color: #D9D9D9;
+  border: 1px solid var(--gris);
+  border-radius: 1rem;
+}
+
+.admin-orden h6{
+    color: #86895D;
+
+}
+
+.btn-admin-cancelar{
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    border: 1px solid var(--gris);
+    box-shadow: 1rem 1rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.btn-admin-cancelar:hover{
+    background-color: #E7E8E4;
+    color: #93A4C1;
+    border: 1px solid #93A4C1;
 }
