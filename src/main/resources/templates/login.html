@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid & Flex - Inicio</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Styles -->
+    <link href="../static/css/styles.css" rel="stylesheet">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body class="page-home-img">
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-custom bg-custom-dark py-3 navbar-animation sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="../static/img/logo.svg" alt="Logo de Grid & Flex" style="height: 35px;" class="me-2">
+                GRID & FLEX
+            </a>
+
+                <div class="d-flex align-items-center order-lg-3">
+                    <a href="carrito.html" class="cart-icon text-white text-decoration-none me-3 position-relative">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="cart-badge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="display: none; font-size: 0.6rem;">
+                            0
+                        </span>
+                    </a>
+
+                    <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+
+            <div class="collapse navbar-collapse justify-content-center order-lg-2" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="catalogo.html">Catálogo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">Acerca de nosotros</a>
+                    </li>
+                    <li class="nav-item d-lg-none">
+                        <a href="#" class="nav-link text-white fw-bold">INGRESAR</a>
+                    </li>
+                </ul>
+                <a href="#" class="nav-link text-white fw-bold d-none d-lg-block ms-lg-3">INGRESAR</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- FORMULARIO INICIAR SESIÓN -->
+    <main>
+        <div class="col-12">
+            <div class="row d-flex justify-content-center align-items-center min-vh-100">
+                <div class="col-sm-6 mb-3 mb-sm-0 tarjeta">
+                    <div class="card card-stat">
+                    <div class="card-body ">
+                        <h4 class="card-title"><strong>Iniciar Sesión</strong><hr></h4>
+                        <p class="card-text small">Bienvenido a la comunidad Grid & Flex</p>
+                        <div>
+                            <div class="mb-3">
+                                <P><strong>EMAIL</strong></P>
+                                <div class="row">
+                                    <div class="col">
+                                        <input type="text" class="form-control" placeholder="hola@email.com">
+                                    </div>
+                                </div>                        
+                            </div>
+                            <div class="mb-3">
+                                <P><strong>CONTRASEÑA</strong></P>
+                                <div class="row">
+                                    <div class="col">
+                                        <input type="text" class="form-control" placeholder="*******">
+                                    </div>
+                                </div>   
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center mb-3 mt-3">
+                            <a href="#" class="btn btn-admin">INGRESAR</a>
+                        </div>
+                        <div class="d-flex justify-content-end mb-0 me-5">
+                            <p class="small">¿No tienes cuenta?</p>
+                        </div>
+                        <div class="d-flex justify-content-end mt-0 me-5">
+                            <a href="#" c  class="small">Regístrate aquí</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-custom-dark footer text-light">
+        <div class="container">
+            <div class="row">
+                <!-- Columna 1: Marca y Redes -->
+                <div class="col-md-3 mb-4">
+                    <h5 class="d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-bag-shopping"></i> GRID & FLEX
+                    </h5>
+                    <p class="small text-white-50">Diseño consciente para el individuo moderno. Creemos en piezas que
+                        duran toda la vida.</p>
+                    <div class="social-icons mt-3">
+                        <i class="fa-brands fa-instagram"></i>
+                        <i class="fa-brands fa-facebook"></i>
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </div>
+                </div>
+
+                <!-- Columna 2: Tienda -->
+                <div class="col-md-2 mb-4">
+                    <h5>TIENDA</h5>
+                    <ul>
+                        <li><a href="#">Hombres</a></li>
+                        <li><a href="#">Mujeres</a></li>
+                        <li><a href="#">Accesorios</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 3: Soporte -->
+                <div class="col-md-2 mb-4">
+                    <h5>SOPORTE</h5>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Envío</a></li>
+                        <li><a href="contact.html">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 4: Suscripción -->
+                <div class="col-md-5 mb-4">
+                    <h5>SUSCRIBIRSE</h5>
+                    <p class="small text-white-50">Recibe ofertas exclusivas y novedades de nuestra colección.</p>
+                    <form id="suscripcion" class="input-group mt-3">
+                        <input type="email" class="form-control bg-light" placeholder="Correo electrónico"
+                            aria-label="Correo electrónico" required>
+                        <button class="btn btn-secondary text-white border-0" style="background-color: #8fa1b3;"
+                            type="submit">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="toastSuscripcion" class="toast align-items-center text-white bg-dark border-0" role="alert"
+                aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        <i class="fa-solid fa-circle-check me-2"></i>
+                        ¡Gracias por suscribirte a GRID & FLEX!
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                        aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/js/main.js"></script>
+    
+</body>
+</html>
