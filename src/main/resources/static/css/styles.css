@@ -1204,3 +1204,10 @@ body {
     color: #93A4C1;
     border: 1px solid #93A4C1;
 }
+
+.page-home-img{
+    background-image: url(../img/fondo-login.jpeg);
+    background-position: center;
+    /*background-size: contain;*/
+    background-attachment: fixed;    
+}
