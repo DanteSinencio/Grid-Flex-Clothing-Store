@@ -1,3 +1,82 @@
+// ==========================================
+// 1. CONTROLADOR DE PRODUCTOS 
+// ==========================================
+class ProductosController {
+    constructor(currentId = 0) {
+        this.items = [];
+        this.currentId = currentId;
+    }
+
+    addItem(name, img, description, precio, categoria, talla, stock) {
+        const producto = {
+            id: String(this.currentId++),
+            name: name,
+            img: img,
+            description: description,
+            nombre: name,
+            imagen: img,
+            descripcion: description,
+            precio: precio,
+            categoria: categoria.toLowerCase(),
+            talla: talla,
+            stock: stock
+        };
+        this.items.push(producto);
+    }
+
+    loadItemsFromLocalStorage() {
+        const storageItems = localStorage.getItem("gridFlex_productos");
+        if (storageItems) {
+            this.items = JSON.parse(storageItems);
+            if (this.items.length > 0) {
+                this.currentId = Math.max(...this.items.map(item => parseInt(item.id) || 0)) + 1;
+            }
+        }
+    }
+}
+
+const gestorProductos = new ProductosController();
+gestorProductos.loadItemsFromLocalStorage();
+
+// Metemos tus 6 productos para que la memoria no esté vacía
+if (gestorProductos.items.length === 0) {
+    gestorProductos.addItem('Camisa Slim Fit', '../static/img/playeraLose.jpg', 'Seminueva', 299, 'camisas', 'M', 10);
+    gestorProductos.addItem('Chamarra Mezclilla', '../static/img/chamarraMezclilla.jpg', 'Nueva', 450, 'chamarras', 'G', 5);
+    gestorProductos.addItem('Camisa con rayas', '../static/img/camisaRayas.jpg', 'Seminueva', 350, 'camisas', 'M', 12);
+    gestorProductos.addItem('Chamarra Deportiva', '../static/img/chamarraDeportiva.jpg', 'Nueva', 350, 'chamarras', 'G', 5);
+    gestorProductos.addItem('Chamarra Popover', '../static/img/chamarraPopover.jpg', 'Nueva', 330, 'chamarras', 'M', 8);
+    gestorProductos.addItem('Gorra', '../static/img/gorra.jpg', 'Nueva', 180, 'accesorios', 'CH', 20);
+
+    localStorage.setItem("gridFlex_productos", JSON.stringify(gestorProductos.items));
+}
+
+
+function addItemCard(producto) {
+    const contenedor = document.getElementById('contenedor-productos');
+    if (!contenedor) return;
+
+    const col = document.createElement('div');
+    col.className = 'col-md-4 producto';
+
+    const imgHTML = producto.imagen 
+        ? `<img src="${producto.imagen}" class="img-fluid rounded" style="height: 250px; width: 100%; object-fit: cover;">`
+        : `<div class="bg-secondary text-white d-flex justify-content-center align-items-center rounded mb-2" style="height: 250px; width: 100%;">Sin imagen</div>`;
+
+    col.innerHTML = `
+        <div class="card p-3 h-100 shadow-sm border-0" data-categoria="${producto.categoria}" data-talla="${producto.talla}">
+            ${imgHTML}
+            <h6 class="mt-3 fw-bold">${producto.nombre}</h6>
+            <small class="text-muted">${producto.categoria} | Talla: ${producto.talla}</small>
+            <p class="fs-5 mt-2 mb-3">$${producto.precio}</p>
+            <button class="btn btn-outline-dark btn-sm mt-auto w-100 btn-agregar-carrito" data-id="${producto.id}">
+                <i class="fa-solid fa-cart-plus"></i> Agregar al carrito
+            </button>
+        </div>
+    `;
+    contenedor.appendChild(col);
+}
+
+
 // 1. MÓDULO DE CONTACTO (Formspree)
 const formContacto = document.getElementById('contactForm');
 const toastContactoEl = document.getElementById('toastContacto');
@@ -88,13 +167,10 @@ if (formSuscripcion && toastSuscripcionEl) {
 }
     
 // =============================
-// CATÁLOGO
+// 2. CATÁLOGO Y FILTROS
 // =============================
 
 document.addEventListener("DOMContentLoaded", () => {
-
-  // ELEMENTOS
-  const productos = document.querySelectorAll(".producto");
 
   const categorias = document.querySelectorAll(".filtro-cat");
   const estados = document.querySelectorAll(".filtro-estado");
@@ -109,79 +185,52 @@ document.addEventListener("DOMContentLoaded", () => {
   const overlay = document.getElementById("overlay");
 
   const verTodo = document.getElementById("verTodo");
+  const contenedorProductos = document.getElementById('contenedor-productos');
+  const contadorBadge = document.getElementById('contador-productos'); 
 
   let tallaSeleccionada = null;
 
-  
-  if (!btnFiltro || !panelFiltro) return;
+  if (btnFiltro && panelFiltro) {
+    btnFiltro.addEventListener("click", () => {
+      panelFiltro.classList.add("active");
+      overlay.classList.add("active");
+    });
 
-  // =============================
-  // PANEL FILTRO
-  // =============================
+    cerrarFiltro.addEventListener("click", cerrarTodo);
+    overlay.addEventListener("click", cerrarTodo);
 
-  btnFiltro.addEventListener("click", () => {
-    panelFiltro.classList.add("active");
-    overlay.classList.add("active");
-  });
-
-  cerrarFiltro.addEventListener("click", cerrarTodo);
-  overlay.addEventListener("click", cerrarTodo);
-
-  function cerrarTodo() {
-    panelFiltro.classList.remove("active");
-    overlay.classList.remove("active");
+    function cerrarTodo() {
+      panelFiltro.classList.remove("active");
+      overlay.classList.remove("active");
+    }
   }
 
-  // =============================
-  // VER TODO
-  // =============================
+  if (verTodo) {
+    verTodo.addEventListener("change", () => {
+      if (verTodo.checked) {
+        categorias.forEach(c => { if (c !== verTodo) c.checked = false; });
+        estados.forEach(e => e.checked = false);
+        tallaSeleccionada = null;
+        tallas.forEach(b => b.classList.remove("active"));
+        if(precioRange) {
+            precioRange.value = 600;
+            precioValor.textContent = "$600";
+        }
+        filtrar();
+      }
+    });
+  }
 
-  verTodo.addEventListener("change", () => {
-
-    if (verTodo.checked) {
-
-      // desactiva categorías
-      categorias.forEach(c => {
-        if (c !== verTodo) c.checked = false;
-      });
-
-      // limpia estado
-      estados.forEach(e => e.checked = false);
-
-      // limpia talla
-      tallaSeleccionada = null;
-      tallas.forEach(b => b.classList.remove("active"));
-
-      // resetea precio
-      precioRange.value = 600;
-      precioValor.textContent = "$600";
-
-      // muestra todo
-      productos.forEach(p => p.style.display = "block");
-    }
-  });
-
-  // =============================
-  // PRECIO
-  // =============================
-
-  precioRange.addEventListener("input", () => {
-    precioValor.textContent = "$" + precioRange.value;
-
-    // desactiva "ver todo"
-    verTodo.checked = false;
-
-    filtrar();
-  });
-
-  // =============================
-  // TALLAS
-  // =============================
+  if (precioRange) {
+    precioRange.addEventListener("input", () => {
+      precioValor.textContent = "$" + precioRange.value;
+      if(verTodo) verTodo.checked = false;
+      filtrar();
+    });
+  }
 
   tallas.forEach(btn => {
     btn.addEventListener("click", () => {
-
-      // toggle selección
       if (btn.classList.contains("active")) {
         btn.classList.remove("active");
         tallaSeleccionada = null;
@@ -190,87 +239,54 @@ document.addEventListener("DOMContentLoaded", () => {
         btn.classList.add("active");
         tallaSeleccionada = btn.dataset.talla;
       }
-
-      verTodo.checked = false;
-
+      if(verTodo) verTodo.checked = false;
       filtrar();
     });
   });
-
-  // =============================
-  // CHECKBOXES
-  // =============================
 
   [...categorias, ...estados].forEach(input => {
     input.addEventListener("change", () => {
-
-      if (input !== verTodo) {
-        verTodo.checked = false;
-      }
-
+      if (input !== verTodo && verTodo) verTodo.checked = false;
       filtrar();
     });
   });
 
-  // =============================
-  // FILTRAR
-  // =============================
-
   function filtrar() {
+    if (!contenedorProductos || typeof gestorProductos === 'undefined') return;
 
-    // si está "ver todo"
-    if (verTodo.checked) {
-      productos.forEach(p => p.style.display = "block");
-      return;
-    }
+    const cats = [...categorias].filter(c => c.checked && c.value !== "todo").map(c => c.value.toLowerCase());
+    const ests = [...estados].filter(e => e.checked).map(e => e.value.toLowerCase());
+    const precioMax = precioRange ? parseInt(precioRange.value) : 600;
 
-    const cats = [...categorias]
-      .filter(c => c.checked && c.value !== "todo")
-      .map(c => c.value);
-
-    const ests = [...estados]
-      .filter(e => e.checked)
-      .map(e => e.value);
-
-    const precioMax = parseInt(precioRange.value);
-
-    productos.forEach(producto => {
-
-      const card = producto.querySelector(".card");
-
-      const cat = card.dataset.categoria;
-      const talla = card.dataset.talla;
-      const estado = card.dataset.estado;
-      const precio = parseInt(card.dataset.precio);
-
+    const productosFiltrados = gestorProductos.items.filter(producto => {
       let visible = true;
-
-      // categoría
-      if (cats.length && !cats.includes(cat)) visible = false;
-
-      // estado
-      if (ests.length && !ests.includes(estado)) visible = false;
-
-      // talla
-      if (tallaSeleccionada && talla !== tallaSeleccionada) visible = false;
-
-      // precio
-      if (precio > precioMax) visible = false;
-
-      producto.style.display = visible ? "block" : "none";
+      if (cats.length > 0 && !cats.includes(producto.categoria.toLowerCase())) visible = false;
+      if (tallaSeleccionada && producto.talla !== tallaSeleccionada) visible = false;
+      if (producto.precio > precioMax) visible = false;
+      return visible;
     });
 
-    //Contador de resultados de productos
-      const visibles = [...productos].filter(p => p.style.display !== 'none').length;
-    // 2. Buscamos el ID del HTML y le pasamos el número que contamos
-    const contadorBadge = document.getElementById('contador-productos');
-    if (contadorBadge) {
-    contadorBadge.textContent = visibles;
+    contenedorProductos.innerHTML = '';
+
+    if (productosFiltrados.length > 0) {
+        productosFiltrados.forEach(producto => {
+            addItemCard(producto);
+        });
+    } else {
+        contenedorProductos.innerHTML = `
+            <div class="col-12 text-center py-5">
+                <i class="fa-solid fa-magnifying-glass fa-2x text-muted mb-3"></i>
+                <h6 class="text-muted">No encontramos prendas con esos filtros.</h6>
+            </div>`;
     }
+
+    if (contadorBadge) contadorBadge.textContent = productosFiltrados.length;
   }
 
-});
+  // ¡ESTA LÍNEA ES LA MAGIA QUE PINTA LOS 6 PRODUCTOS AL ABRIR LA PÁGINA!
+  filtrar(); 
 
+});
 // ==========================================
 // 6. GESTIÓN DE PRODUCTOS Y ADMINISTRADOR (LOCALSTORAGE)
 // ==========================================
@@ -509,6 +525,12 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
+        // TAREA 5 (Último paso): Iterar sobre el array del controlador y usar addItemCard
+        gestorProductos.items.forEach(producto => {
+            addItemCard(producto);
+        });
+
+
         // Dibujamos cada producto guardado
         inventarioProductos.forEach(producto => {
             const col = document.createElement('div');
@@ -611,4 +633,22 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+});
+
+/* =========================================
+   EFECTO SPOTLIGHT REVEAL (EQUIPO VISION)
+   ========================================= */
+document.addEventListener('DOMContentLoaded', function() {
+    const members = document.querySelectorAll('.member-container');
+    
+    members.forEach(member => {
+        member.addEventListener('click', function() {
+            
+            members.forEach(m => {
+                if (m !== this) m.classList.remove('active');
+            });
+            
+            this.classList.toggle('active');
+        });
+    });
 });
