@@ -50,7 +50,7 @@ if (gestorProductos.items.length === 0) {
     localStorage.setItem("gridFlex_productos", JSON.stringify(gestorProductos.items));
 }
 
-// Función que pide el Bootcamp para pintar las tarjetas HTML
+
 function addItemCard(producto) {
     const contenedor = document.getElementById('contenedor-productos');
     if (!contenedor) return;
