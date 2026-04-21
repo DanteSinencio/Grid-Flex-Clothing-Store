@@ -304,6 +304,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnBorrarDefinitivo = document.getElementById('btnBorrarDefinitivo');
     const contadorEliminar = document.getElementById('contadorEliminar'); 
     const toastEliminarEl = document.getElementById('toastEliminar');
+    const toastAgregarAg = document.getElementById('toastAgregar');
 
     let inventarioProductos = JSON.parse(localStorage.getItem('gridFlex_productos')) || [];
     let imagenBase64Temporal = ""; // Aquí guardaremos la imagen convertida a texto
@@ -460,6 +461,20 @@ document.addEventListener("DOMContentLoaded", () => {
             toastBootstrap.show();
         });
     }
+    //Alerta para cargar un articulo
+    document.getElementById("formAgregarProducto").addEventListener("submit", function(e) {
+    e.preventDefault(); // evita recarga
+
+    // Aquí iría tu lógica de guardado (más adelante backend)
+
+    // Mostrar toast
+    const toastElemento = document.getElementById("toastAgregar");
+    const toast = new bootstrap.Toast(toastElemento);
+    toast.show();
+
+    // Limpiar formulario
+    this.reset();
+    });
 
     // MODO EDICIÓN: CARGAR DATOS AL FORMULARIO
     if (btnEditar) {
