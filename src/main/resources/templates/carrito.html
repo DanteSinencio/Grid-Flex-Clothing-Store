@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid & Flex - Contacto</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Styles -->
+    <link href="../static/css/styles.css" rel="stylesheet">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-custom bg-custom-dark py-3 navbar-animation sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="../static/img/logo.svg" alt="Logo" style="height: 35px;" class="me-2">
+                GRID & FLEX
+            </a>
+
+            <div class="d-flex align-items-center order-lg-3">
+                <a href="carrito.html" class="cart-icon text-white text-decoration-none me-3 position-relative">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span
+                        class="cart-badge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                        style="display: none; font-size: 0.6rem;">
+                        0
+                    </span>
+                </a>
+
+                <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse justify-content-center order-lg-2" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="catalogo.html">Catálogo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contacto</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">Acerca de nosotros</a></li>
+                    <li class="nav-item d-lg-none">
+                        <a href="#" class="nav-link text-white fw-bold">INGRESAR</a>
+                    </li>
+                </ul>
+                <a href="#" class="nav-link text-white fw-bold d-none d-lg-block ms-lg-3">INGRESAR</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CARRITO -->
+
+
+    <main class="container my-5">
+        <h2 class="mb-4 fw-bold" style="color: #2d3e2d;">Tu Selección</h2>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="product-card d-flex align-items-center justify-content-between p-3 mb-3">
+                    <div class="d-flex align-items-center">
+                        <img src="src\main\resources\static\img\camisaRayas.jpg" alt="Camisa Oxford" class="product-img">
+                        <div class="ms-3">
+                            <h5 class="mb-0 fw-bold">Camisa Oxford</h5>
+                            <p class="mb-0 text-muted small">Talla: <strong>S</strong></p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center gap-4">
+                        <div class="quantity-box">1</div>
+                        <div class="text-end">
+                            <div class="fw-bold">$450.00</div>
+                            <small class="remove-link">QUITAR</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card d-flex align-items-center justify-content-between p-3 mb-3">
+                    <div class="d-flex align-items-center">
+                        <img src="imagenr.png" alt="Vestido casual rojo" class="product-img">
+                        <div class="ms-3">
+                            <h5 class="mb-0 fw-bold">Vestido casual rojo</h5>
+                            <p class="mb-0 text-muted small">Talla: <strong>M</strong></p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center gap-4">
+                        <div class="quantity-box">1</div>
+                        <div class="text-end">
+                            <div class="fw-bold">$459.00</div>
+                            <small class="remove-link">QUITAR</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="summary-card p-4 text-white">
+                    <h3 class="fw-bold mb-4">Resumen</h3>
+                    <hr class="opacity-50">
+                    <div class="d-flex justify-content-between mb-3">
+                        <span>Subtotal</span>
+                        <span>$909.00</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-3">
+                        <span>Envío</span>
+                        <span class="text-success-custom">GRATIS</span>
+                    </div>
+                    <hr class="opacity-50">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2 class="fw-bold mb-0">Total</h2>
+                        <h2 class="fw-bold mb-0 text-total">$909.00</h2>
+                    </div>
+
+                    <button class="btn btn-light w-100 fw-bold py-3 text-uppercase btn-checkout" data-bs-toggle="modal"
+                        data-bs-target="#modalPagoExitoso">
+                        COMPLETAR PAGO
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal fade" id="modalPagoExitoso" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 payment-modal">
+                <div class="modal-body p-4">
+                    <div class="text-center mb-4">
+                        <h2 class="fw-bold text-success-dark">¡Pago Exitoso!</h2>
+                        <p class="text-muted mb-2">Tu pedido ha sido procesado</p>
+                        <span class="badge badge-id">GF-355543</span>
+                    </div>
+                    <hr>
+                    <div class="py-2">
+                        <h6 class="text-gold mb-3">RESUMEN DE ARTÍCULOS</h6>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>1x Camisa Oxford (S)</span>
+                            <span class="fw-bold">$450.00</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-4">
+                            <span>1x Vestido casual rojo (M)</span>
+                            <span class="fw-bold">$450.00</span>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between align-items-center my-4">
+                        <h4 class="fw-bold mb-0">Total Pagado:</h4>
+                        <h4 class="fw-bold mb-0 text-total-modal">$909.00</h4>
+                    </div>
+                    <p class="text-center text-muted small mb-4">Te enviaremos la liga de rastreo a tu correo.</p>
+                    <button type="button" class="btn btn-dark w-100 py-3 fw-bold rounded-pill" data-bs-dismiss="modal">
+                        VOLVER A LA TIENDA
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Footer -->
+    <footer class="bg-custom-dark footer text-light">
+        <div class="container">
+            <div class="row">
+                <!-- Columna 1: Marca y Redes -->
+                <div class="col-md-3 mb-4">
+                    <h5 class="d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-bag-shopping"></i> GRID & FLEX
+                    </h5>
+                    <p class="small text-white-50">Diseño consciente para el individuo moderno. Creemos en piezas que
+                        duran toda la vida.</p>
+                    <div class="social-icons mt-3">
+                        <i class="fa-brands fa-instagram"></i>
+                        <i class="fa-brands fa-facebook"></i>
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </div>
+                </div>
+
+                <!-- Columna 2: Tienda -->
+                <div class="col-md-2 mb-4">
+                    <h5>TIENDA</h5>
+                    <ul>
+                        <li><a href="catalogo.html">Hombres</a></li>
+                        <li><a href="catalogo.html">Mujeres</a></li>
+                        <li><a href="catalogo.html">Accesorios</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 3: Soporte -->
+                <div class="col-md-2 mb-4">
+                    <h5>SOPORTE</h5>
+                    <ul>
+                        <a href="index.html#heading-faq">FAQ</a>
+                        <li><a href="#">Envío</a></li>
+                        <li><a href="contact.html">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 4: Suscripción -->
+                <div class="col-md-5 mb-4">
+                    <h5>SUSCRIBIRSE</h5>
+                    <p class="small text-white-50">Recibe ofertas exclusivas y novedades de nuestra colección.</p>
+                    <form id="suscripcion" class="input-group mt-3">
+                        <input type="email" class="form-control bg-light" placeholder="Correo electrónico"
+                            aria-label="Correo electrónico" required>
+                        <button class="btn btn-secondary text-white border-0" style="background-color: #8fa1b3;"
+                            type="submit">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="toastSuscripcion" class="toast align-items-center text-white bg-dark border-0" role="alert"
+                aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        <i class="fa-solid fa-circle-check me-2"></i>
+                        ¡Gracias por suscribirte a GRID & FLEX!
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                        aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/js/main.js"></script>
+
+
+</body>
+
+</html>

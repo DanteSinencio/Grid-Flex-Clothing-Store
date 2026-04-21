@@ -1211,3 +1211,116 @@ body {
     /*background-size: contain;*/
     background-attachment: fixed;    
 }
+
+/* --- ESTILOS DEL CARRITO --- */
+.product-card {
+    background-color: #d8e4f5;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.product-img {
+    width: 80px; 
+    height: 80px; 
+    object-fit: cover; 
+    border: 2px solid white; 
+    background-color: #ccc;
+}
+
+.quantity-box {
+    border: 1px solid #000;
+    padding: 2px 15px;
+    background-color: white;
+}
+
+.remove-link {
+    display: block;
+    font-size: 0.7rem;
+    color: #6c757d;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.summary-card {
+    background-color: #2d3136;
+    border-radius: 4px;
+}
+
+.text-success-custom {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.text-total {
+    color: #a66d6d;
+}
+
+.btn-checkout {
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+/* --- ESTILOS DEL MODAL (OVERLAY) --- */
+.payment-modal {
+    background-color: #d8e4f5 !important;
+    border-radius: 20px !important;
+    box-shadow: 15px 15px 0px 0px #1e252b !important; /* Sombra sólida de la imagen */
+}
+
+.text-success-dark {
+    color: #2d5a4c;
+}
+
+.badge-id {
+    background-color: #1e252b;
+    padding: 8px 16px;
+    font-size: 0.85rem;
+}
+
+.text-gold {
+    color: #a3a375;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.text-total-modal {
+    color: #c05c5c;
+}
+
+.payment-modal .btn-dark {
+    background-color: #1e252b;
+    border: none;
+    letter-spacing: 1px;
+}
+
+.payment-modal .btn-dark:hover {
+    background-color: #000;
+}
+
+/* Responsivo para móviles */
+@media (max-width: 576px) {
+    .payment-modal {
+        box-shadow: 8px 8px 0px 0px #1e252b !important;
+        margin: 10px;
+    }
+}
+
+/* --- AJUSTE PARA FOOTER AL FINAL --- */
+
+html, body {
+    height: 100%; 
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column; 
+}
+
+main {
+    flex: 1 0 auto; 
+}
+
+footer {
+    flex-shrink: 0; 
+}
