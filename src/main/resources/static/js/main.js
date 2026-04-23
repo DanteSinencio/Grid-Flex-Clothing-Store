@@ -461,7 +461,7 @@ document.addEventListener("DOMContentLoaded", () => {
             toastBootstrap.show();
         });
     }
-    //Alerta para cargar un articulo
+    /*Alerta para cargar un articulo
     document.getElementById("formAgregarProducto").addEventListener("submit", function(e) {
     e.preventDefault(); // evita recarga
 
@@ -475,7 +475,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Limpiar formulario
     this.reset();
     });
-
+    */
     // MODO EDICIÓN: CARGAR DATOS AL FORMULARIO
     if (btnEditar) {
         btnEditar.addEventListener('click', () => {
@@ -666,4 +666,197 @@ document.addEventListener('DOMContentLoaded', function() {
             this.classList.toggle('active');
         });
     });
+});
+
+// ==========================================
+// 9. MÓDULO: PÁGINA VISUAL DEL CARRITO
+// ==========================================
+document.addEventListener("DOMContentLoaded", () => {
+    const contenedorCarrito = document.getElementById('contenedor-carrito-items');
+    const subtotalEl = document.getElementById('carrito-subtotal');
+    const totalEl = document.getElementById('carrito-total');
+    const btnCheckout = document.getElementById('btn-checkout');
+    const contenedorResumenModal = document.getElementById('resumen-articulos-modal');
+
+    if (contenedorCarrito) {
+        function renderizarCarrito() {
+            let carrito = JSON.parse(localStorage.getItem('gridFlex_carrito')) || [];
+            contenedorCarrito.innerHTML = '';
+            
+            // Declaramos el subtotal 
+            let subtotal = 0;
+
+            if (carrito.length === 0) {
+                contenedorCarrito.innerHTML = `
+                    <div class="text-center py-5 text-muted">
+                        <i class="fa-solid fa-cart-arrow-down fa-3x mb-3"></i>
+                        <h5>Tu carrito está vacío</h5>
+                        <p>Agrega productos desde nuestro catálogo para verlos aquí.</p>
+                        <a href="catalogo.html" class="btn btn-outline-dark mt-2">Ir al catálogo</a>
+                    </div>`;
+                if (subtotalEl) subtotalEl.textContent = '$0.00';
+                if (totalEl) totalEl.textContent = '$0.00';
+                
+                // Limpiamos también el texto del envío si está vacío
+                const envioEl = document.getElementById('carrito-envio');
+                if (envioEl) {
+                    envioEl.textContent = '$0.00';
+                    envioEl.className = 'text-muted';
+                }
+                
+                if (btnCheckout) btnCheckout.disabled = true;
+                return;
+            }
+
+            if (btnCheckout) btnCheckout.disabled = false;
+
+            carrito.forEach(producto => {
+                // Sumamos usando la variable correcta "subtotal"
+                subtotal += (Number(producto.precio) * producto.cantidad);
+                
+                const itemHTML = document.createElement('div');
+                itemHTML.className = 'product-card d-flex align-items-center justify-content-between p-3 mb-3 bg-white shadow-sm rounded';
+                const imagenSrc = producto.imagen ? producto.imagen : '../static/img/placeholder.jpg';
+
+                itemHTML.innerHTML = `
+                    <div class="d-flex align-items-center">
+                        <img src="${imagenSrc}" alt="${producto.nombre}" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+                        <div class="ms-3">
+                            <h5 class="mb-0 fw-bold">${producto.nombre}</h5>
+                            <p class="mb-0 text-muted small">Talla: <strong class="text-uppercase">${producto.talla}</strong></p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center gap-4">
+                        <div class="d-flex align-items-center gap-2">
+                            <button class="btn btn-sm btn-outline-secondary btn-disminuir" data-id="${producto.id}">-</button>
+                            <div class="fw-bold px-2 py-1">${producto.cantidad}</div>
+                            <button class="btn btn-sm btn-outline-secondary btn-aumentar" data-id="${producto.id}">+</button>
+                        </div>
+                        <div class="text-end" style="min-width: 80px;">
+                            <div class="fw-bold fs-5">$${(producto.precio * producto.cantidad).toFixed(2)}</div>
+                            <small class="text-danger btn-quitar" data-id="${producto.id}" style="cursor: pointer; font-weight: bold; letter-spacing: 1px;">QUITAR</small>
+                        </div>
+                    </div>
+                `;
+                contenedorCarrito.appendChild(itemHTML);
+            });
+
+            // ==========================================
+            // LÓGICA DE NEGOCIO: COSTO DE ENVÍO
+            // ==========================================
+            let costoEnvio = 0;
+            const envioEl = document.getElementById('carrito-envio');
+
+            if (subtotal < 399) {
+                costoEnvio = 99.00; // Tarifa plana si no llega al mínimo
+                if (envioEl) {
+                    envioEl.textContent = `$${costoEnvio.toFixed(2)}`;
+                    envioEl.className = 'fw-bold text-dark'; // Texto oscuro normal
+                }
+            } else {
+                costoEnvio = 0; // Envío Gratis
+                if (envioEl) {
+                    envioEl.textContent = 'GRATIS';
+                    envioEl.className = 'text-success fw-bold'; // Texto verde
+                }
+            }
+
+            // Calculamos el TOTAL FINAL
+            let totalFinal = subtotal + costoEnvio;
+
+            // Actualizamos la pantalla
+            if (subtotalEl) subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+            if (totalEl) totalEl.textContent = `$${totalFinal.toFixed(2)}`;
+            
+            const totalModal = document.querySelector('.text-total-modal');
+            if (totalModal) totalModal.textContent = `$${totalFinal.toFixed(2)}`;
+        }
+
+        renderizarCarrito();
+
+        // Lógica de clics: Quitar, Aumentar y Disminuir
+        contenedorCarrito.addEventListener('click', (e) => {
+            let carrito = JSON.parse(localStorage.getItem('gridFlex_carrito')) || [];
+            const idProducto = e.target.getAttribute('data-id');
+
+            if (!idProducto) return;
+
+            const index = carrito.findIndex(item => item.id === idProducto);
+
+            if (e.target.classList.contains('btn-quitar')) {
+                carrito = carrito.filter(item => item.id !== idProducto);
+            } else if (e.target.classList.contains('btn-aumentar')) {
+                carrito[index].cantidad += 1;
+            } else if (e.target.classList.contains('btn-disminuir')) {
+                if (carrito[index].cantidad > 1) {
+                    carrito[index].cantidad -= 1;
+                } else {
+                    carrito = carrito.filter(item => item.id !== idProducto);
+                }
+            }
+
+            localStorage.setItem('gridFlex_carrito', JSON.stringify(carrito));
+            renderizarCarrito();
+            
+            const badgeCarrito = document.querySelector('.cart-badge'); 
+            const totalItems = carrito.reduce((t, i) => t + i.cantidad, 0);
+            if (badgeCarrito) {
+                badgeCarrito.textContent = totalItems;
+                badgeCarrito.style.display = totalItems > 0 ? 'inline-block' : 'none';
+            }
+        });
+
+        // Lógica de "Completar Pago" (Validación y Modal)
+        if (btnCheckout) {
+            btnCheckout.addEventListener('click', () => {
+                const usuarioIniciado = localStorage.getItem('gridFlex_usuarioActivo');
+                
+                if (!usuarioIniciado) {
+                    const modalLogin = new bootstrap.Modal(document.getElementById('modalLoginRequerido'));
+                    modalLogin.show();
+                    return; 
+                }
+
+                // LLENAR EL TICKET DEL MODAL DINÁMICAMENTE (Con envío incluido)
+                let carrito = JSON.parse(localStorage.getItem('gridFlex_carrito')) || [];
+                if (contenedorResumenModal) {
+                    let subtotalModal = 0;
+                    contenedorResumenModal.innerHTML = '<h6 class="text-gold mb-3 text-uppercase">Resumen de artículos</h6>';
+                    
+                    carrito.forEach(item => {
+                        subtotalModal += (item.precio * item.cantidad);
+                        contenedorResumenModal.innerHTML += `
+                            <div class="d-flex justify-content-between mb-2 small">
+                                <span class="text-muted">${item.cantidad}x ${item.nombre} (Talla: ${item.talla})</span>
+                                <span class="fw-bold">$${(item.precio * item.cantidad).toFixed(2)}</span>
+                            </div>
+                        `;
+                    });
+
+                    // Agregamos la línea de envío al ticket
+                    let envioModal = subtotalModal < 399 ? 99 : 0;
+                    let textoEnvio = envioModal === 0 ? "GRATIS" : `$${envioModal.toFixed(2)}`;
+                    
+                    contenedorResumenModal.innerHTML += `
+                        <hr class="my-2 opacity-50">
+                        <div class="d-flex justify-content-between mb-2 small">
+                            <span class="text-muted">Costo de envío</span>
+                            <span class="fw-bold ${envioModal === 0 ? 'text-success' : ''}">${textoEnvio}</span>
+                        </div>
+                    `;
+                }
+
+                const modalExito = new bootstrap.Modal(document.getElementById('modalPagoExitoso'));
+                modalExito.show();
+
+                localStorage.removeItem('gridFlex_carrito'); 
+                const badgeCarrito = document.querySelector('.cart-badge'); 
+                if (badgeCarrito) badgeCarrito.style.display = 'none';
+
+                document.getElementById('modalPagoExitoso').addEventListener('hidden.bs.modal', () => {
+                    renderizarCarrito(); 
+                });
+            });
+        }
+    }
 });

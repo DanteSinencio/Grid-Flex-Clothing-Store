@@ -1242,7 +1242,7 @@ body {
 }
 
 .summary-card {
-    background-color: #2d3136;
+    background-color: #18202b;
     border-radius: 4px;
 }
 
@@ -1323,4 +1323,23 @@ main {
 
 footer {
     flex-shrink: 0; 
+}
+
+/*Resumen pago carrito*/
+
+/* El color crema que elegiste para textos generales */
+.text-crema {
+    color: #e7e8e4 !important;
+}
+
+/* El color verde para cuando el envío sea gratis (que resalte en fondo oscuro) */
+.text-envio-gratis {
+    color: #b5e48c !important;
+    font-weight: bold;
+}
+
+/* Estilo para los separadores horizontales */
+.hr-crema {
+    border-color: #e7e8e4 !important;
+    opacity: 0.5;
 }
