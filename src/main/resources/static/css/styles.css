@@ -1343,11 +1343,13 @@ footer {
     border-color: #e7e8e4 !important;
     opacity: 0.5;
 }
-/*Estilo para la validacion de login*/
+
+/*Estilos para validacion login*/
 input {
     border: 1px solid black;
 }
 
+/* opcional si quieres estilo base */
 .form-control.is-invalid {
     border-color: #dc3545;
 }
