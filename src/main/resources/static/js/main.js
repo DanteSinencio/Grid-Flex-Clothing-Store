@@ -574,6 +574,65 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ==========================================
+// FUNCIÓN: Mostrar notificación de producto añadido
+// ==========================================
+function mostrarNotificacionProducto(producto) {
+    // Crear contenedor de la notificación
+    const notificacion = document.createElement('div');
+    notificacion.className = 'notification-cart-added';
+    
+    // Detectar si es mobile
+    const isMobile = window.innerWidth <= 640;
+    if (isMobile) {
+        notificacion.classList.add('mobile');
+    }
+    
+    // Crear el HTML de la notificación
+    notificacion.innerHTML = `
+        <button class="notification-cart-close">&times;</button>
+        <div class="notification-cart-success">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        <div class="notification-cart-content">
+            <img src="${producto.imagen || '../static/img/default.jpg'}" alt="${producto.nombre}" class="notification-cart-img">
+            <div class="notification-cart-details">
+                <h6>${producto.nombre}</h6>
+                <div class="detail-item">
+                    <span class="detail-label">Color:</span> ${producto.categoria || 'N/A'}
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Talla:</span> ${producto.talla || 'N/A'}
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Cantidad:</span> 1
+                </div>
+                <div class="notification-cart-price">$${producto.precio}</div>
+            </div>
+        </div>
+    `;
+    
+    // Agregar a la página
+    document.body.appendChild(notificacion);
+    
+    // Evento para cerrar manualmente
+    const btnCerrar = notificacion.querySelector('.notification-cart-close');
+    btnCerrar.addEventListener('click', () => {
+        notificacion.classList.add('hide');
+        setTimeout(() => {
+            notificacion.remove();
+        }, 400);
+    });
+    
+    // Auto-eliminar después de 4 segundos
+    setTimeout(() => {
+        notificacion.classList.add('hide');
+        setTimeout(() => {
+            notificacion.remove();
+        }, 400);
+    }, 4000);
+}
+
+// ==========================================
 // 8. MÓDULO: CARRITO DE COMPRAS (GLOBAL Y CATÁLOGO)
 // ==========================================
 document.addEventListener("DOMContentLoaded", () => {
@@ -636,6 +695,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     // Actualizamos el numerito visual de arriba
                     actualizarBadge();
                     
+                    // Mostrar notificación de producto añadido
+                    mostrarNotificacionProducto(productoAñadir);
+                    
                     const textoOriginal = btnAgregar.innerHTML;
                     btnAgregar.innerHTML = '<i class="fa-solid fa-check"></i> ¡Agregado!';
                     btnAgregar.classList.replace('btn-outline-dark', 'btn-success');
@@ -667,6 +729,79 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// ==========================================
+// DELEGADOR GLOBAL: Agregar al carrito (Funciona en cualquier página)
+// ==========================================
+document.addEventListener('click', (e) => {
+    const btnAgregar = e.target.closest('.btn-agregar-carrito');
+    
+    if (btnAgregar) {
+        // Verificar si tiene data-id (productos del catálogo)
+        const idProducto = btnAgregar.dataset.id;
+        
+        let productoAñadir = null;
+        let idUnico = idProducto || Date.now().toString();
+        
+        if (idProducto) {
+            // Caso 1: Producto del catálogo con data-id
+            const inventario = JSON.parse(localStorage.getItem('gridFlex_productos')) || [];
+            productoAñadir = inventario.find(p => p.id === idProducto);
+        } else {
+            // Caso 2: Producto del index con data-* attributes
+            productoAñadir = {
+                id: idUnico,
+                nombre: btnAgregar.dataset.nombre || 'Producto',
+                precio: btnAgregar.dataset.precio || 0,
+                imagen: btnAgregar.dataset.imagen || '../static/img/default.jpg',
+                categoria: btnAgregar.dataset.categoria || 'general',
+                talla: btnAgregar.dataset.talla || 'M'
+            };
+        }
+        
+        if (productoAñadir) {
+            // Leer el carrito actual
+            let carrito = JSON.parse(localStorage.getItem('gridFlex_carrito')) || [];
+            
+            // Verificar si el producto ya está en el carrito
+            const indexEnCarrito = carrito.findIndex(item => item.id === idUnico);
+            
+            if (indexEnCarrito !== -1) {
+                carrito[indexEnCarrito].cantidad += 1;
+            } else {
+                carrito.push({ ...productoAñadir, cantidad: 1 });
+            }
+            
+            // Guardar
+            localStorage.setItem('gridFlex_carrito', JSON.stringify(carrito));
+            
+            // Actualizar el badge del navbar
+            const badgeCarrito = document.querySelector('.cart-badge');
+            if (badgeCarrito) {
+                const totalItems = carrito.reduce((total, item) => total + item.cantidad, 0);
+                badgeCarrito.textContent = totalItems;
+                badgeCarrito.style.display = totalItems > 0 ? 'inline-block' : 'none';
+            }
+            
+            // Mostrar notificación
+            mostrarNotificacionProducto(productoAñadir);
+            
+            // Feedback visual del botón
+            const textoOriginal = btnAgregar.innerHTML;
+            btnAgregar.innerHTML = '<i class="fa-solid fa-check"></i> ¡Agregado!';
+            btnAgregar.classList.replace('btn-outline-dark', 'btn-success');
+            btnAgregar.classList.replace('index-btn-blue', 'btn-success');
+            
+            setTimeout(() => {
+                btnAgregar.innerHTML = textoOriginal;
+                btnAgregar.classList.replace('btn-success', 'btn-outline-dark');
+                if (!btnAgregar.classList.contains('btn-outline-dark')) {
+                    btnAgregar.classList.add('index-btn-blue');
+                }
+            }, 1000);
+        }
+    }
+}, true);
 
 // ==========================================
 // 9. MÓDULO: PÁGINA VISUAL DEL CARRITO
