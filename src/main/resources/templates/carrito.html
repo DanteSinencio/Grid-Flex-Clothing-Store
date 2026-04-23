@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grid & Flex - Contacto</title>
+    <title>Grid & Flex - Carrito</title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -66,40 +66,8 @@
         <h2 class="mb-4 fw-bold" style="color: #2d3e2d;">Tu Selección</h2>
 
         <div class="row">
-            <div class="col-lg-8">
-                <div class="product-card d-flex align-items-center justify-content-between p-3 mb-3">
-                    <div class="d-flex align-items-center">
-                        <img src="src\main\resources\static\img\camisaRayas.jpg" alt="Camisa Oxford" class="product-img">
-                        <div class="ms-3">
-                            <h5 class="mb-0 fw-bold">Camisa Oxford</h5>
-                            <p class="mb-0 text-muted small">Talla: <strong>S</strong></p>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center gap-4">
-                        <div class="quantity-box">1</div>
-                        <div class="text-end">
-                            <div class="fw-bold">$450.00</div>
-                            <small class="remove-link">QUITAR</small>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card d-flex align-items-center justify-content-between p-3 mb-3">
-                    <div class="d-flex align-items-center">
-                        <img src="imagenr.png" alt="Vestido casual rojo" class="product-img">
-                        <div class="ms-3">
-                            <h5 class="mb-0 fw-bold">Vestido casual rojo</h5>
-                            <p class="mb-0 text-muted small">Talla: <strong>M</strong></p>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center gap-4">
-                        <div class="quantity-box">1</div>
-                        <div class="text-end">
-                            <div class="fw-bold">$459.00</div>
-                            <small class="remove-link">QUITAR</small>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-lg-8" id="contenedor-carrito-items">
+                
             </div>
 
             <div class="col-lg-4">
@@ -108,21 +76,20 @@
                     <hr class="opacity-50">
                     <div class="d-flex justify-content-between mb-3">
                         <span>Subtotal</span>
-                        <span>$909.00</span>
+                        <span id="carrito-subtotal">$0.00</span>
                     </div>
                     <div class="d-flex justify-content-between mb-3">
                         <span>Envío</span>
-                        <span class="text-success-custom">GRATIS</span>
+                        <span id="carrito-envio" class="text-success-custom">GRATIS</span>
                     </div>
                     <hr class="opacity-50">
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <h2 class="fw-bold mb-0">Total</h2>
-                        <h2 class="fw-bold mb-0 text-total">$909.00</h2>
+                        <h2 class="fw-bold mb-0 text-total" id="carrito-total">$0.00</h2>
                     </div>
 
-                    <button class="btn btn-light w-100 fw-bold py-3 text-uppercase btn-checkout" data-bs-toggle="modal"
-                        data-bs-target="#modalPagoExitoso">
-                        COMPLETAR PAGO
+                    <button id="btn-checkout" class="btn btn-light w-100 fw-bold py-3 text-uppercase">
+                          COMPLETAR PAGO
                     </button>
                 </div>
             </div>
@@ -136,24 +103,20 @@
                     <div class="text-center mb-4">
                         <h2 class="fw-bold text-success-dark">¡Pago Exitoso!</h2>
                         <p class="text-muted mb-2">Tu pedido ha sido procesado</p>
-                        <span class="badge badge-id">GF-355543</span>
+                        <span class="badge badge-id text-bg-dark">GF-355543</span>
                     </div>
+                    
                     <hr>
-                    <div class="py-2">
-                        <h6 class="text-gold mb-3">RESUMEN DE ARTÍCULOS</h6>
-                        <div class="d-flex justify-content-between mb-2">
-                            <span>1x Camisa Oxford (S)</span>
-                            <span class="fw-bold">$450.00</span>
-                        </div>
-                        <div class="d-flex justify-content-between mb-4">
-                            <span>1x Vestido casual rojo (M)</span>
-                            <span class="fw-bold">$450.00</span>
-                        </div>
+                    
+                    <div class="py-2" id="resumen-articulos-modal">
+                        
                     </div>
+                    
                     <hr>
+                    
                     <div class="d-flex justify-content-between align-items-center my-4">
                         <h4 class="fw-bold mb-0">Total Pagado:</h4>
-                        <h4 class="fw-bold mb-0 text-total-modal">$909.00</h4>
+                        <h4 class="fw-bold mb-0 text-total-modal">$0.00</h4>
                     </div>
                     <p class="text-center text-muted small mb-4">Te enviaremos la liga de rastreo a tu correo.</p>
                     <button type="button" class="btn btn-dark w-100 py-3 fw-bold rounded-pill" data-bs-dismiss="modal">
@@ -164,7 +127,24 @@
         </div>
     </div>
 
-
+    <div class="modal fade" id="modalLoginRequerido" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content shadow border-0">
+                <div class="modal-header border-0 pb-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center py-4">
+                    <i class="fa-solid fa-lock fa-3x text-muted mb-3"></i>
+                    <h4 class="fw-bold">Casi listo...</h4>
+                    <p class="text-muted px-3">Para completar tu compra de forma segura, por favor inicia sesión en tu cuenta.</p>
+                </div>
+                <div class="modal-footer border-0 pt-0 justify-content-center gap-2 pb-4">
+                    <button type="button" class="btn btn-outline-secondary px-4" data-bs-dismiss="modal">Cancelar</button>
+                    <a href="login.html" class="btn btn-dark px-4">Iniciar Sesión</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="bg-custom-dark footer text-light">
