@@ -66,46 +66,46 @@
     <!-- FORMULARIO INICIAR SESIÓN -->
     <main>
         <div class="col-12">
-            <div class="row d-flex justify-content-center align-items-center min-vh-100">
-                <div class="col-sm-6 mb-3 mb-sm-0 tarjeta">
-                    <div class="card card-stat">
-                    <div class="card-body ">
-                        <h4 class="card-title"><strong>Iniciar Sesión</strong><hr></h4>
-                        <p class="card-text small">Bienvenido a la comunidad Grid & Flex</p>
-                        <div>
-                            <div class="mb-3">
-                                <P><strong>EMAIL</strong></P>
-                                <div class="row">
-                                    <div class="col">
-                                        <input type="text" class="form-control" placeholder="hola@email.com">
-                                    </div>
-                                </div>                        
-                            </div>
-                            <div class="mb-3">
-                                <P><strong>CONTRASEÑA</strong></P>
-                                <div class="row">
-                                    <div class="col">
-                                        <input type="text" class="form-control" placeholder="*******">
-                                    </div>
-                                </div>   
-                            </div>
+    <div class="row d-flex justify-content-center align-items-center min-vh-100">
+        <div class="col-sm-6 mb-3 mb-sm-0 tarjeta">
+            <div class="card card-stat">
+                <div class="card-body">
+                    <h4 class="card-title"><strong>Iniciar Sesión</strong><hr></h4>
+                    <p class="card-text small text-muted">Bienvenido a la comunidad Grid & Flex</p>
+                    
+                    <form id="loginForm" novalidate>
+                        
+                        <div class="mb-3">
+                            <label for="email" class="form-label small fw-bold">EMAIL</label>
+                            <input type="email" id="email" name="_replyto" class="form-control" placeholder="juan@ejemplo.com" requiredautocomplete="email">
+                            <div class="invalid-feedback">Ingresa un correo electrónico válido.</div>
                         </div>
-                        <div class="d-flex justify-content-center mb-3 mt-3">
-                            <a href="#" class="btn btn-admin">INGRESAR</a>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label small fw-bold">CONTRASEÑA</label>
+                            <input type="password" id="password" class="form-control" placeholder="*******" required>
+                            <div class="invalid-feedback">La contraseña debe tener letras, números y un carácter especial.</div>
+
                         </div>
-                        <div class="d-flex justify-content-center mb-3 mt-3">
-                            <a href="password.html" c  class="small"><strong>¿Olvidaste tu contraseña?</strong></a>
+
+                        <div class="d-grid gap-2"> <button type="submit" id="submitBtn" class="btn btn-primary" disabled>INGRESAR</button>
                         </div>
-                        <div class="d-flex justify-content-end mb-0 me-5">
-                            <p class="small">¿No tienes cuenta?</p>
-                        </div>
-                        <div class="d-flex justify-content-end mt-0 me-5">
-                            <a href="registro.html" c  class="small"><strong>Regístrate aquí</strong></a>
-                        </div>
+
+                    </form>
+
+                    <div class="text-center mt-3">
+                        <a href="password.html" class="small">¿Olvidaste tu contraseña?</a>
                     </div>
+                    
+                    <div class="mt-4 text-end">
+                        <p class="small mb-0">¿No tienes cuenta? <a href="registro.html"><strong>Regístrate aquí</strong></a></p>
+                    </div>
+
                 </div>
             </div>
         </div>
+    </div>
+</div>
     </main>
 
     <!-- Footer -->

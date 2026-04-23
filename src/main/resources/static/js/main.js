@@ -479,6 +479,56 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+/*------------------------------------------------------
+        VALIDACION DE EMAIL PARA CONTACTO
+-------------------------------------------------------*/
+const emailInput = document.getElementById('email');
+const passwordInput = document.getElementById('password');
+const submitBtn = document.getElementById('submitBtn');
+const form = document.getElementById('loginForm');
+
+function validateForm() {
+    const emailVal = emailInput.value.trim();
+    const passVal = passwordInput.value.trim();
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailValid = emailRegex.test(emailVal);
+
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&]).{6,}$/;
+    const passValid = passwordRegex.test(passVal);
+
+    toggleValidationClass(emailInput, emailValid);
+    toggleValidationClass(passwordInput, passValid);
+
+    submitBtn.disabled = !(emailValid && passValid);
+}
+
+function toggleValidationClass(input, isValid) {
+    if (input.value.length > 0) {
+        if (isValid) {
+            input.classList.remove('is-invalid');
+            input.classList.add('is-valid');
+        } else {
+            input.classList.remove('is-valid');
+            input.classList.add('is-invalid');
+        }
+    } else {
+        input.classList.remove('is-valid', 'is-invalid');
+    }
+}
+
+emailInput.addEventListener('blur', validateForm);
+emailInput.addEventListener('input', validateForm);
+passwordInput.addEventListener('input', validateForm);
+passwordInput.addEventListener('blur', validateForm);
+
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    validateForm();
+});
+
+
+
     
     
     // MODO EDICIÓN: CARGAR DATOS AL FORMULARIO

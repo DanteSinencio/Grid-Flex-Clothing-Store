@@ -1343,3 +1343,15 @@ footer {
     border-color: #e7e8e4 !important;
     opacity: 0.5;
 }
+/*Estilo para la validacion de login*/
+input {
+    border: 1px solid black;
+}
+
+.form-control.is-invalid {
+    border-color: #dc3545;
+}
+
+.form-control.is-valid {
+    border-color: #198754;
+}
