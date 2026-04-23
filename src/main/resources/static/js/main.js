@@ -461,7 +461,9 @@ document.addEventListener("DOMContentLoaded", () => {
             toastBootstrap.show();
         });
     }
-    /*Alerta para cargar un articulo
+    /*Alerta para cargar un articulo*/
+
+    document.addEventListener('DOMContentLoaded', function() {
     document.getElementById("formAgregarProducto").addEventListener("submit", function(e) {
     e.preventDefault(); // evita recarga
 
@@ -475,7 +477,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // Limpiar formulario
     this.reset();
     });
-    */
+});
+
+    
+    
     // MODO EDICIÓN: CARGAR DATOS AL FORMULARIO
     if (btnEditar) {
         btnEditar.addEventListener('click', () => {
