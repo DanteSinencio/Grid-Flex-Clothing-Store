@@ -1084,3 +1084,101 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 });
+
+/* =========================================
+   VALIDACIÓN FORMULARIO REGISTRO
+   ========================================= */
+const campos = {
+    nombre: false,
+    apellido: false,
+    correo: false,
+    telefono: false,
+    password: false,
+    password2: false,
+}
+
+const formulario = document.getElementById('formulario');
+const inputs = document.querySelectorAll('#formulario input');
+
+const expresiones = {
+    nombre: /^[a-zA-Z0-9\_\-]{4,20}$/,
+    apellido: /^[a-zA-ZÀ-ÿ\s]{4,20}$/,
+    password: /^.{8,20}$/,
+    correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+    telefono: /^\d{10}$/
+};
+
+const validarCampo = (expresion, input, campo) => {
+    if (expresion.test(input.value)) {
+        // Estilos de éxito de Bootstrap
+        input.classList.remove('is-invalid');
+        input.classList.add('is-valid');
+        campos[campo] = true;
+    } else {
+        // Estilos de error de Bootstrap
+        input.classList.remove('is-valid');
+        input.classList.add('is-invalid');
+        campos[campo] = false;
+    }
+};
+
+const btnRegistro = document.getElementById('btn-registro');
+
+const toggleButton = () => {
+    // Verificamos si todos los campos en el objeto 'campos' son true
+    const formularioValido = Object.values(campos).every(campo => campo === true);
+    
+    if (formularioValido) {
+        btnRegistro.disabled = false;
+    } else {
+        btnRegistro.disabled = true;
+    }
+};
+
+const validarFormulario = (e) => {
+    switch (e.target.name) {
+        case "nombre":
+            // Pasamos el regex, el input y el nombre de la propiedad en el objeto 'campos'
+            validarCampo(expresiones.nombre, e.target, 'nombre');
+        break;
+        case "apellido":
+            validarCampo(expresiones.apellido, e.target, 'apellido');
+        break;
+        case "correo":
+            validarCampo(expresiones.correo, e.target, 'correo');
+        break;
+        case "telefono":
+            validarCampo(expresiones.telefono, e.target, 'telefono');
+        break;
+        case "password":
+            validarCampo(expresiones.password, e.target, 'password');
+            validarPassword2(); 
+        break;
+        case "password2":
+            validarPassword2();
+        break;
+    }
+    toggleButton(); 
+};
+
+inputs.forEach((input) => {
+    input.addEventListener('keyup', validarFormulario);
+    input.addEventListener('blur', validarFormulario);
+});
+
+
+/* Comparar contraseñas*/
+const validarPassword2 = () => {
+    const inputPassword1 = document.getElementById('password');
+    const inputPassword2 = document.getElementById('password2');
+
+    if (inputPassword1.value === inputPassword2.value && inputPassword2.value !== "") {
+        inputPassword2.classList.remove('is-invalid');
+        inputPassword2.classList.add('is-valid');
+        campos.password2 = true; // Actualiza el estado a true
+    } else {
+        inputPassword2.classList.remove('is-valid');
+        inputPassword2.classList.add('is-invalid');
+        campos.password2 = false; // Actualiza el estado a false
+    }
+};

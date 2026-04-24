@@ -71,35 +71,67 @@
                     <p class="d-flex justify-content-center">¡Crea tu cuenta y se parte de nuestra comunidad Grid & Flex!</p>
                     <div class="card card-stat">
                     <div class="card-body ">
-                        <h4 class="card-title"><strong>Registro</strong><hr></h4>
-                        <div>
-                            <div class="row">
-                                <div class="col">
-                                    <input type="text" class="form-control" placeholder="Nombre">
+                        <form action="" class="formulario" id="formulario">
+                            <h4 class="card-title"><strong>Registro</strong><hr></h4>
+                            
+                            <!-- Grupo: Nombre y Apellido-->
+                            <div>
+                                <div class="row">
+
+                                    <!-- Grupo: Nombre-->
+                                    <div class="col formulario__grupo" id="grupo__nombre">
+                                        <div class="formulario__grupo-input">
+                                            <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Tu nombre">
+                                        </div>
+                                    </div>
+
+                                    <!-- Grupo: Apellido-->
+                                    <div class="col">
+                                        <input type="text" class="form-control" name="apellido" id="apellido"placeholder="Apellido(s)">
+                                    </div>
                                 </div>
-                                <div class="col">
-                                    <input type="text" class="form-control" placeholder="Apellido(s)">
+                            </div>
+
+                            <!-- Grupo: Correo, Contraseña, Confirmar Contraseña-->
+                            <div>
+                                <!-- Grupo: Teléfono-->
+                                <div class="col mt-3 mb-3">
+                                    <input type="text" class="form-control" name="telefono" id="telefono" placeholder="Número telefónico">
                                 </div>
+
+                                <!-- Grupo: Correo electrónico-->
+                                <div class="col mt-3 mb-3">
+                                    <input type="text" class="form-control" name="correo" id="correo" placeholder="Correo electrónico">
+                                </div>
+
+                                <!-- Grupo: Contraseña-->
+                                <div class="col mt-3 mb-3">
+                                    <input type="password" name="password" id="password" class="form-control" placeholder="Contraseña (8-16 caracteres)">
+                                </div>
+
+                                <!-- Grupo: Confirmar contraseña-->
+                                <div class="col mt-3 mb-3">
+                                    <input type="password" name="password2" id="password2" class="form-control" placeholder="Repite tu contraseña">
+                                     <div class="invalid-feedback">
+                                        Las contraseñas no coinciden.
+                                    </div>
+                                </div>
+                               
+
+
+                                <p class="d-flex justify-content-center">Al presionar “Crear Cuenta” acepto el Aviso de Privacidad y Cookies</p>
                             </div>
-                        </div>
-                        <div>
-                            <div class="col mt-3 mb-3">
-                                <input type="text" class="form-control" placeholder="Número telefónico">
+                            <div class="d-flex justify-content-center mb-3 mt-3">
+                                <button type="submit" class="btn btn-admin" id="btn-registro" disabled>
+                                    CREAR CUENTA
+                                </button>
                             </div>
-                            <div class="col mt-3 mb-3">
-                                <input type="text" class="form-control" placeholder="Correo electrónico">
+                            <div class="d-flex justify-content-center mb-3 mt-3">
+                                <button type="submit" class="btn btn-admin">
+                                    REGRESAR AL INICIO
+                                </button>
                             </div>
-                            <div class="col mt-3 mb-3">
-                                <input type="text" class="form-control" placeholder="Contraseña">
-                            </div>
-                            <p class="d-flex justify-content-center">Al presionar “Crear Cuenta” acepto el Aviso de Privacidad y Cookies</p>
-                        </div>
-                        <div class="d-flex justify-content-center mb-3 mt-3">
-                            <a href="#" class="btn btn-admin">CREAR CUENTA</a>
-                        </div>
-                        <div class="d-flex justify-content-center mb-3 mt-3">
-                            <a href="index.html" class="btn btn-admin">REGRESAR AL INICIO</a>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
