@@ -480,12 +480,20 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /*------------------------------------------------------
+GUARDANDO LOS DATAOS DEL USUARIO LOGIN EN LOCALSTORAGE
         VALIDACION DE EMAIL PARA CONTACTO
 -------------------------------------------------------*/
 const emailInput = document.getElementById('email');
 const passwordInput = document.getElementById('password');
 const submitBtn = document.getElementById('submitBtn');
 const form = document.getElementById('loginForm');
+
+// Cargar datos
+const savedEmail = localStorage.getItem("email");
+const savedPassword = localStorage.getItem("password");
+
+if (savedEmail) emailInput.value = savedEmail;
+if (savedPassword) passwordInput.value = savedPassword;
 
 function validateForm() {
     const emailVal = emailInput.value.trim();
@@ -501,6 +509,25 @@ function validateForm() {
     toggleValidationClass(passwordInput, passValid);
 
     submitBtn.disabled = !(emailValid && passValid);
+
+    //Guardado automático
+    if (emailValid && passValid) {
+        localStorage.setItem("email", emailVal);
+        localStorage.setItem("password", passVal);
+    }
+
+    emailInput.addEventListener('input', () => {
+    if (!emailInput.value.trim()) {
+        localStorage.removeItem("email");
+    }
+});
+
+passwordInput.addEventListener('input', () => {
+    if (!passwordInput.value.trim()) {
+        localStorage.removeItem("password");
+    }
+});
+
 }
 
 function toggleValidationClass(input, isValid) {
@@ -526,6 +553,13 @@ form.addEventListener('submit', function(e) {
     e.preventDefault();
     validateForm();
 });
+
+//Validar al iniciar
+validateForm();
+console.log(localStorage.getItem("email"));
+console.log(localStorage.getItem("password"));
+
+
 
 
 
