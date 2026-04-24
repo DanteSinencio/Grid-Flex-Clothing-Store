@@ -1101,7 +1101,7 @@ const formulario = document.getElementById('formulario');
 const inputs = document.querySelectorAll('#formulario input');
 
 const expresiones = {
-    nombre: /^[a-zA-Z0-9\_\-]{4,20}$/,
+    nombre: /^[a-zA-Z0-9\_\-\s]{2,20}$/,
     apellido: /^[a-zA-ZÀ-ÿ\s]{4,20}$/,
     password: /^.{8,20}$/,
     correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
@@ -1184,6 +1184,60 @@ const validarPassword2 = () => {
 };
 
 // ==========================================
+// VALIDACIÓN FORMULARIO RECUPERAR CONTRASEÑA
+// ==========================================
+document.addEventListener("DOMContentLoaded", () => {
+    const formRecuperar = document.getElementById('formRecuperar');
+    const emailRecuperacion = document.getElementById('emailRecuperacion');
+    const btnEnviarRecuperacion = document.getElementById('btnEnviarRecuperacion');
+
+    if (formRecuperar && emailRecuperacion && btnEnviarRecuperacion) {
+        
+        
+        const emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+
+        emailRecuperacion.addEventListener('input', () => {
+            const correoEscrito = emailRecuperacion.value.trim();
+            const esValido = emailRegex.test(correoEscrito);
+
+            if (correoEscrito.length > 0) {
+                if (esValido) {
+                    emailRecuperacion.classList.remove('is-invalid');
+                    emailRecuperacion.classList.add('is-valid');
+                    btnEnviarRecuperacion.disabled = false; 
+                } else {
+                    emailRecuperacion.classList.remove('is-valid');
+                    emailRecuperacion.classList.add('is-invalid');
+                    btnEnviarRecuperacion.disabled = true; 
+                }
+            } else {
+                emailRecuperacion.classList.remove('is-valid', 'is-invalid');
+                btnEnviarRecuperacion.disabled = true;
+            }
+        });
+
+        // 2. Lógica al darle clic al botón "ENVIAR CORREO"
+        formRecuperar.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const correoEscrito = emailRecuperacion.value.trim();
+
+            
+            if (emailRegex.test(correoEscrito)) {
+                const modalBandeja = new bootstrap.Modal(document.getElementById('modalVerificarBandeja'));
+                modalBandeja.show();
+
+                // Limpiamos el formulario
+                formRecuperar.reset();
+                emailRecuperacion.classList.remove('is-valid', 'is-invalid');
+                btnEnviarRecuperacion.disabled = true;
+            }
+        });
+    }
+});
+
+
+// ==========================================
 // LOGIN DE USUARIO
 // ==========================================
 class UserController {
@@ -1207,6 +1261,7 @@ class UserController {
             password,
             role: "user"
         };
+    
 
         this.users.push(user);
         localStorage.setItem("gridFlex_usuarios", JSON.stringify(this.users));
@@ -1262,18 +1317,34 @@ function logout() {
     window.location.href = "login.html";
 }
 
-const form = document.getElementById("loginForm");
+const form = document.querySelector("#loginForm");
 
 if (form) {
     form.addEventListener("submit", function(e) {
         e.preventDefault();
 
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
+        const email = document.querySelector("#email").value;
+        const password = document.querySelector("#password").value;
 
         login(email, password);
     });
 }
+
+const formRegister =document.querySelector("#formulario");
+if(formRegister){
+    formRegister.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const nombreUsuario = document.querySelector("#grupo__nombre").value;
+        const apellidoUsuario = document.querySelector("#apellido").value;
+        const telefonoUsuario = document.querySelector("#telefono").value;
+        const contraseñaUsuario = document.querySelector("#password2").value;
+        const correoUsuario = document.querySelector("#correo").value;
+
+        gestorUsuarios.addUser(nombreUsuario, apellidoUsuario, telefonoUsuario, correoUsuario, contraseñaUsuario );
+        login(correo,contraseñaUsuario);
+}
+
 
 //Logica del navbar
 document.addEventListener("DOMContentLoaded", () => {
