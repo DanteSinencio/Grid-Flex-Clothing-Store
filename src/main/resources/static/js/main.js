@@ -1335,16 +1335,21 @@ if(formRegister){
     formRegister.addEventListener("submit", (e) => {
         e.preventDefault();
 
-        const nombreUsuario = document.querySelector("#grupo__nombre").value;
+        const nombreUsuario = document.querySelector("#nombre").value;
         const apellidoUsuario = document.querySelector("#apellido").value;
         const telefonoUsuario = document.querySelector("#telefono").value;
         const contraseñaUsuario = document.querySelector("#password2").value;
         const correoUsuario = document.querySelector("#correo").value;
 
         gestorUsuarios.addUser(nombreUsuario, apellidoUsuario, telefonoUsuario, correoUsuario, contraseñaUsuario );
-        login(correo,contraseñaUsuario);
+        login(correoUsuario,contraseñaUsuario);
+    });
 }
 
+//boton para regresar
+function regresar(){
+    window.location.href = "index.html";
+}
 
 //Logica del navbar
 document.addEventListener("DOMContentLoaded", () => {
@@ -1360,5 +1365,9 @@ document.addEventListener("DOMContentLoaded", () => {
         loginMovil.href = "profileUser.html";
 
         
+    }
+    else{
+        login.innerHTML = "INGRESAR";
+        loginMovil.innerHTML = "INGRESAR";
     }
 });
