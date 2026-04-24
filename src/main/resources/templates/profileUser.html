@@ -30,8 +30,8 @@
 
             <div class="d-flex align-items-center order-lg-3">
                 <ul class="navbar-nav">
-                    <a href="profile.html" class="nav-link active text-white fw-bold d-none d-lg-block ms-lg-3"
-                        aria-current="page"> Maria Garcia </a>
+                    <a id="login" href="#" class="nav-link active text-white fw-bold d-none d-lg-block ms-lg-3"
+                        aria-current="page">  </a>
                     <a href="carrito.html" class="cart-icon text-white text-decoration-none me-3 position-relative">
                         <i class="fa-solid fa-cart-shopping"></i>
                         <span
@@ -61,8 +61,7 @@
                         <a class="nav-link" href="about.html">Acerca de nosotros</a>
                     </li>
                     <li class="nav-item d-lg-none">
-                        <a href="profile.html" class="nav-link active text-white fw-bold" aria-current="page">Maria
-                            Garcia</a>
+                        <a id="loginMovil" href="profile.html" class="nav-link active text-white fw-bold" aria-current="page"></a>
                     </li>
                 </ul>
 
@@ -199,7 +198,7 @@
                 </div>
 
                 <div class="d-flex flex-column flex-md-row justify-content-center gap-3 mt-4">
-                    <button type="button" class="btn btn-admin btnbtn-lg rounded-3 px-4">Salir de la sesión</button>
+                    <button  onclick="logout()" type="button" class="btn btn-admin btn-lg rounded-3 px-4">Salir de la sesión</button>
                     <button type="submit" class="btn index-btn-blue">Guardar Cambios</button>
                 </div>
             </form>

@@ -1182,3 +1182,112 @@ const validarPassword2 = () => {
         campos.password2 = false; // Actualiza el estado a false
     }
 };
+
+// ==========================================
+// LOGIN DE USUARIO
+// ==========================================
+class UserController {
+    constructor(currentId = 0) {
+        this.users = [];
+        this.currentId = currentId;
+    }
+
+    addUser(name, lastName, phone, email, password) {
+        const user = {
+            idUser: String(this.currentId++),
+            name,
+            lastName,
+            phone,
+            streetAddress: "",
+            Neighborhood: "",
+            postalCode: "",
+            city: "",
+            state: "",
+            email,
+            password,
+            role: "user"
+        };
+
+        this.users.push(user);
+        localStorage.setItem("gridFlex_usuarios", JSON.stringify(this.users));
+    } 
+
+    loadUsersFromLocalStorage() {
+        const storageUsers = localStorage.getItem("gridFlex_usuarios");
+        if (storageUsers) {
+            this.users = JSON.parse(storageUsers);
+            if (this.users.length > 0) {
+                this.currentId = Math.max(
+                    ...this.users.map(user => parseInt(user.idUser) || 0)
+                ) + 1;
+            }
+        }
+    }
+}
+
+const gestorUsuarios = new UserController();
+gestorUsuarios.loadUsersFromLocalStorage();
+//usuarios de prueba
+if( gestorUsuarios.users.length === 0){
+    gestorUsuarios.addUser("admin","prueba",1234567891,"grindFlex@gmail.com","grid123@");
+    gestorUsuarios.users[0].role = "admin";
+    gestorUsuarios.addUser("user","prueba",1234567891,"userPrueba@gmail.com","grid123@");
+    
+    localStorage.setItem("gridFlex_usuarios", JSON.stringify(gestorUsuarios.users));
+}
+
+function login(email, password) {
+    const users = JSON.parse(localStorage.getItem("gridFlex_usuarios")) || [];
+
+    const user = users.find(u => u.email === email && u.password === password);
+
+    if (user) {
+        localStorage.setItem("session", JSON.stringify({
+            idUser: user.idUser,
+            name: user.name,
+            role: user.role
+        }));
+
+        window.location.href = "index.html";
+    } else {
+        alert("Credenciales incorrectas");
+    }
+}
+
+function getSession() {
+    return JSON.parse(localStorage.getItem("session"));
+}
+function logout() {
+    localStorage.removeItem("session");
+    window.location.href = "login.html";
+}
+
+const form = document.getElementById("loginForm");
+
+if (form) {
+    form.addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        login(email, password);
+    });
+}
+
+//Logica del navbar
+document.addEventListener("DOMContentLoaded", () => {
+    const session = JSON.parse(localStorage.getItem("session"));
+    const login = document.getElementById("login");
+    const loginMovil= document.getElementById("loginMovil");
+
+    if (session) {
+        
+        login.innerHTML = `<i class="fa-solid fa-user me-1"></i> ${session.name}`;
+        loginMovil.innerHTML = `<i class="fa-solid fa-user me-1"></i> ${session.name}`;
+        login.href = "profileUser.html";
+        loginMovil.href = "profileUser.html";
+
+        
+    }
+});
