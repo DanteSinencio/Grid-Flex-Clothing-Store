@@ -1101,7 +1101,7 @@ const formulario = document.getElementById('formulario');
 const inputs = document.querySelectorAll('#formulario input');
 
 const expresiones = {
-    nombre: /^[a-zA-Z0-9\_\-]{4,20}$/,
+    nombre: /^[a-zA-Z0-9\_\-\s]{2,20}$/,
     apellido: /^[a-zA-ZÀ-ÿ\s]{4,20}$/,
     password: /^.{8,20}$/,
     correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
@@ -1182,3 +1182,56 @@ const validarPassword2 = () => {
         campos.password2 = false; // Actualiza el estado a false
     }
 };
+
+// ==========================================
+// VALIDACIÓN FORMULARIO RECUPERAR CONTRASEÑA
+// ==========================================
+document.addEventListener("DOMContentLoaded", () => {
+    const formRecuperar = document.getElementById('formRecuperar');
+    const emailRecuperacion = document.getElementById('emailRecuperacion');
+    const btnEnviarRecuperacion = document.getElementById('btnEnviarRecuperacion');
+
+    if (formRecuperar && emailRecuperacion && btnEnviarRecuperacion) {
+        
+        
+        const emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+
+        emailRecuperacion.addEventListener('input', () => {
+            const correoEscrito = emailRecuperacion.value.trim();
+            const esValido = emailRegex.test(correoEscrito);
+
+            if (correoEscrito.length > 0) {
+                if (esValido) {
+                    emailRecuperacion.classList.remove('is-invalid');
+                    emailRecuperacion.classList.add('is-valid');
+                    btnEnviarRecuperacion.disabled = false; 
+                } else {
+                    emailRecuperacion.classList.remove('is-valid');
+                    emailRecuperacion.classList.add('is-invalid');
+                    btnEnviarRecuperacion.disabled = true; 
+                }
+            } else {
+                emailRecuperacion.classList.remove('is-valid', 'is-invalid');
+                btnEnviarRecuperacion.disabled = true;
+            }
+        });
+
+        // 2. Lógica al darle clic al botón "ENVIAR CORREO"
+        formRecuperar.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const correoEscrito = emailRecuperacion.value.trim();
+
+            
+            if (emailRegex.test(correoEscrito)) {
+                const modalBandeja = new bootstrap.Modal(document.getElementById('modalVerificarBandeja'));
+                modalBandeja.show();
+
+                // Limpiamos el formulario
+                formRecuperar.reset();
+                emailRecuperacion.classList.remove('is-valid', 'is-invalid');
+                btnEnviarRecuperacion.disabled = true;
+            }
+        });
+    }
+});
