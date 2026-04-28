@@ -40,12 +40,12 @@ gestorProductos.loadItemsFromLocalStorage();
 
 // Metemos tus 6 productos para que la memoria no esté vacía
 if (gestorProductos.items.length === 0) {
-    gestorProductos.addItem('Camisa Slim Fit', '../static/img/playeraLose.jpg', 'Seminueva', 299, 'camisas', 'M', 10);
-    gestorProductos.addItem('Chamarra Mezclilla', '../static/img/chamarraMezclilla.jpg', 'Nueva', 450, 'chamarras', 'G', 5);
-    gestorProductos.addItem('Camisa con rayas', '../static/img/camisaRayas.jpg', 'Seminueva', 350, 'camisas', 'M', 12);
-    gestorProductos.addItem('Chamarra Deportiva', '../static/img/chamarraDeportiva.jpg', 'Nueva', 350, 'chamarras', 'G', 5);
-    gestorProductos.addItem('Chamarra Popover', '../static/img/chamarraPopover.jpg', 'Nueva', 330, 'chamarras', 'M', 8);
-    gestorProductos.addItem('Gorra', '../static/img/gorra.jpg', 'Nueva', 180, 'accesorios', 'CH', 20);
+    gestorProductos.addItem('Camisa Slim Fit', 'img/playeraLose.jpg', 'Seminueva', 299, 'camisas', 'M', 10);
+    gestorProductos.addItem('Chamarra Mezclilla', 'img/chamarraMezclilla.jpg', 'Nueva', 450, 'chamarras', 'G', 5);
+    gestorProductos.addItem('Camisa con rayas', 'img/camisaRayas.jpg', 'Seminueva', 350, 'camisas', 'M', 12);
+    gestorProductos.addItem('Chamarra Deportiva', 'img/chamarraDeportiva.jpg', 'Nueva', 350, 'chamarras', 'G', 5);
+    gestorProductos.addItem('Chamarra Popover', 'img/chamarraPopover.jpg', 'Nueva', 330, 'chamarras', 'M', 8);
+    gestorProductos.addItem('Gorra', 'img/gorra.jpg', 'Nueva', 180, 'accesorios', 'CH', 20);
 
     localStorage.setItem("gridFlex_productos", JSON.stringify(gestorProductos.items));
 }
@@ -683,7 +683,7 @@ function mostrarNotificacionProducto(producto) {
             <i class="fa-solid fa-check"></i>
         </div>
         <div class="notification-cart-content">
-            <img src="${producto.imagen || '../static/img/default.jpg'}" alt="${producto.nombre}" class="notification-cart-img">
+            <img src="${producto.imagen || 'img/default.jpg'}" alt="${producto.nombre}" class="notification-cart-img">
             <div class="notification-cart-details">
                 <h6>${producto.nombre}</h6>
                 <div class="detail-item">
@@ -842,7 +842,7 @@ document.addEventListener('click', (e) => {
                 id: idUnico,
                 nombre: btnAgregar.dataset.nombre || 'Producto',
                 precio: btnAgregar.dataset.precio || 0,
-                imagen: btnAgregar.dataset.imagen || '../static/img/default.jpg',
+                imagen: btnAgregar.dataset.imagen || 'img/default.jpg',
                 categoria: btnAgregar.dataset.categoria || 'general',
                 talla: btnAgregar.dataset.talla || 'M'
             };
@@ -940,7 +940,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 
                 const itemHTML = document.createElement('div');
                 itemHTML.className = 'product-card d-flex align-items-center justify-content-between p-3 mb-3 bg-white shadow-sm rounded';
-                const imagenSrc = producto.imagen ? producto.imagen : '../static/img/placeholder.jpg';
+                const imagenSrc = producto.imagen ? producto.imagen : 'img/placeholder.jpg';
 
                 itemHTML.innerHTML = `
                     <div class="d-flex align-items-center">
