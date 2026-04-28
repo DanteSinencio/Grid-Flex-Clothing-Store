@@ -3,7 +3,7 @@ name: Deploy GitHub Pages
 on:
   push:
     branches:
-      - developer
+      - rama-dante
 
 permissions:
   contents: read
@@ -28,11 +28,11 @@ jobs:
           cp -r src/main/resources/templates/* public/
           cp -r src/main/resources/static/* public/
 
-      - name: Subir archivos para Pages
+      - name: Subir archivos
         uses: actions/upload-pages-artifact@v3
         with:
           path: public
 
-      - name: Publicar sitio
+      - name: Publicar
         id: deployment
         uses: actions/deploy-pages@v4
