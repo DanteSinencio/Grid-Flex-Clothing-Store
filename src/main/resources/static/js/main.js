@@ -483,6 +483,8 @@ document.addEventListener("DOMContentLoaded", () => {
 GUARDANDO LOS DATAOS DEL USUARIO LOGIN EN LOCALSTORAGE
         VALIDACION DE EMAIL PARA CONTACTO
 -------------------------------------------------------*/
+const form = document.getElementById('loginForm');
+if (form) {
 const emailInput = document.getElementById('email');
 const passwordInput = document.getElementById('password');
 const submitBtn = document.getElementById('submitBtn');
@@ -492,8 +494,8 @@ const form = document.getElementById('loginForm');
 const savedEmail = localStorage.getItem("email");
 const savedPassword = localStorage.getItem("password");
 
-if (savedEmail) emailInput.value = savedEmail;
-if (savedPassword) passwordInput.value = savedPassword;
+if (savedEmail && emailInput) emailInput.value = savedEmail;
+if (savedPassword && passwordInput) passwordInput.value = savedPassword;
 
 function validateForm() {
     const emailVal = emailInput.value.trim();
@@ -558,7 +560,7 @@ form.addEventListener('submit', function(e) {
 validateForm();
 console.log(localStorage.getItem("email"));
 console.log(localStorage.getItem("password"));
-
+}
 
 
 
