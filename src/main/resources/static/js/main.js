@@ -483,6 +483,8 @@ document.addEventListener("DOMContentLoaded", () => {
 GUARDANDO LOS DATAOS DEL USUARIO LOGIN EN LOCALSTORAGE
         VALIDACION DE EMAIL PARA CONTACTO
 -------------------------------------------------------*/
+const form = document.getElementById('loginForm');
+if (form) {
 const emailInput = document.getElementById('email');
 const passwordInput = document.getElementById('password');
 const submitBtn = document.getElementById('submitBtn');
@@ -492,17 +494,17 @@ const form = document.getElementById('loginForm');
 const savedEmail = localStorage.getItem("email");
 const savedPassword = localStorage.getItem("password");
 
-if (savedEmail) emailInput.value = savedEmail;
-if (savedPassword) passwordInput.value = savedPassword;
+if (savedEmail && emailInput) emailInput.value = savedEmail;
+if (savedPassword && passwordInput) passwordInput.value = savedPassword;
 
 function validateForm() {
     const emailVal = emailInput.value.trim();
     const passVal = passwordInput.value.trim();
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;//    /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     const emailValid = emailRegex.test(emailVal);
 
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&]).{6,}$/;
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&]).{6,}$/;//     /^.{8,20}$/
     const passValid = passwordRegex.test(passVal);
 
     toggleValidationClass(emailInput, emailValid);
@@ -558,7 +560,7 @@ form.addEventListener('submit', function(e) {
 validateForm();
 console.log(localStorage.getItem("email"));
 console.log(localStorage.getItem("password"));
-
+}
 
 
 
@@ -1101,9 +1103,9 @@ const formulario = document.getElementById('formulario');
 const inputs = document.querySelectorAll('#formulario input');
 
 const expresiones = {
-    nombre: /^[a-zA-Z0-9\_\-\s]{2,20}$/,
+    nombre: /^[\p{L} ]+$/u,
     apellido: /^[a-zA-ZÀ-ÿ\s]{4,20}$/,
-    password: /^.{8,20}$/,
+    password: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&]).{6,}$/,
     correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
     telefono: /^\d{10}$/
 };
@@ -1361,8 +1363,13 @@ document.addEventListener("DOMContentLoaded", () => {
         
         login.innerHTML = `<i class="fa-solid fa-user me-1"></i> ${session.name}`;
         loginMovil.innerHTML = `<i class="fa-solid fa-user me-1"></i> ${session.name}`;
-        login.href = "profileUser.html";
-        loginMovil.href = "profileUser.html";
+        if (session.role === 'admin'){
+            login.href = "seller.html";
+            loginMovil.href = "seller.html";
+        }else{
+            login.href = "profileUser.html";
+            loginMovil.href = "profileUser.html";
+        }
 
         
     }
