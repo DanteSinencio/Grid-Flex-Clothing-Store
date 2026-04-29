@@ -483,8 +483,6 @@ document.addEventListener("DOMContentLoaded", () => {
 GUARDANDO LOS DATAOS DEL USUARIO LOGIN EN LOCALSTORAGE
         VALIDACION DE EMAIL PARA CONTACTO
 -------------------------------------------------------*/
-const form = document.getElementById('loginForm');
-if (form) {
 const emailInput = document.getElementById('email');
 const passwordInput = document.getElementById('password');
 const submitBtn = document.getElementById('submitBtn');
@@ -494,17 +492,17 @@ const form = document.getElementById('loginForm');
 const savedEmail = localStorage.getItem("email");
 const savedPassword = localStorage.getItem("password");
 
-if (savedEmail && emailInput) emailInput.value = savedEmail;
-if (savedPassword && passwordInput) passwordInput.value = savedPassword;
+if (savedEmail) emailInput.value = savedEmail;
+if (savedPassword) passwordInput.value = savedPassword;
 
 function validateForm() {
     const emailVal = emailInput.value.trim();
     const passVal = passwordInput.value.trim();
 
-    const emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;//    /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const emailValid = emailRegex.test(emailVal);
 
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&]).{6,}$/;//     /^.{8,20}$/
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&]).{6,}$/;
     const passValid = passwordRegex.test(passVal);
 
     toggleValidationClass(emailInput, emailValid);
@@ -560,7 +558,7 @@ form.addEventListener('submit', function(e) {
 validateForm();
 console.log(localStorage.getItem("email"));
 console.log(localStorage.getItem("password"));
-}
+
 
 
 
@@ -1035,7 +1033,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Lógica de "Completar Pago" (Validación y Modal)
         if (btnCheckout) {
             btnCheckout.addEventListener('click', () => {
-                const usuarioIniciado = localStorage.getItem('gridFlex_usuarioActivo');
+                const usuarioIniciado = localStorage.getItem('session');
                 
                 if (!usuarioIniciado) {
                     const modalLogin = new bootstrap.Modal(document.getElementById('modalLoginRequerido'));
@@ -1103,9 +1101,9 @@ const formulario = document.getElementById('formulario');
 const inputs = document.querySelectorAll('#formulario input');
 
 const expresiones = {
-    nombre: /^[\p{L} ]+$/u,
+    nombre: /^[a-zA-Z0-9\_\-\s]{2,20}$/,
     apellido: /^[a-zA-ZÀ-ÿ\s]{4,20}$/,
-    password: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&]).{6,}$/,
+    password: /^.{8,20}$/,
     correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
     telefono: /^\d{10}$/
 };
