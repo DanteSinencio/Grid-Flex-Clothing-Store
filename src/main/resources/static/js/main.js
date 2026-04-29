@@ -501,10 +501,10 @@ function validateForm() {
     const emailVal = emailInput.value.trim();
     const passVal = passwordInput.value.trim();
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;//    /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     const emailValid = emailRegex.test(emailVal);
 
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&]).{6,}$/;
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&]).{6,}$/;//     /^.{8,20}$/
     const passValid = passwordRegex.test(passVal);
 
     toggleValidationClass(emailInput, emailValid);
@@ -1103,9 +1103,9 @@ const formulario = document.getElementById('formulario');
 const inputs = document.querySelectorAll('#formulario input');
 
 const expresiones = {
-    nombre: /^[a-zA-Z0-9\_\-\s]{2,20}$/,
+    nombre: /^[\p{L} ]+$/u,
     apellido: /^[a-zA-ZÀ-ÿ\s]{4,20}$/,
-    password: /^.{8,20}$/,
+    password: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&]).{6,}$/,
     correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
     telefono: /^\d{10}$/
 };
