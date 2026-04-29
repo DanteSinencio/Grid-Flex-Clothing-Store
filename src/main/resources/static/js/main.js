@@ -1361,8 +1361,13 @@ document.addEventListener("DOMContentLoaded", () => {
         
         login.innerHTML = `<i class="fa-solid fa-user me-1"></i> ${session.name}`;
         loginMovil.innerHTML = `<i class="fa-solid fa-user me-1"></i> ${session.name}`;
-        login.href = "profileUser.html";
-        loginMovil.href = "profileUser.html";
+        if (session.role === 'admin'){
+            login.href = "seller.html";
+            loginMovil.href = "seller.html";
+        }else{
+            login.href = "profileUser.html";
+            loginMovil.href = "profileUser.html";
+        }
 
         
     }
