@@ -29,22 +29,24 @@
                 GRID & FLEX
             </a>
 
-                <div class="d-flex align-items-center order-lg-3">
-                    <ul class="navbar-nav">
-                    <a id="login" href="login.html" class="nav-link text-white fw-bold d-none d-lg-block ms-lg-3"></a>
+            <div class="d-flex align-items-center order-lg-3">
+                <ul class="navbar-nav">
+                    <a id="login" href="login.html" class="nav-link text-white fw-bold d-none d-lg-block ms-lg-3 active"></a>
                     <a href="carrito.html" class="cart-icon text-white text-decoration-none me-3 position-relative">
                         <i class="fa-solid fa-cart-shopping"></i>
-                        <span class="cart-badge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="display: none; font-size: 0.6rem;">
+                        <span
+                            class="cart-badge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                            style="display: none; font-size: 0.6rem;">
                             0
                         </span>
                     </a>
-                    </ul>
+                </ul>
 
-                    <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarNav">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                </div>
+                <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
 
             <div class="collapse navbar-collapse justify-content-center order-lg-2" id="navbarNav">
                 <ul class="navbar-nav">
@@ -58,7 +60,7 @@
                         <a class="nav-link" href="about.html">Acerca de nosotros</a>
                     </li>
                     <li class="nav-item d-lg-none">
-                        <a id="loginMovil" href="#" class="nav-link text-white fw-bold">INGRESAR</a>
+                        <a id="loginMovil" href="#" class="nav-link text-white fw-bold active">INGRESAR</a>
                     </li>
                 </ul>
             </div>
@@ -68,46 +70,53 @@
     <!-- FORMULARIO INICIAR SESIÓN -->
     <main>
         <div class="col-12">
-    <div class="row d-flex justify-content-center align-items-center min-vh-100">
-        <div class="col-sm-6 mb-3 mb-sm-0 tarjeta">
-            <div class="card card-stat">
-                <div class="card-body">
-                    <h4 class="card-title"><strong>Iniciar Sesión</strong><hr></h4>
-                    <p class="card-text small text-muted">Bienvenido a la comunidad Grid & Flex</p>
-                    
-                    <form id="loginForm" novalidate>
-                        
-                        <div class="mb-3">
-                            <label for="email" class="form-label small fw-bold">EMAIL</label>
-                            <input type="email" id="email" name="_replyto" class="form-control" placeholder="juan@ejemplo.com" requiredautocomplete="email">
-                            <div class="invalid-feedback">Ingresa un correo electrónico válido.</div>
+            <div class="row d-flex justify-content-center align-items-center min-vh-100">
+                <div class="col-sm-6 mb-3 mb-sm-0 tarjeta">
+                    <div class="card card-stat">
+                        <div class="card-body">
+                            <h4 class="card-title"><strong>Iniciar Sesión</strong>
+                                <hr>
+                            </h4>
+                            <p class="card-text small text-muted">Bienvenido a la comunidad Grid & Flex</p>
+
+                            <form id="loginForm" novalidate>
+
+                                <div class="mb-3">
+                                    <label for="email" class="form-label small fw-bold">EMAIL</label>
+                                    <input type="email" id="email" name="_replyto" class="form-control"
+                                        placeholder="juan@ejemplo.com" requiredautocomplete="email">
+                                    <div class="invalid-feedback">Ingresa un correo electrónico válido.</div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="password" class="form-label small fw-bold">CONTRASEÑA</label>
+                                    <input type="password" id="password" class="form-control" placeholder="*******"
+                                        required>
+                                    <div class="invalid-feedback">La contraseña debe tener letras, números y un carácter
+                                        especial.</div>
+
+                                </div>
+
+                                <div class="d-grid gap-2"> <button type="submit" id="submitBtn" class="btn btn-primary"
+                                        disabled>INGRESAR</button>
+                                </div>
+
+                            </form>
+
+                            <div class="text-center mt-3">
+                                <a href="password.html" class="small">¿Olvidaste tu contraseña?</a>
+                            </div>
+
+                            <div class="mt-4 text-end">
+                                <p class="small mb-0">¿No tienes cuenta? <a href="registro.html"><strong>Regístrate
+                                            aquí</strong></a></p>
+                            </div>
+
                         </div>
-
-                        <div class="mb-3">
-                            <label for="password" class="form-label small fw-bold">CONTRASEÑA</label>
-                            <input type="password" id="password" class="form-control" placeholder="*******" required>
-                            <div class="invalid-feedback">La contraseña debe tener letras, números y un carácter especial.</div>
-
-                        </div>
-
-                        <div class="d-grid gap-2"> <button type="submit" id="submitBtn" class="btn btn-primary" disabled>INGRESAR</button>
-                        </div>
-
-                    </form>
-
-                    <div class="text-center mt-3">
-                        <a href="password.html" class="small">¿Olvidaste tu contraseña?</a>
                     </div>
-                    
-                    <div class="mt-4 text-end">
-                        <p class="small mb-0">¿No tienes cuenta? <a href="registro.html"><strong>Regístrate aquí</strong></a></p>
-                    </div>
-
                 </div>
             </div>
         </div>
-    </div>
-</div>
     </main>
 
     <!-- Footer -->
@@ -179,6 +188,7 @@
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../static/js/main.js"></script>
-    
+
 </body>
+
 </html>
