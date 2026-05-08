@@ -17,7 +17,7 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Product obtenerProductosId(Integer id) {
+    public Product obtenerProductosId(Long id) {
         return productRepository.findById(id)
                 .orElseThrow(null);
     }
@@ -30,7 +30,7 @@ public class ProductService {
         productRepository.save(product);
     }
 
-    public void borrarProducto(Integer id){
+    public void borrarProducto(Long id){
         productRepository.deleteById(id);
     }
 

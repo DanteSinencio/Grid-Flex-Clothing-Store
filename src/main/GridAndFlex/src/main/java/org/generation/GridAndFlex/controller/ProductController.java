@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-@Controller
+@RestController
 @RequestMapping("/products")
 public class ProductController {
     private final ProductService productService;
@@ -31,7 +31,7 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public Product obtenerProductosId(@RequestBody Integer id) {
+    public Product obtenerProductosId(@PathVariable Long id) {
         return productService.obtenerProductosId(id);
     }
 
@@ -41,7 +41,7 @@ public class ProductController {
 
     //DELATE
     @DeleteMapping("/{id}")
-    public void borrarProducto(@RequestBody Integer id){ productService.borrarProducto(id);}
+    public void borrarProducto(@PathVariable Long id){ productService.borrarProducto(id);}
 
 
 

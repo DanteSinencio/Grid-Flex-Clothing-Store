@@ -3,33 +3,30 @@ package org.generation.GridAndFlex.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "categoria")
-public class Category {
-
+@Table(name = "productos")
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_categoria")
-    private Long idCategory;
+    @Column(name = "id_productos")
+    private Long id_productos;
 
-    @Column(nullable = false, length = 45)
     private String nombre;
+    private String descripcion;
+    private Double precio;
+    private Integer existencias;
 
+    @Column(name = "url_imagen")
+    private String urlImagen;
 
-    public Category() {
-    }
-
-    public Category(Long idCategory, String nombre) {
-        this.idCategory = idCategory;
-        this.nombre = nombre;
-    }
-
-    // Getters y Setters
+    @ManyToOne
+    @JoinColumn(name = "categoria_id_categoria")
+    private Category categoria;
 
     // GETTERS Y SETTERS
 
-    public Integer getId_productos() {return id_productos;}
+    public Long getId_productos() {return id_productos;}
 
-    public void setId_productos(Integer id_productos) {this.id_productos = id_productos;}
+    public void setId_productos(Long id_productos) {this.id_productos = id_productos;}
 
     public String getNombre() {return nombre;}
 

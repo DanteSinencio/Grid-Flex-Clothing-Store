@@ -8,8 +8,8 @@ public class DetallePedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_detalle")
-    private Integer idDetalle;
+    @Column(name = "id_detalle_pedido")
+    private Long idDetalle;
 
     private Integer cantidad;
 
@@ -25,11 +25,11 @@ public class DetallePedido {
     public DetallePedido() {
     }
 
-    public Integer getIdDetalle() {
+    public Long getIdDetalle() {
         return idDetalle;
     }
 
-    public void setIdDetalle(Integer idDetalle) {
+    public void setIdDetalle(Long idDetalle) {
         this.idDetalle = idDetalle;
     }
 
