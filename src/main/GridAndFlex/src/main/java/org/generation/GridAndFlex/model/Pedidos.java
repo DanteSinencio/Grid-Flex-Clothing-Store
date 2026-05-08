@@ -1,96 +1,79 @@
 package org.generation.GridAndFlex.model;
 
 import jakarta.persistence.*;
-
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "pedidos")
 public class Pedidos {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_pedidos")
+    private Long id;
 
+    @Column(name = "montoTotal", nullable = false)
+    private BigDecimal montoTotal;
 
-    private int id_Usuario;
-    private String roles;
-    private String nombre;
+    @Column(name = "fecha", nullable = false)
+    private LocalDateTime fecha = LocalDateTime.now();
 
-    private String apellido;
-    private String correo;
-    private String telefono;
-    private String contrasena;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "estado", nullable = false)
+    private EstadoPedido estado;
 
-    public Pedidos() {
+    @ManyToOne
+    @JoinColumn(name = "Usuario_id_Usuario", nullable = false)
+    private User usuario;
+
+    // Estado
+    public enum EstadoPedido {
+        pendiente, pagado, enviado, entregado
     }
 
+    // Constructor
+    public Pedidos() {}
 
-    public Pedidos(int id_Usuario, String roles, String nombre, String apellido, String correo, String telefono, String contrasena) {
-        this.id_Usuario = id_Usuario;
-        this.roles = roles;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.correo = correo;
-        this.telefono = telefono;
-        this.contrasena = contrasena;
+//Getters y Setters
+
+    public Long getId() {
+        return id;
     }
 
-
-    public void setId(int id) {
-        this.id_Usuario = id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public int getId_Usuario() {
-        return id_Usuario;
+    public BigDecimal getMontoTotal() {
+        return montoTotal;
     }
 
-    public void setId_Usuario(int id_Usuario) {
-        this.id_Usuario = id_Usuario;
+    public void setMontoTotal(BigDecimal montoTotal) {
+        this.montoTotal = montoTotal;
     }
 
-    public String getRoles() {
-        return roles;
+    public LocalDateTime getFecha() {
+        return fecha;
     }
 
-    public void setRoles(String roles) {
-        this.roles = roles;
+    public void setFecha(LocalDateTime fecha) {
+        this.fecha = fecha;
     }
 
-    public String getApellido() {
-        return apellido;
+    public EstadoPedido getEstado() {
+        return estado;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setEstado(EstadoPedido estado) {
+        this.estado = estado;
     }
 
-    public String getNombre() {
-        return nombre;
+    public User getUsuario() {
+        return usuario;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getContrasena() {
-        return contrasena;
-    }
-
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+    public void setUsuario(User usuario) {
+        this.usuario = usuario;
     }
 }

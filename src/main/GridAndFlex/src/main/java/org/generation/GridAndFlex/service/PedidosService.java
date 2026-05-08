@@ -20,20 +20,32 @@ public class PedidosService {
     }
 
 
-    public Optional<Pedidos> getById(int id) {
+    public Optional<Pedidos> getById(Long id) {
         return pedidosRepository.findById(id);
     }
 
 
-    public Pedidos update(int id, Pedidos pedidoActualizado) {
+    public Pedidos save(Pedidos pedido) {
+        return pedidosRepository.save(pedido);
+    }
+
+
+    public Pedidos update(Long id, Pedidos pedidoActualizado) {
         return pedidosRepository.findById(id).map(pedido -> {
-            pedido.setRoles(pedidoActualizado.getRoles());
-            pedido.setNombre(pedidoActualizado.getNombre());
-            pedido.setApellido(pedidoActualizado.getApellido());
-            pedido.setCorreo(pedidoActualizado.getCorreo());
-            pedido.setTelefono(pedidoActualizado.getTelefono());
-            pedido.setContrasena(pedidoActualizado.getContrasena());
+            pedido.setMontoTotal(pedidoActualizado.getMontoTotal());
+            pedido.setFecha(pedidoActualizado.getFecha());
+            pedido.setEstado(pedidoActualizado.getEstado());
+            pedido.setUsuario(pedidoActualizado.getUsuario());
             return pedidosRepository.save(pedido);
         }).orElse(null);
+    }
+
+
+    public boolean delete(Long id) {
+        if (pedidosRepository.existsById(id)) {
+            pedidosRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }
