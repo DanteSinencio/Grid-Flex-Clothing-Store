@@ -2,6 +2,7 @@ package org.generation.GridAndFlex.controller;
 
 import org.generation.GridAndFlex.model.User;
 import org.generation.GridAndFlex.service.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,4 +36,17 @@ public class UserController {
         userService.deleteUser(id);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getById(@PathVariable Long id){
+        User user = userService.findById(id);
+        if(user == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(user);
+    }
+
+    @PostMapping
+    public User addUser(@RequestBody User user){
+        return userService.addUser(user);
+    }
 }

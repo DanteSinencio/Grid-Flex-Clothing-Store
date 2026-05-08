@@ -9,7 +9,7 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_categoria")
-    private Integer idCategory;
+    private Long idCategory;
 
     @Column(nullable = false, length = 45)
     private String nombre;
@@ -19,17 +19,16 @@ public class Category {
     }
 
     // 2. Constructor con parámetros
-    public Category(Integer idCategory, String nombre) {
-        this.idCategory = idCategory;
+    public Category(String nombre) {
         this.nombre = nombre;
     }
 
     // 3. Getters y Setters
-    public Integer getIdCategory() {
+    public Long getIdCategory() {
         return idCategory;
     }
 
-    public void setIdCategory(Integer idCategory) {
+    public void setIdCategory(Long idCategory) {
         this.idCategory = idCategory;
     }
 

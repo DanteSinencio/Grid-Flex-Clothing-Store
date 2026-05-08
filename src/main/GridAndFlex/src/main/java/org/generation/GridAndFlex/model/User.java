@@ -4,10 +4,12 @@ package org.generation.GridAndFlex.model;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "Usuario")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_Usuario")
     private Long id;
 
     @Enumerated(EnumType.STRING)
