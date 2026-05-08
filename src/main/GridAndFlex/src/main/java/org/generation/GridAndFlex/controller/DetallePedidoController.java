@@ -23,7 +23,7 @@ public class DetallePedidoController {
 
     // EL GET por ID
     @GetMapping("/{id}")
-    public Optional<DetallePedido> getDetalleById(@PathVariable Integer id) {
+    public Optional<DetallePedido> getDetalleById(@PathVariable Long id) {
         return service.getDetalleById(id);
     }
 
@@ -36,14 +36,14 @@ public class DetallePedidoController {
     // EL PUT
     @PutMapping("/{id}")
     public DetallePedido updateDetalle(
-            @PathVariable Integer id,
+            @PathVariable Long id,
             @RequestBody DetallePedido detallePedido) {
         return service.updateDetalle(id, detallePedido);
     }
 
     // LE DELETE
     @DeleteMapping("/{id}")
-    public String deleteDetalle(@PathVariable Integer id) {
+    public String deleteDetalle(@PathVariable Long id) {
         service.deleteDetalle(id);
         return "Detalle eliminado correctamente";
     }

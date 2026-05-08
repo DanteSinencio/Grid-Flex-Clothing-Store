@@ -25,18 +25,18 @@ public class DetallePedidoService {
     }
 
     // EL GET by ID
-    public Optional<DetallePedido> getDetalleById(Integer id) {
+    public Optional<DetallePedido> getDetalleById(Long id) {
         return repository.findById(id);
     }
 
     // EL PUT
-    public DetallePedido updateDetalle(Integer id, DetallePedido detalleActualizado) {
+    public DetallePedido updateDetalle(Long id, DetallePedido detalleActualizado) {
         detalleActualizado.setIdDetalle(id);
         return repository.save(detalleActualizado);
     }
 
     // EL DELETE
-    public void deleteDetalle(Integer id) {
+    public void deleteDetalle(Long id) {
         repository.deleteById(id);
     }
 }
