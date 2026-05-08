@@ -9,26 +9,27 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_categoria")
-    private Long idCategory;
+    private Integer idCategory;
 
     @Column(nullable = false, length = 45)
     private String nombre;
 
-
+    // 1. Constructor vacío
     public Category() {
     }
 
-    public Category(Long idCategory, String nombre) {
+    // 2. Constructor con parámetros
+    public Category(Integer idCategory, String nombre) {
         this.idCategory = idCategory;
         this.nombre = nombre;
     }
 
-    // Getters y Setters
-    public Long getIdCategory() {
+    // 3. Getters y Setters
+    public Integer getIdCategory() {
         return idCategory;
     }
 
-    public void setIdCategory(Long idCategory) {
+    public void setIdCategory(Integer idCategory) {
         this.idCategory = idCategory;
     }
 
