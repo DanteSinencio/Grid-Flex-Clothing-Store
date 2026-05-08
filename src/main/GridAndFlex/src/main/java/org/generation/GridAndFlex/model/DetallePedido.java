@@ -10,8 +10,6 @@ public class DetallePedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_detalle_pedido")
     private Integer idDetalle;
-    @Column(name = "id_detalle_pedido")
-    private Long idDetalle;
 
     @Column(name = "cantidad")
     private Integer cantidad;
@@ -28,11 +26,11 @@ public class DetallePedido {
     public DetallePedido() {
     }
 
-    public Long getIdDetalle() {
+    public Integer getIdDetalle() {
         return idDetalle;
     }
 
-    public void setIdDetalle(Long idDetalle) {
+    public void setIdDetalle(Integer idDetalle) {
         this.idDetalle = idDetalle;
     }
 

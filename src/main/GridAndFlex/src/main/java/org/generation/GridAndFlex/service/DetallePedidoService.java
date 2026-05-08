@@ -14,29 +14,29 @@ public class DetallePedidoService {
     @Autowired
     private DetallePedidoRepository repository;
 
-    // EL GET
+    // GET todos
     public List<DetallePedido> getAllDetalles() {
         return repository.findAll();
     }
 
-    // EL POST
+    // POST
     public DetallePedido saveDetalle(DetallePedido detallePedido) {
         return repository.save(detallePedido);
     }
 
-    // EL GET by ID
-    public Optional<DetallePedido> getDetalleById(Long id) {
+    // GET por ID
+    public Optional<DetallePedido> getDetalleById(Integer id) {
         return repository.findById(id);
     }
 
-    // EL PUT
-    public DetallePedido updateDetalle(Long id, DetallePedido detalleActualizado) {
+    // PUT
+    public DetallePedido updateDetalle(Integer id, DetallePedido detalleActualizado) {
         detalleActualizado.setIdDetalle(id);
         return repository.save(detalleActualizado);
     }
 
-    // EL DELETE
-    public void deleteDetalle(Long id) {
+    // DELETE
+    public void deleteDetalle(Integer id) {
         repository.deleteById(id);
     }
 }

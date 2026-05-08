@@ -15,35 +15,35 @@ public class DetallePedidoController {
     @Autowired
     private DetallePedidoService service;
 
-    // EL GET TODOS
+    // GET todos
     @GetMapping
     public List<DetallePedido> getAllDetalles() {
         return service.getAllDetalles();
     }
 
-    // EL GET por ID
+    // GET por ID
     @GetMapping("/{id}")
-    public Optional<DetallePedido> getDetalleById(@PathVariable Long id) {
+    public Optional<DetallePedido> getDetalleById(@PathVariable Integer id) {
         return service.getDetalleById(id);
     }
 
-    // EL POST
+    // POST
     @PostMapping
     public DetallePedido createDetalle(@RequestBody DetallePedido detallePedido) {
         return service.saveDetalle(detallePedido);
     }
 
-    // EL PUT
+    // PUT
     @PutMapping("/{id}")
     public DetallePedido updateDetalle(
-            @PathVariable Long id,
+            @PathVariable Integer id,
             @RequestBody DetallePedido detallePedido) {
         return service.updateDetalle(id, detallePedido);
     }
 
-    // LE DELETE
+    // DELETE
     @DeleteMapping("/{id}")
-    public String deleteDetalle(@PathVariable Long id) {
+    public String deleteDetalle(@PathVariable Integer id) {
         service.deleteDetalle(id);
         return "Detalle eliminado correctamente";
     }
