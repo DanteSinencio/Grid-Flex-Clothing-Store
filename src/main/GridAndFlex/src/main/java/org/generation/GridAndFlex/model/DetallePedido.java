@@ -9,17 +9,20 @@ public class DetallePedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_detalle_pedido")
+    private Integer idDetalle;
+    @Column(name = "id_detalle_pedido")
     private Long idDetalle;
 
+    @Column(name = "cantidad")
     private Integer cantidad;
 
     @Column(name = "precio_unitario")
     private Double precioUnitario;
 
-    @Column(name = "pedido_id")
+    @Column(name = "pedidos_id_pedidos")
     private Integer pedidoId;
 
-    @Column(name = "producto_id")
+    @Column(name = "productos_id_productos")
     private Integer productoId;
 
     public DetallePedido() {
