@@ -2,7 +2,6 @@ package org.generation.GridAndFlex.model;
 
 import jakarta.persistence.*;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 
 @Entity
@@ -12,7 +11,7 @@ public class Pedidos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_pedidos")
-    private BigInteger id;
+    private Long id;
 
     @Column(name = "montoTotal", nullable = false)
     private BigDecimal montoTotal;
@@ -38,11 +37,11 @@ public class Pedidos {
 
 //Getters y Setters
 
-    public BigInteger getId() {
+    public Long  getId() {
         return id;
     }
 
-    public void setId(BigInteger id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

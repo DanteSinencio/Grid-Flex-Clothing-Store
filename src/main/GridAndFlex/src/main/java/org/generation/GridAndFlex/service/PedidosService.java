@@ -21,7 +21,7 @@ public class PedidosService {
     }
 
 
-    public Optional<Pedidos> getById(BigInteger  id) {
+    public Optional<Pedidos> getById(Long   id) {
         return pedidosRepository.findById(id);
     }
 
@@ -31,7 +31,7 @@ public class PedidosService {
     }
 
 
-    public Pedidos update(BigInteger id, Pedidos pedidoActualizado) {
+    public Pedidos update(Long  id, Pedidos pedidoActualizado) {
         return pedidosRepository.findById(id).map(pedido -> {
             pedido.setMontoTotal(pedidoActualizado.getMontoTotal());
             pedido.setFecha(pedidoActualizado.getFecha());
@@ -42,7 +42,7 @@ public class PedidosService {
     }
 
 
-    public boolean delete(BigInteger id) {
+    public boolean delete(Long  id) {
         if (pedidosRepository.existsById(id)) {
             pedidosRepository.deleteById(id);
             return true;
