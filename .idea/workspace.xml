@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0985d6c1-6908-4aae-9770-cf73780d0bc7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/java/org/generation/GridAndFlex/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/java/org/generation/GridAndFlex/controller/UserController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,15 +54,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.GridAndFlex [:org.generation.GridAndFlex.GridAndFlexApplication.main()].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;cesar-manriquez&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Cesar Manriquez/Desktop/Cursos/Desarrollador en Java Fullstack/CloneProyectoIntegrador/Grid-Flex-Clothing-Store/Grid-Flex-Clothing-Store&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.GridAndFlex [:org.generation.GridAndFlex.GridAndFlexApplication.main()].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "cesar-manriquez",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Cesar Manriquez/Desktop/Cursos/Desarrollador en Java Fullstack/CH65/PROYECTOS POSTMAN/ProyectoProductCardinalidad/jpa"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="GridAndFlexApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.generation.GridAndFlex.GridAndFlexApplication" />
