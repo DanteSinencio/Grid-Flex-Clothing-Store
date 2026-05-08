@@ -5,6 +5,7 @@ import org.generation.GridAndFlex.service.PedidosService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @RestController
@@ -23,7 +24,7 @@ public class PedidosController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Pedidos> getPedidoById(@PathVariable Long id) {
+    public ResponseEntity<Pedidos> getPedidoById(@PathVariable BigInteger id) {  // ✅ BigInteger
         return pedidosService.getById(id)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
@@ -36,7 +37,7 @@ public class PedidosController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Pedidos> updatePedido(
-            @PathVariable Long id,
+            @PathVariable BigInteger id,
             @RequestBody Pedidos pedidoData) {
 
         Pedidos pedido = pedidosService.update(id, pedidoData);
@@ -47,7 +48,7 @@ public class PedidosController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePedido(@PathVariable Long id) {
+    public ResponseEntity<Void> deletePedido(@PathVariable BigInteger id) {
         boolean deleted = pedidosService.delete(id);
         return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }

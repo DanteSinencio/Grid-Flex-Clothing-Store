@@ -5,6 +5,7 @@ import org.generation.GridAndFlex.repository.PedidosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +21,7 @@ public class PedidosService {
     }
 
 
-    public Optional<Pedidos> getById(Long id) {
+    public Optional<Pedidos> getById(BigInteger  id) {
         return pedidosRepository.findById(id);
     }
 
@@ -30,7 +31,7 @@ public class PedidosService {
     }
 
 
-    public Pedidos update(Long id, Pedidos pedidoActualizado) {
+    public Pedidos update(BigInteger id, Pedidos pedidoActualizado) {
         return pedidosRepository.findById(id).map(pedido -> {
             pedido.setMontoTotal(pedidoActualizado.getMontoTotal());
             pedido.setFecha(pedidoActualizado.getFecha());
@@ -41,7 +42,7 @@ public class PedidosService {
     }
 
 
-    public boolean delete(Long id) {
+    public boolean delete(BigInteger id) {
         if (pedidosRepository.existsById(id)) {
             pedidosRepository.deleteById(id);
             return true;
