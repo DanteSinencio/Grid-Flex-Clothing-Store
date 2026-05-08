@@ -5,7 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1877be04-8362-4da6-9a94-138b35958fe5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/java/org/generation/GridAndFlex/controller/CategoryController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/java/org/generation/GridAndFlex/controller/DetallePedidoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/java/org/generation/GridAndFlex/model/Category.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/java/org/generation/GridAndFlex/model/DetallePedido.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/java/org/generation/GridAndFlex/model/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/java/org/generation/GridAndFlex/repository/CategoryRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/java/org/generation/GridAndFlex/repository/DetallePedidoRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/java/org/generation/GridAndFlex/service/CategoryService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/java/org/generation/GridAndFlex/service/DetallePedidoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/java/org/generation/GridAndFlex/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/java/org/generation/GridAndFlex/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/java/org/generation/GridAndFlex/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/java/org/generation/GridAndFlex/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/java/org/generation/GridAndFlex/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/java/org/generation/GridAndFlex/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/java/org/generation/GridAndFlex/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/java/org/generation/GridAndFlex/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/DB/create.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/DB/create.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,24 +49,29 @@
     </system>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="TonaSanchezBien" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "TonaSanchez"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;TonaSanchez&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/DanteSinencio/Grid-Flex-Clothing-Store",
-    "accountId": "75b0d577-08b5-4e73-8e2a-c81457b540f5"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/DanteSinencio/Grid-Flex-Clothing-Store&quot;,
+    &quot;accountId&quot;: &quot;75b0d577-08b5-4e73-8e2a-c81457b540f5&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4,
-  "fromUser": false
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4,
+  &quot;fromUser&quot;: false
+}</component>
   <component name="ProjectId" id="3DPSKFppIqBr15ecYBF4ciTx4tZ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -68,7 +87,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "TonaSanchezBien",
+    "git-widget-placeholder": "Merging developer",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/tonasssanchez/Documents/Curso generation/Proyecto integrador GRIDFLEX/Grid-Flex-Clothing-Store",

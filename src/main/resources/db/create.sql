@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`pedidos` (
   `fecha` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
   `estado` ENUM('pendiente', 'pagado', 'enviado', 'entregado') NOT NULL DEFAULT 'pendiente',
   `Usuario_id_Usuario` INT NOT NULL,
-  PRIMARY KEY (`id_pedidos`, `Usuario_id_Usuario`),
+  PRIMARY KEY (`id_pedidos`),
   INDEX `fk_pedidos_Usuario1_idx` (`Usuario_id_Usuario` ASC) VISIBLE,
   CONSTRAINT `fk_pedidos_Usuario1`
     FOREIGN KEY (`Usuario_id_Usuario`)
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`productos` (
   `existencias` INT UNSIGNED NOT NULL,
   `url_imagen` TEXT NOT NULL,
   `categoria_id_categoria` INT NOT NULL,
-  PRIMARY KEY (`id_productos`, `categoria_id_categoria`),
+  PRIMARY KEY (`id_productos`),
   INDEX `fk_productos_categoria_idx` (`categoria_id_categoria` ASC) VISIBLE,
   CONSTRAINT `fk_productos_categoria`
     FOREIGN KEY (`categoria_id_categoria`)
@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`detalle_pedido` (
   `precio_unitario` DECIMAL(10,2) UNSIGNED NOT NULL,
   `pedidos_id_pedidos` INT NOT NULL,
   `productos_id_productos` INT NOT NULL,
-  PRIMARY KEY (`id_detalle_pedido`, `pedidos_id_pedidos`, `productos_id_productos`),
+  PRIMARY KEY (`id_detalle_pedido`),
   UNIQUE INDEX `id_detalle_pedido_UNIQUE` (`id_detalle_pedido` ASC) VISIBLE,
   INDEX `fk_detalle_pedido_pedidos1_idx` (`pedidos_id_pedidos` ASC) VISIBLE,
   INDEX `fk_detalle_pedido_productos1_idx` (`productos_id_productos` ASC) VISIBLE,
