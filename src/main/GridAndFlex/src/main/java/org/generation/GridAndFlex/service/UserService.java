@@ -20,11 +20,8 @@ public class UserService {
     }
 
 
-
-
-
-    public User updateUser(Long id, User user){
-        User existingUser = userRepository.findById(id).orElseThrow(()-> new RuntimeException("Usuario no encontrado"));
+    public User updateUser(Long id, User user) {
+        User existingUser = userRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
         existingUser.setNombre(user.getNombre());
         existingUser.setApellido(user.getApellido());
         existingUser.setRoles(user.getRoles());
@@ -35,14 +32,16 @@ public class UserService {
         return userRepository.save(existingUser);
     }
 
-    public void deleteUser(Long id){
+    public void deleteUser(Long id) {
         userRepository.deleteById(id);
-    public User findById(Long id){
+
+    }
+
+    public User findById(Long id) {
         return userRepository.findById(id).orElse(null);
     }
 
-    public User addUser(User user){
+    public User addUser(User user) {
         return userRepository.save(user);
     }
 }
-
