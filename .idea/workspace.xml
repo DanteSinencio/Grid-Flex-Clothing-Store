@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1877be04-8362-4da6-9a94-138b35958fe5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/java/org/generation/GridAndFlex/controller/CategoryController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/java/org/generation/GridAndFlex/controller/DetallePedidoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/java/org/generation/GridAndFlex/model/Category.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/java/org/generation/GridAndFlex/model/DetallePedido.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/java/org/generation/GridAndFlex/model/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/java/org/generation/GridAndFlex/repository/CategoryRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/java/org/generation/GridAndFlex/repository/DetallePedidoRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/java/org/generation/GridAndFlex/service/CategoryService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/java/org/generation/GridAndFlex/service/DetallePedidoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/java/org/generation/GridAndFlex/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/java/org/generation/GridAndFlex/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/java/org/generation/GridAndFlex/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/java/org/generation/GridAndFlex/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/java/org/generation/GridAndFlex/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/java/org/generation/GridAndFlex/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/java/org/generation/GridAndFlex/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/java/org/generation/GridAndFlex/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GridAndFlex/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/DB/create.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/DB/create.sql" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/src/main/GridAndFlex">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="GridAndFlex" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="TonaSanchezBien" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;TonaSanchez&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/DanteSinencio/Grid-Flex-Clothing-Store&quot;,
+    &quot;accountId&quot;: &quot;75b0d577-08b5-4e73-8e2a-c81457b540f5&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3DPSKFppIqBr15ecYBF4ciTx4tZ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "Merging developer",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/tonasssanchez/Documents/Curso generation/Proyecto integrador GRIDFLEX/Grid-Flex-Clothing-Store",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "configurable.group.editor",
+    "to.speed.mode.migration.done": "true"
+  }
+}]]></component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1877be04-8362-4da6-9a94-138b35958fe5" name="Changes" comment="" />
+      <created>1778182145681</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1778182145681</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="developer" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
