@@ -22,10 +22,6 @@ public class UserController {
         return userService.getAllUserService();
     }
 
-
-
-
-
     @PutMapping
     public User updateUser(@PathVariable Long id, @RequestBody User user){
         return userService.updateUser(id, user);
