@@ -22,6 +22,20 @@ public class UserController {
         return userService.getAllUserService();
     }
 
+
+
+
+
+    @PutMapping
+    public User updateUser(@PathVariable Long id, @RequestBody User user){
+        return userService.updateUser(id, user);
+    }
+
+    @DeleteMapping
+    public void deleteUser(@PathVariable Long id){
+        userService.deleteUser(id);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<User> getById(@PathVariable Long id){
         User user = userService.findById(id);
