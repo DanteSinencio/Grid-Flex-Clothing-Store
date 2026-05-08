@@ -17,7 +17,7 @@ public class Pedido {
     private BigDecimal montoTotal;
 
     @Column(name = "fecha", nullable = false)
-    private LocalDateTime fecha;
+    private LocalDateTime fecha = LocalDateTime.now();
 
     @Enumerated(EnumType.STRING)
     @Column(name = "estado", nullable = false)
