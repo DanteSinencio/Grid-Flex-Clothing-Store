@@ -1,7 +1,6 @@
 package org.generation.GridAndFlex.controller;
 
 import org.generation.GridAndFlex.model.User;
-import org.generation.GridAndFlex.repository.UserRepository;
 import org.generation.GridAndFlex.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
