@@ -9,7 +9,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/api/v1/products")
 public class ProductController {
     private final ProductService productService;
 
@@ -36,7 +36,7 @@ public class ProductController {
     }
 
     //UPDATE
-    @PutMapping
+    @PutMapping("/{id}")
     public void actualizarProducto(@RequestBody Product product){ productService.actualizarProducto(product);}
 
     //DELATE
