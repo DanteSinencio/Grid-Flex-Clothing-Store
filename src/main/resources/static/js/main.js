@@ -40,14 +40,29 @@ gestorProductos.loadItemsFromLocalStorage();
 
 // Metemos tus 6 productos para que la memoria no esté vacía
 if (gestorProductos.items.length === 0) {
-    gestorProductos.addItem('Camisa Slim Fit', '/img/playeraLose.jpg', 'Seminueva', 299, 'camisas', 'M', 10);
-    gestorProductos.addItem('Chamarra Mezclilla', '/img/chamarraMezclilla.jpg', 'Nueva', 450, 'chamarras', 'G', 5);
-    gestorProductos.addItem('Camisa con rayas', '/img/camisaRayas.jpg', 'Seminueva', 350, 'camisas', 'M', 12);
-    gestorProductos.addItem('Chamarra Deportiva', '/img/chamarraDeportiva.jpg', 'Nueva', 350, 'chamarras', 'G', 5);
-    gestorProductos.addItem('Chamarra Popover', '/img/chamarraPopover.jpg', 'Nueva', 330, 'chamarras', 'M', 8);
-    gestorProductos.addItem('Gorra', '/img/gorra.jpg', 'Nueva', 180, 'accesorios', 'CH', 20);
+    gestorProductos.addItem('Camisa Slim Fit', 'img/playeraLose.jpg', 'Seminueva', 299, 'camisas', 'M', 10);
+    gestorProductos.addItem('Chamarra Mezclilla', 'img/chamarraMezclilla.jpg', 'Nueva', 450, 'chamarras', 'G', 5);
+    gestorProductos.addItem('Camisa con rayas', 'img/camisaRayas.jpg', 'Seminueva', 350, 'camisas', 'M', 12);
+    gestorProductos.addItem('Chamarra Deportiva', 'img/chamarraDeportiva.jpg', 'Nueva', 350, 'chamarras', 'G', 5);
+    gestorProductos.addItem('Chamarra Popover', 'img/chamarraPopover.jpg', 'Nueva', 330, 'chamarras', 'M', 8);
+    gestorProductos.addItem('Gorra', 'img/gorra.jpg', 'Nueva', 180, 'accesorios', 'CH', 20);
 
     localStorage.setItem("gridFlex_productos", JSON.stringify(gestorProductos.items));
+}
+
+const IMG_FALLBACK = 'img/camisa.png';
+
+/** Rutas relativas a static/ para que funcionen desde index y desde templates/ (y file://). */
+function resolveStaticUrl(url) {
+    if (!url || typeof url !== 'string') return '';
+    let u = url.trim().replace(/\\/g, '/');
+    if (/^https?:\/\//i.test(u) || u.startsWith('data:') || u.startsWith('blob:')) return u;
+    if (u.startsWith('../static/img/')) u = 'img/' + u.slice('../static/img/'.length);
+    else if (u.startsWith('/static/img/')) u = 'img/' + u.slice('/static/img/'.length);
+    const path = u.replace(/^\/+/, '');
+    const pathname = (window.location.pathname || '').replace(/\\/g, '/');
+    const inTemplates = pathname.includes('/templates/');
+    return (inTemplates ? '../' : '') + path;
 }
 
 
@@ -58,8 +73,9 @@ function addItemCard(producto) {
     const col = document.createElement('div');
     col.className = 'col-md-4 producto';
 
-    const imgHTML = producto.imagen 
-        ? `<img src="${producto.imagen}" class="img-fluid rounded" style="height: 250px; width: 100%; object-fit: cover;">`
+    const imgSrc = producto.imagen ? resolveStaticUrl(producto.imagen) : '';
+    const imgHTML = imgSrc
+        ? `<img src="${imgSrc}" class="img-fluid rounded" style="height: 250px; width: 100%; object-fit: cover;">`
         : `<div class="bg-secondary text-white d-flex justify-content-center align-items-center rounded mb-2" style="height: 250px; width: 100%;">Sin imagen</div>`;
 
     col.innerHTML = `
@@ -334,8 +350,8 @@ document.addEventListener("DOMContentLoaded", () => {
             fila.setAttribute('data-id', producto.id);
             
             // Si el producto tiene imagen, la mostramos, si no, mostramos el cuadro gris
-            const imagenHTML = producto.imagen 
-                ? `<img src="${producto.imagen}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 6px;">`
+            const imagenHTML = producto.imagen
+                ? `<img src="${resolveStaticUrl(producto.imagen)}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 6px;">`
                 : `<div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; border-radius: 6px; font-size: 10px;">IMG</div>`;
 
             fila.innerHTML = `
@@ -629,35 +645,8 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        // TAREA 5 (Último paso): Iterar sobre el array del controlador y usar addItemCard
-        gestorProductos.items.forEach(producto => {
-            addItemCard(producto);
-        });
-
-
-        // Dibujamos cada producto guardado
         inventarioProductos.forEach(producto => {
-            const col = document.createElement('div');
-            col.className = 'col-md-4 producto'; // Clases exactas de tu diseño
-
-            // Controlamos si hay imagen o no
-            const imgHTML = producto.imagen 
-                ? `<img src="${producto.imagen}" class="img-fluid rounded" style="height: 250px; width: 100%; object-fit: cover;">`
-                : `<div class="bg-secondary text-white d-flex justify-content-center align-items-center rounded mb-2" style="height: 250px; width: 100%;">Sin imagen</div>`;
-
-            // Estructura de tu tarjeta
-            col.innerHTML = `
-                <div class="card p-3 h-100 shadow-sm border-0" data-categoria="${producto.categoria}" data-talla="${producto.talla}">
-                    ${imgHTML}
-                    <h6 class="mt-3 fw-bold">${producto.nombre}</h6>
-                    <small class="text-muted">${producto.categoria} | Talla: ${producto.talla}</small>
-                    <p class="fs-5 mt-2 mb-3">$${producto.precio}</p>
-                    <button class="btn btn-outline-dark btn-sm mt-auto w-100 btn-agregar-carrito" data-id="${producto.id}">
-                        <i class="fa-solid fa-cart-plus"></i> Agregar al carrito
-                    </button>
-                </div>
-            `;
-            contenedorProductos.appendChild(col);
+            addItemCard(producto);
         });
     }
 });
@@ -683,7 +672,7 @@ function mostrarNotificacionProducto(producto) {
             <i class="fa-solid fa-check"></i>
         </div>
         <div class="notification-cart-content">
-            <img src="${producto.imagen || '/img/default.jpg'}" alt="${producto.nombre}" class="notification-cart-img">
+            <img src="${resolveStaticUrl(producto.imagen || IMG_FALLBACK)}" alt="${producto.nombre}" class="notification-cart-img">
             <div class="notification-cart-details">
                 <h6>${producto.nombre}</h6>
                 <div class="detail-item">
@@ -842,7 +831,7 @@ document.addEventListener('click', (e) => {
                 id: idUnico,
                 nombre: btnAgregar.dataset.nombre || 'Producto',
                 precio: btnAgregar.dataset.precio || 0,
-                imagen: btnAgregar.dataset.imagen || '/img/default.jpg',
+                imagen: btnAgregar.dataset.imagen || IMG_FALLBACK,
                 categoria: btnAgregar.dataset.categoria || 'general',
                 talla: btnAgregar.dataset.talla || 'M'
             };
@@ -940,7 +929,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 
                 const itemHTML = document.createElement('div');
                 itemHTML.className = 'product-card d-flex align-items-center justify-content-between p-3 mb-3 bg-white shadow-sm rounded';
-                const imagenSrc = producto.imagen ? producto.imagen : '/img/placeholder.jpg';
+                const imagenSrc = resolveStaticUrl(producto.imagen || IMG_FALLBACK);
 
                 itemHTML.innerHTML = `
                     <div class="d-flex align-items-center">
