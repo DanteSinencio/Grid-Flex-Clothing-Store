@@ -1,24 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="JavacSettings">
-    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="GridAndFlex" options="-parameters" />
-      <module name="GridAndFlex.main" options="-parameters" />
-      <module name="GridAndFlex.test" options="-parameters" />
-    </option>
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel target="17" />
   </component>
   <component name="JavacSettings">
-    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="GridAndFlex" options="-parameters" />
-      <module name="GridAndFlex.main" options="-parameters" />
-      <module name="GridAndFlex.test" options="-parameters" />
-    </option>
-  </component>
-  <component name="JavacSettings">
-    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="GridAndFlex" options="-parameters" />
-      <module name="GridAndFlex.main" options="-parameters" />
-      <module name="GridAndFlex.test" options="-parameters" />
-    </option>
+    <option name="ADDITIONAL_OPTIONS_STRING" value="-parameters" />
   </component>
 </project>
