@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0985d6c1-6908-4aae-9770-cf73780d0bc7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,6 +59,7 @@
   "keyToString": {
     "Gradle.GridAndFlex [:org.generation.GridAndFlex.GridAndFlexApplication.main()].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "git-widget-placeholder": "developer",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Cesar Manriquez/Desktop/Cursos/Desarrollador en Java Fullstack/CH65/PROYECTOS POSTMAN/ProyectoProductCardinalidad/jpa"
