@@ -387,6 +387,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const contadorBadge = document.getElementById('contador-productos'); 
 
   let tallaSeleccionada = null;
+  const categoriaInicial = new URLSearchParams(window.location.search).get("categoria")?.toLowerCase();
 
   if (btnFiltro && panelFiltro) {
     btnFiltro.addEventListener("click", () => {
@@ -448,6 +449,19 @@ document.addEventListener("DOMContentLoaded", async () => {
       filtrar();
     });
   });
+
+  if (categoriaInicial && categorias.length > 0) {
+    let categoriaAplicada = false;
+    categorias.forEach((input) => {
+      if (input.value.toLowerCase() === categoriaInicial) {
+        input.checked = true;
+        categoriaAplicada = true;
+      } else if (input !== verTodo) {
+        input.checked = false;
+      }
+    });
+    if (verTodo) verTodo.checked = !categoriaAplicada;
+  }
 
   function filtrar() {
     if (!contenedorProductos || typeof gestorProductos === 'undefined') return;
