@@ -31,7 +31,7 @@
             <div class="d-flex align-items-center order-lg-3">
                 <ul class="navbar-nav">
                     <a id="login" href="#" class="nav-link active text-white fw-bold d-none d-lg-block ms-lg-3"
-                        aria-current="page">  </a>
+                        aria-current="page"> </a>
                     <a href="carrito.html" class="cart-icon text-white text-decoration-none me-3 position-relative">
                         <i class="fa-solid fa-cart-shopping"></i>
                         <span
@@ -61,7 +61,8 @@
                         <a class="nav-link" href="about.html">Acerca de nosotros</a>
                     </li>
                     <li class="nav-item d-lg-none">
-                        <a id="loginMovil" href="profile.html" class="nav-link active text-white fw-bold" aria-current="page"></a>
+                        <a id="loginMovil" href="profile.html" class="nav-link active text-white fw-bold"
+                            aria-current="page"></a>
                     </li>
                 </ul>
 
@@ -77,8 +78,7 @@
             <div class="d-flex align-items-center gap-4 mb-5">
                 <div class="position-relative border border-dark rounded bg-white d-flex align-items-center justify-content-center"
                     style="width: 120px; height: 120px;">
-                    <img src="../img/Ana_Bonilla.jpeg" alt="imagen de usuario"
-                        style="width: 110px; height: 110px;">
+                    <img src="../img/user-icon.png" alt="imagen de usuario" style="width: 110px; height: 110px;">
                     <div class="position-absolute bottom-0 end-0 p-1 bg-white border border-light rounded text-danger"
                         style="font-size: 0.6rem; cursor: pointer;">
                         <i class="fas fa-edit"></i>
@@ -95,24 +95,34 @@
             <form id="profileForm">
                 <!--Datos Personales -->
                 <div class="mb-5">
+
                     <h2 class="section-title">| Datos Personales</h2>
+
                     <div class="row g-4">
+
                         <div class="col-md-6">
                             <label class="input-label">Nombre completo</label>
-                            <input type="text" name="nombre" id="nombre" class="form-control" value="Maria García"
+
+                            <input type="text" name="nombreProfile" id="nombreProfile" class="form-control"
                                 placeholder="Escribe tu nombre completo...">
                         </div>
+
                         <div class="col-md-6">
                             <label class="input-label">Correo Electrónico</label>
-                            <input type="email" name="email" id="email" class="form-control"
-                                value="maria.garcia@ejemplo.com" placeholder="Escribe tu correo...">
+
+                            <input type="emailProfile" name="emailProfile" id="email" class="form-control"
+                                placeholder="Escribe tu correo...">
                         </div>
+
                         <div class="col-md-6">
                             <label class="input-label">Teléfono</label>
-                            <input type="text" name="tel" id="tel" class="form-control" value="+52 55 1234 5678"
+
+                            <input type="text" name="telProfile" id="telProfile" class="form-control"
                                 placeholder="Escribe tu teléfono...">
                         </div>
+
                     </div>
+
                 </div>
 
                 <!--Domicilio -->
@@ -198,7 +208,8 @@
                 </div>
 
                 <div class="d-flex flex-column flex-md-row justify-content-center gap-3 mt-4">
-                    <button  onclick="logout()" type="button" class="btn btn-admin btn-lg rounded-3 px-4">Salir de la sesión</button>
+                    <button onclick="logout()" type="button" class="btn btn-admin btn-lg rounded-3 px-4">Salir de la
+                        sesión</button>
                     <button type="submit" class="btn index-btn-blue">Guardar Cambios</button>
                 </div>
             </form>
@@ -219,9 +230,12 @@
                         duran toda la vida.
                     </p>
                     <div class="social-icons mt-3">
-                        <i class="fa-brands fa-instagram"></i>
-                        <i class="fa-brands fa-facebook"></i>
-                        <i class="fa-brands fa-x-twitter"></i>
+                        <a href="https://www.facebook.com/profile.php?id=61588872880464" target="_blank"><i
+                                class="fa-brands fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/gridflex1/" target="_blank"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@grid_flex_1" target="_blank"><i
+                                class="fa-brands fa-tiktok"></i></a>
                     </div>
                 </div>
 
