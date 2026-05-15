@@ -1227,141 +1227,255 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // ==========================================
-// LOGIN DE USUARIO
+// CONFIGURACIÓN API
 // ==========================================
-class UserController {
-    constructor(currentId = 0) {
-        this.users = [];
-        this.currentId = currentId;
-    }
+const API_URL = "http://localhost:8080/api/v1/users";
 
-    addUser(name, lastName, phone, email, password) {
-        const user = {
-            idUser: String(this.currentId++),
-            name,
-            lastName,
-            phone,
-            streetAddress: "",
-            Neighborhood: "",
-            postalCode: "",
-            city: "",
-            state: "",
-            email,
-            password,
-            role: "user"
-        };
-    
+// ==========================================
+// REGISTRO DE USUARIO
+// ==========================================
+async function registerUser(userData) {
 
-        this.users.push(user);
-        localStorage.setItem("gridFlex_usuarios", JSON.stringify(this.users));
-    } 
+    try {
 
-    loadUsersFromLocalStorage() {
-        const storageUsers = localStorage.getItem("gridFlex_usuarios");
-        if (storageUsers) {
-            this.users = JSON.parse(storageUsers);
-            if (this.users.length > 0) {
-                this.currentId = Math.max(
-                    ...this.users.map(user => parseInt(user.idUser) || 0)
-                ) + 1;
-            }
+        const response = await fetch(API_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(userData)
+        });
+
+        if (!response.ok) {
+            throw new Error("Error al registrar usuario");
         }
+
+        const data = await response.json();
+
+        console.log("Usuario registrado:", data);
+
+        // iniciar sesión automáticamente
+        await login(userData.correo, userData.contrasena);
+
+    } catch (error) {
+
+        console.error(error);
+        alert("No se pudo registrar el usuario");
+
     }
 }
 
-const gestorUsuarios = new UserController();
-gestorUsuarios.loadUsersFromLocalStorage();
-//usuarios de prueba
-if( gestorUsuarios.users.length === 0){
-    gestorUsuarios.addUser("admin","prueba",1234567891,"grindFlex@gmail.com","grid123@");
-    gestorUsuarios.users[0].role = "admin";
-    gestorUsuarios.addUser("user","prueba",1234567891,"userPrueba@gmail.com","grid123@");
-    
-    localStorage.setItem("gridFlex_usuarios", JSON.stringify(gestorUsuarios.users));
-}
+// ==========================================
+// LOGIN
+// ==========================================
+async function login(correo, contrasena) {
 
-function login(email, password) {
-    const users = JSON.parse(localStorage.getItem("gridFlex_usuarios")) || [];
+    try {
 
-    const user = users.find(u => u.email === email && u.password === password);
+        const response = await fetch(`${API_URL}/login`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                correo: correo,
+                contrasena: contrasena
+            })
+        });
 
-    if (user) {
-        localStorage.setItem("session", JSON.stringify({
-            idUser: user.idUser,
-            name: user.name,
-            role: user.role
+        if (!response.ok) {
+            alert("Credenciales incorrectas");
+            return;
+        }
+
+        const user = await response.json();
+
+        // guardar sesión
+        sessionStorage.setItem("session", JSON.stringify({
+            id: user.id,
+            nombre: user.nombre,
+            roles: user.roles
         }));
 
-        window.location.href = "index.html";
-    } else {
-        alert("Credenciales incorrectas");
+        window.location.href = "../index.html";
+
+    } catch(error) {
+
+        console.error(error);
+        alert("Error del servidor");
+
     }
 }
 
+// ==========================================
+// OBTENER SESIÓN
+// ==========================================
 function getSession() {
-    return JSON.parse(localStorage.getItem("session"));
+
+    return JSON.parse(sessionStorage.getItem("session"));
+
 }
+
+// ==========================================
+// CERRAR SESIÓN
+// ==========================================
 function logout() {
-    localStorage.removeItem("session");
+
+    sessionStorage.removeItem("session");
     window.location.href = "login.html";
+
 }
 
-const form = document.querySelector("#loginForm");
+// ==========================================
+// FORM LOGIN
+// ==========================================
+const formLogin = document.querySelector("#loginForm");
 
-if (form) {
-    form.addEventListener("submit", function(e) {
+if (formLogin) {
+
+    formLogin.addEventListener("submit", async function (e) {
+
         e.preventDefault();
 
-        const email = document.querySelector("#email").value;
-        const password = document.querySelector("#password").value;
+        const correo = document.querySelector("#email").value;
+        const contrasena = document.querySelector("#password").value;
 
-        login(email, password);
+        await login(correo, contrasena);
+
     });
+
 }
 
-const formRegister =document.querySelector("#formulario");
-if(formRegister){
-    formRegister.addEventListener("submit", (e) => {
+// ==========================================
+// FORM REGISTRO
+// ==========================================
+const formRegister = document.querySelector("#formulario");
+
+if (formRegister) {
+
+    formRegister.addEventListener("submit", async (e) => {
+
         e.preventDefault();
 
         const nombreUsuario = document.querySelector("#nombre").value;
         const apellidoUsuario = document.querySelector("#apellido").value;
         const telefonoUsuario = document.querySelector("#telefono").value;
-        const contraseñaUsuario = document.querySelector("#password2").value;
+        const contrasenaUsuario = document.querySelector("#password2").value;
         const correoUsuario = document.querySelector("#correo").value;
 
-        gestorUsuarios.addUser(nombreUsuario, apellidoUsuario, telefonoUsuario, correoUsuario, contraseñaUsuario );
-        login(correoUsuario,contraseñaUsuario);
+        // DATOS CORRECTOS PARA SPRING
+        const userData = {
+
+            nombre: nombreUsuario,
+            apellido: apellidoUsuario,
+            telefono: telefonoUsuario,
+            correo: correoUsuario,
+            contrasena: contrasenaUsuario,
+            roles: "cliente"
+
+        };
+
+        await registerUser(userData);
+
     });
+
 }
 
-//boton para regresar
-function regresar(){
-    window.location.href = "index.html";
+// ==========================================
+// BOTÓN REGRESAR
+// ==========================================
+function regresar() {
+
+    window.location.href = "../index.html";
+
 }
 
-//Logica del navbar
+// ==========================================
+// NAVBAR
+// ==========================================
 document.addEventListener("DOMContentLoaded", () => {
-    const session = JSON.parse(localStorage.getItem("session"));
+
+    const session = getSession();
+
     const login = document.getElementById("login");
-    const loginMovil= document.getElementById("loginMovil");
+    const loginMovil = document.getElementById("loginMovil");
+
+    if (!login || !loginMovil) return;
 
     if (session) {
-        
-        login.innerHTML = `<i class="fa-solid fa-user me-1"></i> ${session.name}`;
-        loginMovil.innerHTML = `<i class="fa-solid fa-user me-1"></i> ${session.name}`;
-        if (session.role === 'admin'){
-            login.href = "seller.html";
+
+        login.innerHTML =
+            `<i class="fa-solid fa-user me-1"></i> ${session.nombre}`;
+
+        loginMovil.innerHTML =
+            `<i class="fa-solid fa-user me-1"></i> ${session.nombre}`;
+
+        if (session.roles === "admin") {
+
+            if (window.location.pathname.includes("index.html")){
+                login.href = "templates/seller.html";
+                loginMovil.href = "templates/seller.html";
+            }else{
+                login.href = "seller.html";
             loginMovil.href = "seller.html";
-        }else{
-            login.href = "profileUser.html";
-            loginMovil.href = "profileUser.html";
+            }
+
+        } else {
+            if (window.location.pathname.includes("index.html")){
+                login.href = "templates/profileUser.html";
+                loginMovil.href = "templates/profileUser.html";
+            }else{
+                login.href = "profileUser.html";
+                loginMovil.href = "profileUser.html";
+            }
+
+
         }
 
-        
-    }
-    else{
+    } else {
+
         login.innerHTML = "INGRESAR";
         loginMovil.innerHTML = "INGRESAR";
+
     }
+
+});
+
+//============================================
+//DATOS PROFILE
+//============================================
+document.addEventListener("DOMContentLoaded", async () => {
+
+    const session = JSON.parse(
+        sessionStorage.getItem("session")
+    );
+
+    try {
+
+        const response = await fetch(
+            `http://localhost:8080/api/v1/users/${session.id}`
+        );
+
+        if (!response.ok) {
+            throw new Error("Usuario no encontrado");
+        }
+
+        const user = await response.json();
+
+        // llenar inputs
+        
+        document.getElementById("telProfile").value =
+            user.telefono;
+            
+        document.getElementById("nombreProfile").value =
+            `${user.nombre} ${user.apellido}`;
+
+        document.getElementById("emailProfile").value =
+            user.correo;
+            
+
+    } catch(error) {
+
+    }
+
 });

@@ -46,4 +46,20 @@ public class UserController {
     public User addUser(@RequestBody User user){
         return userService.addUser(user);
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody User loginUser){
+
+        List<User> users = userService.getAllUserService();
+
+        for(User user : users){
+            if(user.getCorreo().equals(loginUser.getCorreo()) &&
+                    user.getContrasena().equals(loginUser.getContrasena())){
+
+                return ResponseEntity.ok(user);
+            }
+        }
+
+        return ResponseEntity.status(401).body("Credenciales incorrectas");
+    }
 }
