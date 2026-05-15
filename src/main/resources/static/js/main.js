@@ -9,10 +9,20 @@ const GUEST_CART_KEY = "gridFlex_carrito_guest";
 function readSession() {
     try {
         const raw = sessionStorage.getItem("session");
-        return raw ? JSON.parse(raw) : null;
+        const session = raw ? JSON.parse(raw) : null;
+        if (!session) return null;
+
+        const id = getSessionUserId(session);
+        return id == null ? session : { ...session, id };
     } catch {
         return null;
     }
+}
+
+function getSessionUserId(session) {
+    if (!session) return null;
+    const id = session.id ?? session.id_Usuario ?? session.idUsuario;
+    return id != null && id !== "" ? id : null;
 }
 
 function mapApiProductToUi(p) {
@@ -104,7 +114,10 @@ async function apiAddCarritoItem(userId, productoId, cantidad = 1) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ productoId: Number(productoId), cantidad }),
     });
-    if (!r.ok) throw new Error("No se pudo agregar al carrito");
+    if (!r.ok) {
+        const detail = await r.text().catch(() => "");
+        throw new Error(`No se pudo agregar al carrito (${r.status}) ${detail}`);
+    }
     const data = await r.json();
     return data.map(mapCarritoLineToUi);
 }
@@ -143,12 +156,14 @@ async function apiCheckout(userId, montoTotal) {
 
 async function getCarritoActual() {
     const sess = readSession();
-    if (sess && sess.id != null) {
+    const userId = getSessionUserId(sess);
+    if (userId != null) {
         try {
-            return await fetchCarritoApi(sess.id);
+            const apiCart = await fetchCarritoApi(userId);
+            return [...apiCart, ...readGuestCart()];
         } catch (e) {
             console.error(e);
-            return [];
+            return readGuestCart();
         }
     }
     return readGuestCart();
@@ -205,6 +220,29 @@ function resolveStaticUrl(url) {
     const pathname = (window.location.pathname || "").replace(/\\/g, "/");
     const inTemplates = pathname.includes("/templates/");
     return (inTemplates ? "../" : "") + path;
+}
+
+function resizeImageFileToDataUrl(file, maxSize = 900, quality = 0.72) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+            const img = new Image();
+            img.onload = () => {
+                const scale = Math.min(1, maxSize / Math.max(img.width, img.height));
+                const canvas = document.createElement("canvas");
+                canvas.width = Math.max(1, Math.round(img.width * scale));
+                canvas.height = Math.max(1, Math.round(img.height * scale));
+
+                const ctx = canvas.getContext("2d");
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                resolve(canvas.toDataURL("image/jpeg", quality));
+            };
+            img.onerror = reject;
+            img.src = reader.result;
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+    });
 }
 
 
@@ -373,8 +411,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         tallaSeleccionada = null;
         tallas.forEach(b => b.classList.remove("active"));
         if(precioRange) {
-            precioRange.value = 600;
-            precioValor.textContent = "$600";
+            precioRange.value = precioRange.max || 2000;
+            precioValor.textContent = "$" + precioRange.value;
         }
         filtrar();
       }
@@ -415,7 +453,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!contenedorProductos || typeof gestorProductos === 'undefined') return;
 
     const cats = [...categorias].filter(c => c.checked && c.value !== "todo").map(c => c.value.toLowerCase());
-    const precioMax = precioRange ? parseInt(precioRange.value) : 600;
+    const precioMax = precioRange ? parseInt(precioRange.value) : 2000;
 
     const staticCols = contenedorProductos.querySelectorAll('.producto[data-catalog-static="true"]');
 
@@ -525,14 +563,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     if (inputImagen) {
-        inputImagen.addEventListener("change", function (e) {
+        inputImagen.addEventListener("change", async function (e) {
             const archivo = e.target.files[0];
             if (archivo) {
-                const reader = new FileReader();
-                reader.onload = function (event) {
-                    imagenBase64Temporal = event.target.result;
-                };
-                reader.readAsDataURL(archivo);
+                try {
+                    imagenBase64Temporal = await resizeImageFileToDataUrl(archivo);
+                } catch (error) {
+                    console.error(error);
+                    imagenBase64Temporal = "";
+                    alert("No se pudo procesar la imagen seleccionada.");
+                }
             }
         });
     }
@@ -898,8 +938,14 @@ document.addEventListener(
 
         try {
             const sess = readSession();
-            if (sess && sess.id != null && idProducto) {
-                await apiAddCarritoItem(sess.id, idProducto, 1);
+            const userId = getSessionUserId(sess);
+            if (userId != null && idProducto) {
+                try {
+                    await apiAddCarritoItem(userId, idProducto, 1);
+                } catch (apiError) {
+                    console.warn("No se pudo guardar el producto en la API; se conservara en el carrito local.", apiError);
+                    await addProductToCartGuest(productoAñadir);
+                }
             } else {
                 await addProductToCartGuest(productoAñadir);
             }
@@ -921,7 +967,7 @@ document.addEventListener(
             }, 1000);
         } catch (err) {
             console.error(err);
-            alert("No se pudo agregar al carrito. Si estás registrado, usa productos del catálogo.");
+            alert("No se pudo agregar al carrito. Intenta de nuevo.");
         }
     },
     true
@@ -1034,11 +1080,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!idProducto) return;
 
         const sess = readSession();
+        const userId = getSessionUserId(sess);
 
         try {
-            if (sess && sess.id != null && detalleIdStr) {
+            if (userId != null && detalleIdStr) {
                 const detalleId = Number(detalleIdStr);
-                let carrito = await fetchCarritoApi(sess.id);
+                let carrito = await fetchCarritoApi(userId);
                 const line = carrito.find((x) => x.detalleId === detalleId);
                 if (!line) {
                     await renderizarCarrito();
@@ -1046,12 +1093,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
                 if (e.target.classList.contains("btn-quitar")) {
-                    carrito = await apiRemoveLine(sess.id, detalleId);
+                    carrito = await apiRemoveLine(userId, detalleId);
                 } else if (e.target.classList.contains("btn-aumentar")) {
-                    carrito = await apiUpdateQty(sess.id, detalleId, line.cantidad + 1);
+                    carrito = await apiUpdateQty(userId, detalleId, line.cantidad + 1);
                 } else if (e.target.classList.contains("btn-disminuir")) {
                     const n = line.cantidad - 1;
-                    carrito = await apiUpdateQty(sess.id, detalleId, n < 1 ? 0 : n);
+                    carrito = await apiUpdateQty(userId, detalleId, n < 1 ? 0 : n);
                 }
             } else {
                 let carrito = readGuestCart();
@@ -1083,8 +1130,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (btnCheckout) {
         btnCheckout.addEventListener("click", async () => {
             const usuarioIniciado = readSession();
+            const userId = getSessionUserId(usuarioIniciado);
 
-            if (!usuarioIniciado) {
+            if (userId == null) {
                 const modalLogin = new bootstrap.Modal(document.getElementById("modalLoginRequerido"));
                 modalLogin.show();
                 return;
@@ -1122,8 +1170,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const totalFinal = subtotalModal + envioModal;
 
             try {
-                if (usuarioIniciado.id != null) {
-                    await apiCheckout(usuarioIniciado.id, totalFinal);
+                const carritoTieneLineasApi = carrito.some((item) => item.detalleId != null);
+                if (carritoTieneLineasApi) {
+                    await apiCheckout(userId, totalFinal);
                 }
             } catch (err) {
                 console.error(err);
@@ -1354,6 +1403,9 @@ async function login(correo, contrasena) {
             JSON.stringify({
                 id: user.id,
                 nombre: user.nombre,
+                apellido: user.apellido,
+                correo: user.correo,
+                telefono: user.telefono,
                 roles: user.roles,
             })
         );
@@ -1499,25 +1551,81 @@ document.addEventListener("DOMContentLoaded", () => {
 //============================================
 document.addEventListener("DOMContentLoaded", async () => {
     const session = readSession();
+    const userId = getSessionUserId(session);
     const telEl = document.getElementById("telProfile");
     const nombreEl = document.getElementById("nombreProfile");
     const emailEl = document.getElementById("emailProfile");
+    const profileForm = document.getElementById("profileForm");
 
-    if (!session || session.id == null || !telEl || !nombreEl || !emailEl) return;
+    if (userId == null || !telEl || !nombreEl || !emailEl) return;
+
+    let currentUser = {
+        ...session,
+        id: userId,
+    };
 
     try {
-        const response = await fetch(`${API_V1}/users/${session.id}`);
+        const response = await fetch(`${API_V1}/users/${userId}`);
 
         if (!response.ok) {
             throw new Error("Usuario no encontrado");
         }
 
-        const user = await response.json();
+        currentUser = await response.json();
 
-        telEl.value = user.telefono;
-        nombreEl.value = `${user.nombre} ${user.apellido}`;
-        emailEl.value = user.correo;
     } catch (error) {
         console.error(error);
+    }
+
+    telEl.value = currentUser.telefono || "";
+    nombreEl.value = `${currentUser.nombre || ""} ${currentUser.apellido || ""}`.trim();
+    emailEl.value = currentUser.correo || "";
+
+    if (profileForm) {
+        profileForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const nombreCompleto = nombreEl.value.trim().replace(/\s+/g, " ");
+            const [nombre, ...apellidoPartes] = nombreCompleto.split(" ");
+            const payload = {
+                ...currentUser,
+                id: userId,
+                nombre: nombre || currentUser.nombre || "",
+                apellido: apellidoPartes.join(" ") || currentUser.apellido || "",
+                correo: emailEl.value.trim(),
+                telefono: telEl.value.trim(),
+                roles: currentUser.roles || session.roles || "cliente",
+                contrasena: currentUser.contrasena,
+            };
+
+            try {
+                const response = await fetch(`${API_V1}/users/${userId}`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload),
+                });
+
+                if (!response.ok) {
+                    throw new Error("No se pudo actualizar el perfil");
+                }
+
+                currentUser = await response.json();
+                sessionStorage.setItem(
+                    "session",
+                    JSON.stringify({
+                        id: currentUser.id,
+                        nombre: currentUser.nombre,
+                        apellido: currentUser.apellido,
+                        correo: currentUser.correo,
+                        telefono: currentUser.telefono,
+                        roles: currentUser.roles,
+                    })
+                );
+                alert("Perfil actualizado correctamente.");
+            } catch (error) {
+                console.error(error);
+                alert("No se pudieron guardar los cambios del perfil.");
+            }
+        });
     }
 });

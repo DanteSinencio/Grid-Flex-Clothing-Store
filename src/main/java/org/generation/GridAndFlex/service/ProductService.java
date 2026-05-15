@@ -19,15 +19,15 @@ public class ProductService {
 
     public Product obtenerProductosId(Long id) {
         return productRepository.findById(id)
-                .orElseThrow(null);
+                .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
     }
 
     public Product guardarProducto(Product product) {
         return productRepository.save(product);
     }
 
-    public void  actualizarProducto(Product product){
-        productRepository.save(product);
+    public Product actualizarProducto(Product product){
+        return productRepository.save(product);
     }
 
     public void borrarProducto(Long id){

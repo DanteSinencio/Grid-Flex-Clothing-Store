@@ -15,7 +15,8 @@ public class Product {
     private Double precio;
     private Integer existencias;
 
-    @Column(name = "url_imagen")
+    @Lob
+    @Column(name = "url_imagen", columnDefinition = "LONGTEXT")
     private String urlImagen;
 
     @ManyToOne

@@ -24,9 +24,13 @@ public class UserService {
         User existingUser = userRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
         existingUser.setNombre(user.getNombre());
         existingUser.setApellido(user.getApellido());
-        existingUser.setRoles(user.getRoles());
+        if (user.getRoles() != null) {
+            existingUser.setRoles(user.getRoles());
+        }
         existingUser.setCorreo(user.getCorreo());
-        existingUser.setContrasena(user.getContrasena());
+        if (user.getContrasena() != null && !user.getContrasena().isBlank()) {
+            existingUser.setContrasena(user.getContrasena());
+        }
         existingUser.setTelefono(user.getTelefono());
 
         return userRepository.save(existingUser);
