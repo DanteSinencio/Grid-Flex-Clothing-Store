@@ -1,7 +1,7 @@
 // ==========================================
-// API (mismo origen que la app Spring Boot en :8080)
+// API (servidor Spring Boot en :8080)
 // ==========================================
-const API_ORIGIN = window.location.origin || "http://localhost:8080";
+const API_ORIGIN = "http://100.31.79.75:8080";
 const API_V1 = `${API_ORIGIN}/api/v1`;
 
 const GUEST_CART_KEY = "gridFlex_carrito_guest";
