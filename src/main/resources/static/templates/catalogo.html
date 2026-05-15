@@ -108,11 +108,97 @@
             <!-- PRODUCTOS -->
             <div class="col-md-9">
 
-                <div class="d-flex justify-content-end mb-3">
-                    <button id="btnFiltro" class="btn btn-outline-dark">FILTRO</button>
+                <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+                    <p class="mb-0 small text-muted"><span id="contador-productos" class="fw-semibold text-dark">6</span> prendas</p>
+                    <button id="btnFiltro" type="button" class="btn btn-outline-dark">FILTRO</button>
                 </div>
 
+                <!-- Productos de muestra (visibles si la API no devuelve catálogo; el JS las sustituye cuando hay datos en BD) -->
                 <div class="row g-4" id="contenedor-productos">
+
+                    <div class="col-md-4 producto" data-catalog-static="true" data-precio="299">
+                        <div class="card p-3 h-100 shadow-sm border-0 d-flex flex-column" data-categoria="camisas" data-talla="M">
+                            <img src="../img/playeraLose.jpg" alt="Camisa Slim Fit" class="img-fluid rounded" style="height: 250px; width: 100%; object-fit: cover;">
+                            <h6 class="mt-3 fw-bold">Camisa Slim Fit</h6>
+                            <small class="text-muted">camisas | Talla: M</small>
+                            <p class="fs-5 mt-2 mb-3">$299</p>
+                            <button type="button" class="btn btn-outline-dark btn-sm mt-auto w-100 btn-agregar-carrito"
+                                data-ref="demo-camisa-slim"
+                                data-nombre="Camisa Slim Fit" data-precio="299" data-imagen="img/playeraLose.jpg" data-categoria="camisas" data-talla="M">
+                                <i class="fa-solid fa-cart-plus"></i> Agregar al carrito
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 producto" data-catalog-static="true" data-precio="450">
+                        <div class="card p-3 h-100 shadow-sm border-0 d-flex flex-column" data-categoria="chamarras" data-talla="G">
+                            <img src="../img/chamarraMezclilla.jpg" alt="Chamarra Mezclilla" class="img-fluid rounded" style="height: 250px; width: 100%; object-fit: cover;">
+                            <h6 class="mt-3 fw-bold">Chamarra Mezclilla</h6>
+                            <small class="text-muted">chamarras | Talla: G</small>
+                            <p class="fs-5 mt-2 mb-3">$450</p>
+                            <button type="button" class="btn btn-outline-dark btn-sm mt-auto w-100 btn-agregar-carrito"
+                                data-ref="demo-chamarra-mezclilla"
+                                data-nombre="Chamarra Mezclilla" data-precio="450" data-imagen="img/chamarraMezclilla.jpg" data-categoria="chamarras" data-talla="G">
+                                <i class="fa-solid fa-cart-plus"></i> Agregar al carrito
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 producto" data-catalog-static="true" data-precio="350">
+                        <div class="card p-3 h-100 shadow-sm border-0 d-flex flex-column" data-categoria="camisas" data-talla="M">
+                            <img src="../img/camisaRayas.jpg" alt="Camisa con rayas" class="img-fluid rounded" style="height: 250px; width: 100%; object-fit: cover;">
+                            <h6 class="mt-3 fw-bold">Camisa con rayas</h6>
+                            <small class="text-muted">camisas | Talla: M</small>
+                            <p class="fs-5 mt-2 mb-3">$350</p>
+                            <button type="button" class="btn btn-outline-dark btn-sm mt-auto w-100 btn-agregar-carrito"
+                                data-ref="demo-camisa-rayas"
+                                data-nombre="Camisa con rayas" data-precio="350" data-imagen="img/camisaRayas.jpg" data-categoria="camisas" data-talla="M">
+                                <i class="fa-solid fa-cart-plus"></i> Agregar al carrito
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 producto" data-catalog-static="true" data-precio="350">
+                        <div class="card p-3 h-100 shadow-sm border-0 d-flex flex-column" data-categoria="chamarras" data-talla="G">
+                            <img src="../img/chamarraDeportiva.jpg" alt="Chamarra Deportiva" class="img-fluid rounded" style="height: 250px; width: 100%; object-fit: cover;">
+                            <h6 class="mt-3 fw-bold">Chamarra Deportiva</h6>
+                            <small class="text-muted">chamarras | Talla: G</small>
+                            <p class="fs-5 mt-2 mb-3">$350</p>
+                            <button type="button" class="btn btn-outline-dark btn-sm mt-auto w-100 btn-agregar-carrito"
+                                data-ref="demo-chamarra-deportiva"
+                                data-nombre="Chamarra Deportiva" data-precio="350" data-imagen="img/chamarraDeportiva.jpg" data-categoria="chamarras" data-talla="G">
+                                <i class="fa-solid fa-cart-plus"></i> Agregar al carrito
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 producto" data-catalog-static="true" data-precio="330">
+                        <div class="card p-3 h-100 shadow-sm border-0 d-flex flex-column" data-categoria="chamarras" data-talla="M">
+                            <img src="../img/chamarraPopover.jpg" alt="Chamarra Popover" class="img-fluid rounded" style="height: 250px; width: 100%; object-fit: cover;">
+                            <h6 class="mt-3 fw-bold">Chamarra Popover</h6>
+                            <small class="text-muted">chamarras | Talla: M</small>
+                            <p class="fs-5 mt-2 mb-3">$330</p>
+                            <button type="button" class="btn btn-outline-dark btn-sm mt-auto w-100 btn-agregar-carrito"
+                                data-ref="demo-chamarra-popover"
+                                data-nombre="Chamarra Popover" data-precio="330" data-imagen="img/chamarraPopover.jpg" data-categoria="chamarras" data-talla="M">
+                                <i class="fa-solid fa-cart-plus"></i> Agregar al carrito
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 producto" data-catalog-static="true" data-precio="180">
+                        <div class="card p-3 h-100 shadow-sm border-0 d-flex flex-column" data-categoria="accesorios" data-talla="CH">
+                            <img src="../img/gorra.jpg" alt="Gorra" class="img-fluid rounded" style="height: 250px; width: 100%; object-fit: cover;">
+                            <h6 class="mt-3 fw-bold">Gorra</h6>
+                            <small class="text-muted">accesorios | Talla: CH</small>
+                            <p class="fs-5 mt-2 mb-3">$180</p>
+                            <button type="button" class="btn btn-outline-dark btn-sm mt-auto w-100 btn-agregar-carrito"
+                                data-ref="demo-gorra"
+                                data-nombre="Gorra" data-precio="180" data-imagen="img/gorra.jpg" data-categoria="accesorios" data-talla="CH">
+                                <i class="fa-solid fa-cart-plus"></i> Agregar al carrito
+                            </button>
+                        </div>
+                    </div>
 
                 </div>
 

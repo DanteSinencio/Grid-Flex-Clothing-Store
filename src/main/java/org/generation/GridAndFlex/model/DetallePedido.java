@@ -18,10 +18,10 @@ public class DetallePedido {
     private Double precioUnitario;
 
     @Column(name = "pedidos_id_pedidos")
-    private Integer pedidoId;
+    private Long pedidoId;
 
     @Column(name = "productos_id_productos")
-    private Integer productoId;
+    private Long productoId;
 
     public DetallePedido() {
     }
@@ -50,19 +50,19 @@ public class DetallePedido {
         this.precioUnitario = precioUnitario;
     }
 
-    public Integer getPedidoId() {
+    public Long getPedidoId() {
         return pedidoId;
     }
 
-    public void setPedidoId(Integer pedidoId) {
+    public void setPedidoId(Long pedidoId) {
         this.pedidoId = pedidoId;
     }
 
-    public Integer getProductoId() {
+    public Long getProductoId() {
         return productoId;
     }
 
-    public void setProductoId(Integer productoId) {
+    public void setProductoId(Long productoId) {
         this.productoId = productoId;
     }
 }
